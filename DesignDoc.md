@@ -145,7 +145,7 @@ Je bent gewoon een vogel die zich te veel verveelt, dus heb je besloten jezelf u
 
 ---
 
-## Pagina 3: Level Ideas
+## Level Ideas
 
 ### Level Progressie
 
@@ -160,9 +160,11 @@ Afgeschermd villagebied. Hoge muren, bewakers bij ingangen. Infiltratiemechanic 
 
 **Level 4 — Het Marktplein met inbraken**
 
+De taken combineren het marktplein uit level 2 met de infiltratiemechanic uit level 3.
+
 ---
 
-## Pagina 4: Tech
+## Tech
 
 ### Artificial Intelligence
 
@@ -192,7 +194,7 @@ Afgeschermd villagebied. Hoge muren, bewakers bij ingangen. Infiltratiemechanic 
 
 ---
 
-## Pagina 5–6: Schema
+## Schema
 
 ### Backlog (Feature List, geprioriteerd)
 
@@ -205,121 +207,21 @@ Afgeschermd villagebied. Hoge muren, bewakers bij ingangen. Infiltratiemechanic 
 | 🔴 Must Have    | Takenlijst + win/verlies condities            | Game flow           |
 | 🟠 Should Have  | Infiltratie-mechanic (kamer + dozen)          | Risico-mechanic     |
 | 🟠 Should Have  | NPC achtervolging (bezem)                     | Fail-state feedback |
-| 🟠 Should Have  | Level 1 volledig speelbaar                    | Prototype milestone |
-| 🟡 Nice to Have | Level 2 en 3                                  | Scope uitbreiding   |
-| 🟡 Nice to Have | Chaos-kettingreacties                         | Extra fun           |
-| 🟡 Nice to Have | Nacht-level (level 5)                         | Eindlevel           |
+| 🟠 Should Have  | Levels volledig speelbaar                     | Prototype milestone |
+| 🟡 Nice to Have | Kettingreacties                               | Extra fun           |
 | ⚪ Wens         | Scoresysteem + leaderboard                    | Replayability       |
-| ⚪ Wens         | Vogel-customisatie (hoedjes)                  | Cosmetics           |
 
 ---
 
 ### Milestones & Productietijdlijn (6 weken)
 
-| Week       | Milestone                         | Doel                                                     |
-| ---------- | --------------------------------- | -------------------------------------------------------- |
-| **Week 1** | Prototype vliegen                 | Vogel beweegt correct in 3D, camera volgt, stamina werkt |
-| **Week 2** | Core mechanics                    | Poep-projectiel + snavel-interactie werkend              |
-| **Week 3** | NPC systeem                       | NPC routes, zichtveld, alertmeter werkend                |
-| **Week 4** | **Level 1 volledig speelbaar** ✅ | Takenlijst, win/verlies, basis art en audio              |
-| **Week 5** | Infiltratie-mechanic + Level 2    | Kamer-zoek-mechanic, tweede level                        |
-| **Week 6** | Polish + Level 3                  | Bug fixing, UI verbetering, examenpresentatie            |
-
-> ⚠️ _Week 10 (examen): volledig uitgewerkt spel met minimaal 3 speelbare levels._
+| Week       | Milestone                      | Doel                                                     |
+| ---------- | ------------------------------ | -------------------------------------------------------- |
+| **Week 1** | Prototype vliegen              | Vogel beweegt correct in 3D, camera volgt, stamina werkt |
+| **Week 2** | Core mechanics                 | Poep-projectiel + snavel-interactie werkend              |
+| **Week 3** | NPC systeem                    | NPC routes, zichtveld, alertmeter werkend                |
+| **Week 4** | **Level 1 volledig speelbaar** | Takenlijst, win/verlies, basis art en audio              |
+| **Week 5** | Infiltratie-mechanic + Level 2 | Kamer-zoek-mechanic, tweede level                        |
+| **Week 6** | Polish + Level 3, 4            | Bug fixing, UI verbetering, alle 4 levels afmaken        |
 
 ---
-
----
-
-# 📄 Paper Prototype Rapport
-
-## Onderzochte Mechanic: De Infiltratie (Inbraak + Zoekfase)
-
-### Probleemstelling
-
-De inbraak-mechanic was de grootste **risicovolle mechanic** van het ontwerp. De kernvraag was:
-
-> _Hoe zoekt de vogel objecten in een kamer? Hoe maken we dit spannend en afhankelijk van player skill, zonder het puur willekeurig te maken?_
-
----
-
-### Hoe Werkt het Paper Prototype
-
-**Materialen:**
-
-- 6 gesloten enveloppen (= dozen in de kamer), elk genummerd 1–6
-- In 1 of 2 enveloppen zit een kaartje met "TAART 🎂" (het doelwit)
-- In de rest zit een kaartje met "LEEG" of "VERKEERD OBJECT"
-- Stopwatch voor tijdslimiet
-- 3 "kans-tokens" per speler (= aantal dozen dat geopend mag worden)
-
-**Visuele hints (gesimuleerd):**
-
-- Enveloppen hebben kleine symbolen geschreven op de buitenkant (kleur-stip, streep, kruis) — de "hints" die een oplettende speler kan interpreteren
-- Vóór het prototype krijgen spelers 10 seconden om de hints te bestuderen (= observatiefase)
-
-**Spelverloop paper prototype:**
-
-1. Facilitator plaatst enveloppen neer, één of twee bevatten het doelwit.
-2. Speler heeft 10 seconden observatietijd (hints bekijken).
-3. Stopwatch start: 20 seconden.
-4. Speler kiest een envelop, opent die (kost 3 seconden gesimuleerde tijd — facilitator telt af).
-5. Als het doelwit gevonden is: succes! Zo niet: keuze maken — volgende proberen of opgeven.
-6. Na 3 geopende enveloppen of als de tijd op is: ronde voorbij.
-
----
-
-### Foto's Paper Prototype
-
-> _(Voeg hier foto's toe van de opgestelde enveloppen, de tokens en de speeltafel tijdens de playtest.)_
-
-**Foto 1:** Overzicht van de 6 enveloppen met symbolen op tafel.
-**Foto 2:** Speler bestudeert hints tijdens observatiefase.
-**Foto 3:** Speler opent een envelop — facilitator houdt stopwatch bij.
-**Foto 4:** Reactie van speler bij het vinden van de "TAART" kaart.
-
----
-
-### Spelerservaringen
-
-**Speler A:**
-Gebruikte de hints actief en vond de taart bij de 2e envelop. Ervaarde de tijdsdruk als spannend maar haalbaar. Opmerking: _"Ik voelde echt dat ik een beslissing moest maken — snel nog een doos proberen of stoppen?"_
-
-**Speler B:**
-Negeerde de hints en koos willekeurig. Vond de taart niet binnen de tijd. Reactie: _"Ik had beter moeten kijken, maar de tijdsdruk maakte me nerveus."_ Dit bevestigt dat player skill een rol speelt.
-
-**Speler C:**
-Vond de hints te vaag bij de eerste ronde. Na uitleg van de hint-logica lukte het de tweede keer beter. Feedback: _"De hints moeten duidelijker zijn in de echte game, of er moet een tutorialtip zijn."_
-
-**Algemeen observatie:**
-
-- Met 3 kansen bij 6 dozen (1–2 correct) voelde de mechanic uitdagend maar eerlijk.
-- Met slechts 2 kansen werd het te frustrerend voor nieuwe spelers.
-- Met 4+ kansen verdween de spanning volledig.
-
----
-
-### Conclusies
-
-**Wat werkt:**
-
-- De combinatie van tijdslimiet + beperkte kansen + visuele hints creëert een **echte spanningsboog**: spelers moeten snel observeren en dan beslissen.
-- Player skill is aantoonbaar relevant: spelers die hints lezen, slagen vaker.
-- De mechanic is intuitief uit te leggen en snel te leren.
-
-**Wat moet aangepast:**
-
-- Het aantal kansen moet goed gebalanceerd worden: **3 kansen bij 6 dozen** is het sweet spot.
-- De hints moeten consistenter en leesbaarder zijn — in de digitale versie kunnen subtiele animaties of geluiden hints geven (bv. een doos die licht beweegt, een geur-effect boven de juiste doos).
-- Een kortere tijdslimiet (15 sec) verhoogt de spanning verder zonder unfair te worden.
-
-**Implicaties voor digitale implementatie:**
-
-- De "dozen zoeken" mechanic wordt in Unity geïmplementeerd als een **tijdslimiet-zone**: de speler betreedt de kamer en een countdown start.
-- Dozen hebben subtiele visuele hints (lichtglinstering, beweging).
-- Het aantal openbare dozen per kamer wordt ingesteld per level (moeilijkheidsgraad).
-- Een te zware vogel (met al een object) kan geen tweede object oppakken — stimuleert planning vooraf.
-
----
-
-_Document versie 1.0 — Team Prank Bird_
