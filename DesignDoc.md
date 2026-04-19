@@ -13,7 +13,7 @@ Jij bent een vogel in een stad. Jouw doel is de levens van voetgangers ontregele
 
 **Genre:** Simulation / Comedy Sandbox
 
-**Doelpubliek:** Casual gamers en comedyliefhebbers, 12+, fans van Untitled Goose Game en Goat Simulator.
+**Doelpubliek:** Casual gamers en comedyliefhebbers, 12+, fans van Untitled Goose Game en Goat Simulator, Explorer & Achievers type
 
 ---
 
