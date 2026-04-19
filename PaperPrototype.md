@@ -21,7 +21,7 @@ Hoe zoekt de vogel objecten in een kamer? Hoe maken we dit spannend en afhankeli
 
 ### Foto's Paper Prototype
 
-https://files.catbox.moe/81lf9i.jpg
+https://imgur.com/a/FEs5b09
 
 ---
 
