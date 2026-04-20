@@ -1,3 +1,26 @@
 [gd_scene format=3 uid="uid://ci6482x7llk5u"]
 
-[node name="NPC" type="Node3D" unique_id=1911451188]
+[ext_resource type="Material" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebug.tres" id="1_bo8xx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cjcwr"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bo8xx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_r0g10"]
+size = Vector3(0.2, 0.2, 1)
+
+[node name="NPC" type="CharacterBody3D" unique_id=1717770710]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=581422871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_cjcwr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1292615827]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = ExtResource("1_bo8xx")
+mesh = SubResource("CapsuleMesh_bo8xx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=263276944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38284636, -0.5092149)
+material_override = ExtResource("1_bo8xx")
+mesh = SubResource("BoxMesh_r0g10")
