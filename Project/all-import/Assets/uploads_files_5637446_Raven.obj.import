@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cuqs5mmafhewg"
+path="res://.godot/imported/uploads_files_5637446_Raven.obj-1526246a535639cccbbc7a84ca4ffa94.mesh"
+
+[deps]
+
+files=["res://.godot/imported/uploads_files_5637446_Raven.obj-1526246a535639cccbbc7a84ca4ffa94.mesh"]
+
+source_file="res://Assets/uploads_files_5637446_Raven.obj"
+dest_files=["res://.godot/imported/uploads_files_5637446_Raven.obj-1526246a535639cccbbc7a84ca4ffa94.mesh", "res://.godot/imported/uploads_files_5637446_Raven.obj-1526246a535639cccbbc7a84ca4ffa94.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
