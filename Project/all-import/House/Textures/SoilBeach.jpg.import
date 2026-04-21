@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2vmkagxrlmfk"
-path.s3tc="res://.godot/imported/SoilBeach.jpg-40cf56c9dcbdd73ea8e77d40515347d3.s3tc.ctex"
+path.s3tc="res://.godot/imported/SoilBeach.jpg-9dba7b0d9e5c05a93c05183ba73aeba9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://House/textures/SoilBeach.jpg"
-dest_files=["res://.godot/imported/SoilBeach.jpg-40cf56c9dcbdd73ea8e77d40515347d3.s3tc.ctex"]
+source_file="res://House/Textures/SoilBeach.jpg"
+dest_files=["res://.godot/imported/SoilBeach.jpg-9dba7b0d9e5c05a93c05183ba73aeba9.s3tc.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sd01vs4nmq45"
-path.s3tc="res://.godot/imported/Shovel.png-21c1a34ecc4a427e2432810af8c3d7a6.s3tc.ctex"
+path.s3tc="res://.godot/imported/Shovel.png-1a9833278dfa61c930b3fefa8cd36f21.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://House/textures/Shovel.png"
-dest_files=["res://.godot/imported/Shovel.png-21c1a34ecc4a427e2432810af8c3d7a6.s3tc.ctex"]
+source_file="res://House/Textures/Shovel.png"
+dest_files=["res://.godot/imported/Shovel.png-1a9833278dfa61c930b3fefa8cd36f21.s3tc.ctex"]
 
 [params]
 

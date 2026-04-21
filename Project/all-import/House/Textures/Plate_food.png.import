@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://wi6xlx6jv6on"
-path.s3tc="res://.godot/imported/Plate_food.png-821874406c563613e38261c70d2dcb4f.s3tc.ctex"
+path.s3tc="res://.godot/imported/Plate_food.png-d70fefb4e56be9c7bbcc846cb3b63631.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://House/textures/Plate_food.png"
-dest_files=["res://.godot/imported/Plate_food.png-821874406c563613e38261c70d2dcb4f.s3tc.ctex"]
+source_file="res://House/Textures/Plate_food.png"
+dest_files=["res://.godot/imported/Plate_food.png-d70fefb4e56be9c7bbcc846cb3b63631.s3tc.ctex"]
 
 [params]
 

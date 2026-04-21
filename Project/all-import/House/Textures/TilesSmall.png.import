@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4mftb37gpps"
-path.s3tc="res://.godot/imported/TilesSmall.png-6390787c9d0617b66635200b46819d59.s3tc.ctex"
+path.s3tc="res://.godot/imported/TilesSmall.png-fb8f6446b3a78fd329e917d13a0918d1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://House/textures/TilesSmall.png"
-dest_files=["res://.godot/imported/TilesSmall.png-6390787c9d0617b66635200b46819d59.s3tc.ctex"]
+source_file="res://House/Textures/TilesSmall.png"
+dest_files=["res://.godot/imported/TilesSmall.png-fb8f6446b3a78fd329e917d13a0918d1.s3tc.ctex"]
 
 [params]
 

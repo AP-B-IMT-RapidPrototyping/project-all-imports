@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3hpctb62jpis"
-path.s3tc="res://.godot/imported/Ice_cream.png-454208fbe473d6d26641a389a9240fd8.s3tc.ctex"
+path.s3tc="res://.godot/imported/Ice_cream.png-2a6b43ad4ddf4f645d7df7fafe0c41ea.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://House/textures/Ice_cream.png"
-dest_files=["res://.godot/imported/Ice_cream.png-454208fbe473d6d26641a389a9240fd8.s3tc.ctex"]
+source_file="res://House/Textures/Ice_cream.png"
+dest_files=["res://.godot/imported/Ice_cream.png-2a6b43ad4ddf4f645d7df7fafe0c41ea.s3tc.ctex"]
 
 [params]
 

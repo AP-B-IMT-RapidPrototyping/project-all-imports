@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgpm52nmv6n1m"
-path.s3tc="res://.godot/imported/Milk.png-4489a35e8a56b9abd5161b602a1fe002.s3tc.ctex"
+path.s3tc="res://.godot/imported/Milk.png-ed3432a0b66bdf40c388261f448620f4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://House/textures/Milk.png"
-dest_files=["res://.godot/imported/Milk.png-4489a35e8a56b9abd5161b602a1fe002.s3tc.ctex"]
+source_file="res://House/Textures/Milk.png"
+dest_files=["res://.godot/imported/Milk.png-ed3432a0b66bdf40c388261f448620f4.s3tc.ctex"]
 
 [params]
 

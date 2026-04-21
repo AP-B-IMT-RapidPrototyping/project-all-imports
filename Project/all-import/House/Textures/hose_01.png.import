@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgrh30bkv58bt"
-path.s3tc="res://.godot/imported/hose_01.png-2356293dd95060724a8f91c12a2c9e52.s3tc.ctex"
+path.s3tc="res://.godot/imported/hose_01.png-4e3104d6cf38eb03f0d588bf0d83717c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://House/textures/hose_01.png"
-dest_files=["res://.godot/imported/hose_01.png-2356293dd95060724a8f91c12a2c9e52.s3tc.ctex"]
+source_file="res://House/Textures/hose_01.png"
+dest_files=["res://.godot/imported/hose_01.png-4e3104d6cf38eb03f0d588bf0d83717c.s3tc.ctex"]
 
 [params]
 

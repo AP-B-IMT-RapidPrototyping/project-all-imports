@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfn0rjkhr64ae"
-path.s3tc="res://.godot/imported/Light_switch.png-124a8606edbe84a983b83bc7fcb68d97.s3tc.ctex"
+path.s3tc="res://.godot/imported/Light_switch.png-732fc3b0582e77b0c28eec265a36a1d8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://House/textures/Light_switch.png"
-dest_files=["res://.godot/imported/Light_switch.png-124a8606edbe84a983b83bc7fcb68d97.s3tc.ctex"]
+source_file="res://House/Textures/Light_switch.png"
+dest_files=["res://.godot/imported/Light_switch.png-732fc3b0582e77b0c28eec265a36a1d8.s3tc.ctex"]
 
 [params]
 

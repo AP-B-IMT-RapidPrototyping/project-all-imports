@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtjm2yuk6xkvv"
-path.s3tc="res://.godot/imported/Mop.png-8152f58440412ec59ee995eb77e5ef1d.s3tc.ctex"
+path.s3tc="res://.godot/imported/Mop.png-012a3c1b0e961984ca5a08146a4fe3f2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://House/textures/Mop.png"
-dest_files=["res://.godot/imported/Mop.png-8152f58440412ec59ee995eb77e5ef1d.s3tc.ctex"]
+source_file="res://House/Textures/Mop.png"
+dest_files=["res://.godot/imported/Mop.png-012a3c1b0e961984ca5a08146a4fe3f2.s3tc.ctex"]
 
 [params]
 
