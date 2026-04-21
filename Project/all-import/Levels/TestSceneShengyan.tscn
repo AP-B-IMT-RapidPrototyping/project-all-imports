@@ -3,6 +3,7 @@
 [ext_resource type="Material" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebugPurple.tres" id="1_41pbi"]
 [ext_resource type="PackedScene" uid="uid://ci6482x7llk5u" path="res://Actors/Npc.tscn" id="2_bu15h"]
 [ext_resource type="PackedScene" uid="uid://cu7co1hj0c36m" path="res://Actors/debugPlayer.tscn" id="3_ir1cd"]
+[ext_resource type="PackedScene" uid="uid://dxic2kficc6r6" path="res://Assets/cone.tscn" id="4_c8nyi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bu15h"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -47,3 +48,6 @@ shape = SubResource("BoxShape3D_ir1cd")
 
 [node name="DebugPlayer" parent="." unique_id=396963942 instance=ExtResource("3_ir1cd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3510876, 1.3357463, -2.509232)
+
+[node name="Cone" parent="." unique_id=1903275656 instance=ExtResource("4_c8nyi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 10)
