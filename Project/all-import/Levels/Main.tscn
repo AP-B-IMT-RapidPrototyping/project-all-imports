@@ -1,11 +1,6 @@
 [gd_scene format=3 uid="uid://bmv0gly2qb8fl"]
 
-[ext_resource type="Script" uid="uid://cbj7hjwy4ikra" path="res://Scripts/Player.cs" id="1_a22an"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_vbwdf"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_h1khe"]
-radius = 0.51416165
+[ext_resource type="PackedScene" uid="uid://05eeeuehno13" path="res://Actors/Player.tscn" id="1_a22an"]
 
 [node name="Node3D" type="Node3D" unique_id=204602264]
 
@@ -13,16 +8,4 @@ radius = 0.51416165
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Player" type="CharacterBody3D" parent="." unique_id=431529393]
-script = ExtResource("1_a22an")
-
-[node name="shape1" type="MeshInstance3D" parent="Player" unique_id=1969993607]
-mesh = SubResource("CapsuleMesh_vbwdf")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=725066429]
-shape = SubResource("SphereShape3D_h1khe")
-
-[node name="CameraPivot" type="Node3D" parent="Player" unique_id=72494083]
-
-[node name="Camera3D" type="Camera3D" parent="Player/CameraPivot" unique_id=1635493281]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)
+[node name="Player" parent="." unique_id=561623431 instance=ExtResource("1_a22an")]
