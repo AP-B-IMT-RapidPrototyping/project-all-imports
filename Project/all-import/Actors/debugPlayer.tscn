@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cu7co1hj0c36m"]
 
-[ext_resource type="Script" uid="uid://d1ijvnpqgjgef" path="res://Scripts/Npc.cs" id="1_p5m08"]
 [ext_resource type="Material" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebugPurple.tres" id="2_ft0ty"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cjcwr"]
@@ -11,7 +10,6 @@
 size = Vector3(0.2, 0.2, 1)
 
 [node name="DebugPlayer" type="CharacterBody3D" unique_id=1717770710 groups=["player"]]
-script = ExtResource("1_p5m08")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=581422871 groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
