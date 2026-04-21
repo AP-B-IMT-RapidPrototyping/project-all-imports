@@ -34,7 +34,7 @@ environment = SubResource("Environment_c8nyi")
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.4429357, 5.6544027, 3.7676218)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1712006704]
-transform = Transform3D(12.071458, 0, 0, 0, 1, 0, 0, 0, 12.071458, 0, -0.48932767, 0)
+transform = Transform3D(99, 0, 0, 0, 1, 0, 0, 0, 99, 0, -0.48932767, 0)
 material_override = ExtResource("1_41pbi")
 mesh = SubResource("BoxMesh_bu15h")
 
@@ -47,4 +47,4 @@ shape = SubResource("BoxShape3D_ir1cd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 10)
 
 [node name="Player" parent="." unique_id=561623431 instance=ExtResource("4_b475f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46141434, 3.934163, 0.6028302)
+transform = Transform3D(-0.66363895, 0, 0.748053, 0, 1, 0, -0.748053, 0, -0.66363895, -0.46141434, 4.005956, -8.602016)
