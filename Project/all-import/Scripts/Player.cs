@@ -26,14 +26,14 @@ public partial class Player : CharacterBody3D
     private Camera3D camera;
 
     public override void _Ready()
-    { 
+    {
         Input.MouseMode = Input.MouseModeEnum.Captured;
         cameraPivot = GetNode<Node3D>("CameraPivot");
         camera = GetNode<Camera3D>("CameraPivot/Camera3D");
     }
 
     public override void _Input(InputEvent @event)
-    { 
+    {
         if (@event is InputEventMouseMotion motion)
         {
             RotateY(Mathf.DegToRad(-motion.Relative.X * MouseSensitivity));
@@ -45,7 +45,7 @@ public partial class Player : CharacterBody3D
         }
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         Vector3 velocity = Velocity;
 

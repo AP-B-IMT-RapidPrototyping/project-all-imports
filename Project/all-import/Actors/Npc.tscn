@@ -32,14 +32,13 @@ material_override = ExtResource("1_bo8xx")
 mesh = SubResource("BoxMesh_r0g10")
 
 [node name="Detection" type="Area3D" parent="." unique_id=370972957]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="Cone" parent="Detection" unique_id=1903275656 instance=ExtResource("3_ujybo")]
 transform = Transform3D(7, 0, 0, 0, -2.1855695e-07, -7, 0, 5, -3.059797e-07, -1.1052094e-07, 1.4064484, -4.9793363)
 visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Detection" unique_id=1972711184]
-transform = Transform3D(7, 0, 0, 0, -3.059797e-07, -7, 0, 7, -3.059797e-07, -6.5670974e-08, 1.4064484, -4.4663124)
+transform = Transform3D(7, 0, 0, 0, -3.059797e-07, 7, 0, -7, -3.059797e-07, -6.5670974e-08, 1.4064484, 4.3296204)
 shape = SubResource("ConvexPolygonShape3D_ujybo")
 
 [node name="AlertTimer" type="Timer" parent="." unique_id=198413789]

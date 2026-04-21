@@ -1,153 +1,187 @@
 using Godot;
-using System;
-using System.Collections.Generic;
 
 public partial class Npc : CharacterBody3D
 {
-	private enum NpcState
-	{
-		Neutral,
-		Alert
-	}
+	private enum NpcState { Neutral, Alert }
 
-	private const string PlayerGroupName = "player";
-
-	[Export] public float Speed = 2.0f;
+	// ── Inspector exports ────────────────────────────────────────────────────
+	[Export] public float Speed        = 2.0f;
 	[Export] public float CatchDistance = 1.5f;
-	[Export] public bool RequireLineOfSightInCone = false;
-	[Export] public bool TreatRayNoHitAsClearLos = true;
-	[Export] public bool DebugDetection = true;
-	[Export] public int DebugLogIntervalMs = 800;
+	[Export] public bool  DebugLos     = true;
 
-	private NpcState _state = NpcState.Neutral;
-	private Node3D _player;
+	// ── Runtime state ────────────────────────────────────────────────────────
+	private NpcState _state  = NpcState.Neutral;
+	private Node3D   _target;
+	private bool     _hasCaught;
 
 	private Area3D _detectionArea;
-	private Timer _alertTimer;
-	private readonly Dictionary<string, long> _debugNextLogAtByKey = new();
-	private bool _hasCaughtCurrentTarget;
+	private Timer  _alertTimer;
 
-	public string StateName => _state.ToString();
-
+	// ────────────────────────────────────────────────────────────────────────
 	public override void _Ready()
 	{
 		_detectionArea = GetNodeOrNull<Area3D>("Detection");
 		if (_detectionArea == null)
-		{
-			GD.PushWarning($"{Name}: Detection Area3D child 'Detection' was not found.");
-			DebugLog("ready_detection_missing", "Detection node missing. Fallback group scan only.");
-		}
-		else
-		{
-			_detectionArea.Monitoring = true;
-			_detectionArea.Monitorable = true;
-			_detectionArea.BodyEntered += OnDetectionBodyEntered;
-			_detectionArea.BodyExited += OnDetectionBodyExited;
-			DebugLog("ready_detection_ok", "Detection node found and monitoring enabled.");
-		}
+			GD.PushWarning($"{Name}: 'Detection' Area3D child not found.");
 
 		_alertTimer = GetNodeOrNull<Timer>("AlertTimer");
-		if (_alertTimer == null)
-		{
-			GD.PushWarning($"{Name}: Timer child 'AlertTimer' was not found.");
-			DebugLog("ready_timer_missing", "AlertTimer missing. NPC will drop target instantly when LOS is lost.");
-		}
-		else
-		{
+		if (_alertTimer != null)
 			_alertTimer.Timeout += OnAlertTimerTimeout;
-			DebugLog("ready_timer_ok", "AlertTimer connected.");
-		}
+		else
+			GD.PushWarning($"{Name}: 'AlertTimer' child not found.");
 	}
 
+	// ────────────────────────────────────────────────────────────────────────
 	public override void _PhysicsProcess(double delta)
 	{
 		float dt = (float)delta;
 
-		if (!IsInstanceValid(_player))
+		// Invalidate stale target
+		if (_target != null && !IsInstanceValid(_target))
 		{
-			if (_player != null)
-			{
-				DebugLog("player_invalid", "Current target became invalid and was cleared.");
-			}
-			_player = null;
-			_hasCaughtCurrentTarget = false;
+			_target    = null;
+			_hasCaught = false;
 		}
 
-		if (_player == null)
+		switch (_state)
 		{
-			TryAcquireVisiblePlayerFromDetection();
-			if (_player == null)
-			{
-				DebugLog("acquire_failed", "No valid player target acquired from Detection cone this frame.");
-			}
+			case NpcState.Neutral:
+				NeutralTick(dt);
+				break;
+
+			case NpcState.Alert:
+				AlertTick(dt);
+				break;
 		}
+	}
 
-		if (_state == NpcState.Alert && IsInstanceValid(_player))
+	// ── State ticks ──────────────────────────────────────────────────────────
+	private void NeutralTick(float dt)
+	{
+		_target = FindVisiblePlayer();
+		if (_target != null)
 		{
-			if (!IsInsideDetectionCone(_player))
-			{
-				DebugLog("cone_lost", $"Target '{_player.Name}' is outside Detection cone, starting alert timer.");
-				StartAlertTimer();
-				MoveToward(_player.GlobalPosition, Speed, dt);
-				return;
-			}
+			EnterAlert();
+		}
+		else
+		{
+			Decelerate(dt);
+		}
+	}
 
-			if (RequireLineOfSightInCone && !HasLineOfSight(_player))
-			{
-				DebugLog("los_lost", $"Lost line of sight to target '{_player.Name}', starting alert timer.");
-				StartAlertTimer();
-				MoveToward(GlobalPosition, 0.0f, dt);
-				return;
-			}
-
-			StopAlertTimer();
-
-			Vector3 offset = _player.GlobalPosition - GlobalPosition;
-			float distanceToPlayer = new Vector2(offset.X, offset.Z).Length();
-			if (distanceToPlayer <= CatchDistance)
-			{
-				if (!_hasCaughtCurrentTarget)
-				{
-					GD.Print($"{Name} caught the player, game over.");
-					_hasCaughtCurrentTarget = true;
-				}
-			}
-			else
-			{
-				_hasCaughtCurrentTarget = false;
-				MoveToward(_player.GlobalPosition, Speed, dt);
-			}
+	private void AlertTick(float dt)
+	{
+		if (_target == null)
+		{
+			// No target at all — wait for timer
+			Decelerate(dt);
 			return;
 		}
 
-		MoveToward(GlobalPosition, 0.0f, dt);
-	}
+		bool inCone = IsBodyInCone(_target);
+		bool hasLos = HasLineOfSight(_target);
 
-	private void OnDetectionBodyEntered(Node3D body)
-	{
-		DebugLog("body_entered", $"Detection body entered: '{body?.Name ?? "<null>"}'.");
-		TrySetAlertTarget(body);
-	}
-
-	private void OnDetectionBodyExited(Node3D body)
-	{
-		DebugLog("body_exited", $"Detection body exited: '{body?.Name ?? "<null>"}'.");
-		if (_player == body)
+		if (inCone && hasLos)
 		{
-			StartAlertTimer();
+			// Clear sight: stop grace timer and chase
+			_alertTimer?.Stop();
+			ChaseTarget(dt);
 		}
+		else
+		{
+			// Lost sight: start grace timer and keep chasing last known position
+			StartAlertTimer();
+			ChaseTarget(dt);
+		}
+	}
+
+	// ── Helpers ──────────────────────────────────────────────────────────────
+
+	/// Scan the detection cone for the first player body we have LOS to.
+	private Node3D FindVisiblePlayer()
+	{
+		if (_detectionArea == null) return null;
+
+		foreach (Node3D body in _detectionArea.GetOverlappingBodies())
+		{
+			if (!body.IsInGroup("player")) continue;
+			if (HasLineOfSight(body)) return body;
+		}
+		return null;
+	}
+
+	/// True if <paramref name="body"/> is currently inside the detection cone.
+	private bool IsBodyInCone(Node3D body)
+	{
+		if (_detectionArea == null || body == null) return false;
+		foreach (Node3D b in _detectionArea.GetOverlappingBodies())
+			if (b == body) return true;
+		return false;
+	}
+
+	/// <summary>
+	/// Casts a ray from the NPC's eye level toward the target's torso.
+	/// Returns true when the path is clear:
+	///   • ray hits nothing  → no obstacle, clear path
+	///   • ray hits target   → player spotted
+	///   • ray hits something else → blocked
+	/// </summary>
+	private bool HasLineOfSight(Node3D target)
+	{
+		if (!IsInstanceValid(target)) return false;
+
+		// NPC eye ≈ 1.4 m, player torso ≈ 0.8 m (avoids clipping floor)
+		Vector3 from = GlobalPosition + Vector3.Up * 1.4f;
+		Vector3 to   = target.GlobalPosition + Vector3.Up * 0.8f;
+
+		var query = PhysicsRayQueryParameters3D.Create(from, to);
+		query.CollideWithAreas   = false;
+		query.CollideWithBodies  = true;
+		query.HitFromInside      = true;
+		// Only exclude this NPC's own physics body so we never self-block
+		query.Exclude = new Godot.Collections.Array<Rid> { GetRid() };
+
+		var hit = GetWorld3D().DirectSpaceState.IntersectRay(query);
+
+		// ── No hit ───────────────────────────────────────────────────────────
+		// Nothing blocked the ray → the path between the two points is open.
+		if (hit.Count == 0)
+		{
+			Log($"LOS clear (open path) → '{target.Name}'");
+			return true;
+		}
+
+		// ── Something was hit ────────────────────────────────────────────────
+		if (hit.TryGetValue("collider", out var cv) && cv.AsGodotObject() is Node hitNode)
+		{
+			// The ray hit the player body directly, or a child of it
+			if (hitNode == target || target.IsAncestorOf(hitNode) || hitNode.IsInGroup("player"))
+			{
+				Log($"LOS clear (hit player) → '{target.Name}'");
+				return true;
+			}
+
+			Log($"LOS blocked by '{hitNode.Name}' → '{target.Name}'");
+			return false;
+		}
+
+		Log($"LOS blocked (unknown collider) → '{target.Name}'");
+		return false;
+	}
+
+	// ── State transitions ─────────────────────────────────────────────────────
+	private void EnterAlert()
+	{
+		_hasCaught = false;
+		_alertTimer?.Stop();
+		ChangeState(NpcState.Alert);
 	}
 
 	private void OnAlertTimerTimeout()
 	{
-		if (_state != NpcState.Alert)
-		{
-			return;
-		}
-
-		DebugLog("alert_timeout", "Alert timer expired, returning to Neutral.");
-		_player = null;
-		_hasCaughtCurrentTarget = false;
+		GD.Print($"[NPC:{Name}] Alert timer expired → Neutral");
+		_target    = null;
+		_hasCaught = false;
 		ChangeState(NpcState.Neutral);
 	}
 
@@ -155,216 +189,82 @@ public partial class Npc : CharacterBody3D
 	{
 		if (_alertTimer == null)
 		{
-			DebugLog("timer_start_missing", "Cannot start alert timer because AlertTimer is missing.");
-			_player = null;
-			_hasCaughtCurrentTarget = false;
+			// No timer node — drop target immediately
+			_target    = null;
+			_hasCaught = false;
 			ChangeState(NpcState.Neutral);
 			return;
 		}
 
 		if (_alertTimer.IsStopped())
 		{
-			DebugLog("timer_start", "Alert timer started.");
+			Log("Alert timer started.");
 			_alertTimer.Start();
 		}
 	}
 
-	private void StopAlertTimer()
+	private void ChangeState(NpcState next)
 	{
-		if (_alertTimer?.IsStopped() == false)
-		{
-			DebugLog("timer_stop", "Alert timer stopped.");
-			_alertTimer.Stop();
-		}
+		if (_state == next) return;
+		_state = next;
+		GD.Print($"{Name} → {_state}");
 	}
 
-	private void TryAcquireVisiblePlayerFromDetection()
+	// ── Movement ──────────────────────────────────────────────────────────────
+	private void ChaseTarget(float dt)
 	{
-		if (_detectionArea == null)
-		{
-			DebugLog("acquire_detection_missing", "Detection acquisition skipped: Detection node missing.");
-			return;
-		}
+		Vector3 offset = _target.GlobalPosition - GlobalPosition;
+		float   dist2d = new System.Numerics.Vector2(offset.X, offset.Z).Length();
 
-		var overlappingBodies = _detectionArea.GetOverlappingBodies();
-		if (overlappingBodies.Count == 0)
+		if (dist2d <= CatchDistance)
 		{
-			DebugLog("acquire_detection_empty", "Detection acquisition found no overlapping bodies.");
-			return;
-		}
-
-		foreach (Node3D body in overlappingBodies)
-		{
-			TrySetAlertTarget(body);
-			if (_player == body)
+			if (!_hasCaught)
 			{
-				DebugLog("acquire_detection_success", $"Acquired target from Detection: '{body.Name}'.");
-				return;
+				GD.Print($"{Name} caught the player!");
+				_hasCaught = true;
 			}
-		}
-
-		DebugLog("acquire_detection_no_valid", "Detection overlaps exist, but no valid visible player target was found.");
-	}
-
-	private void TrySetAlertTarget(Node3D body)
-	{
-		if (body == null)
-		{
-			DebugLog("set_target_null", "TrySetAlertTarget received null body.");
-			return;
-		}
-
-		if (!body.IsInGroup(PlayerGroupName))
-		{
-			DebugLog("set_target_wrong_group", $"Body '{body.Name}' ignored: not in group '{PlayerGroupName}'.");
-			return;
-		}
-
-		if (RequireLineOfSightInCone && !HasLineOfSight(body))
-		{
-			DebugLog("set_target_los_fail", $"Body '{body.Name}' failed line-of-sight check.");
-			return;
-		}
-
-		_player = body;
-		StopAlertTimer();
-		ChangeState(NpcState.Alert);
-		DebugLog("set_target_success", $"Target set to '{body.Name}'.");
-	}
-
-	private bool HasLineOfSight(Node3D target)
-	{
-		Vector3 from = GlobalPosition + Vector3.Up * 1.5f;
-		Vector3 to = target.GlobalPosition + Vector3.Up * 1.0f;
-
-		var query = new PhysicsRayQueryParameters3D
-		{
-			From = from,
-			To = to,
-			CollisionMask = uint.MaxValue
-		};
-		query.CollideWithAreas = false;
-		query.CollideWithBodies = true;
-		query.HitFromInside = true;
-
-		query.Exclude = new Godot.Collections.Array<Rid> { GetRid() };
-		if (_detectionArea != null)
-		{
-			query.Exclude.Add(_detectionArea.GetRid());
-		}
-
-		var hit = GetWorld3D().DirectSpaceState.IntersectRay(query);
-		if (hit.Count == 0)
-		{
-			if (TreatRayNoHitAsClearLos)
-			{
-				DebugLog("los_no_hit_fallback", $"LOS ray hit nothing toward '{target?.Name ?? "<null>"}', treating as clear LOS fallback.");
-				return true;
-			}
-
-			DebugLog("los_no_hit", $"LOS failed: ray hit nothing toward '{target?.Name ?? "<null>"}'.");
-			return false;
-		}
-
-		if (!hit.ContainsKey("collider"))
-		{
-			DebugLog("los_no_collider", "LOS failed: ray result had no collider key.");
-			return false;
-		}
-
-		var colliderObject = hit["collider"].AsGodotObject();
-		if (colliderObject is not Node colliderNode)
-		{
-			DebugLog("los_collider_not_node", "LOS failed: collider was not a Node.");
-			return false;
-		}
-
-		bool hasLine = colliderNode == target || target.IsAncestorOf(colliderNode);
-		if (!hasLine)
-		{
-			DebugLog("los_blocked", $"LOS blocked. Hit '{colliderNode.Name}' instead of '{target.Name}'.");
-			return false;
-		}
-
-		return true;
-	}
-
-	private bool IsInsideDetectionCone(Node3D body)
-	{
-		if (_detectionArea == null || body == null)
-		{
-			return false;
-		}
-
-		foreach (Node3D overlapped in _detectionArea.GetOverlappingBodies())
-		{
-			if (overlapped == body)
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	private void ChangeState(NpcState newState)
-	{
-		if (_state != newState)
-		{
-			_state = newState;
-			GD.Print($"{Name} is now {_state}");
-		}
-	}
-
-	private void MoveToward(Vector3 target, float speed, float dt)
-	{
-		Vector3 velocity = Velocity;
-
-		if (!IsOnFloor())
-		{
-			velocity += GetGravity() * dt;
-		}
-
-		Vector3 offset = target - GlobalPosition;
-		Vector3 direction = new Vector3(offset.X, 0.0f, offset.Z).Normalized();
-		float stopDistance = _state == NpcState.Alert ? CatchDistance : 0.1f;
-		bool shouldMove = new Vector2(offset.X, offset.Z).Length() > stopDistance;
-
-		if (shouldMove && direction != Vector3.Zero)
-		{
-			LookAt(GlobalPosition + direction, Vector3.Up, true);
-		}
-
-		if (shouldMove && direction != Vector3.Zero)
-		{
-			velocity.X = direction.X * speed;
-			velocity.Z = direction.Z * speed;
+			Decelerate(dt);
 		}
 		else
 		{
-			float deceleration = Mathf.Max(speed, Speed);
-			velocity.X = Mathf.MoveToward(Velocity.X, 0.0f, deceleration * dt);
-			velocity.Z = Mathf.MoveToward(Velocity.Z, 0.0f, deceleration * dt);
+			_hasCaught = false;
+			ApplyMove(_target.GlobalPosition, Speed, dt);
+		}
+	}
+
+	private void Decelerate(float dt) => ApplyMove(GlobalPosition, 0f, dt);
+
+	private void ApplyMove(Vector3 targetPos, float speed, float dt)
+	{
+		Vector3 vel = Velocity;
+
+		if (!IsOnFloor())
+			vel += GetGravity() * dt;
+
+		Vector3 offset = targetPos - GlobalPosition;
+		Vector3 dir    = new Vector3(offset.X, 0f, offset.Z).Normalized();
+		float   dist2d = new System.Numerics.Vector2(offset.X, offset.Z).Length();
+
+		if (speed > 0f && dist2d > 0.05f && dir != Vector3.Zero)
+		{
+			LookAt(GlobalPosition + dir, Vector3.Up, true);
+			vel.X = dir.X * speed;
+			vel.Z = dir.Z * speed;
+		}
+		else
+		{
+			float decel = Speed > 0f ? Speed : 4f;
+			vel.X = Mathf.MoveToward(vel.X, 0f, decel * dt * 8f);
+			vel.Z = Mathf.MoveToward(vel.Z, 0f, decel * dt * 8f);
 		}
 
-		Velocity = velocity;
+		Velocity = vel;
 		MoveAndSlide();
 	}
 
-	private void DebugLog(string key, string message)
+	// ── Debug ─────────────────────────────────────────────────────────────────
+	private void Log(string msg)
 	{
-		if (!DebugDetection)
-		{
-			return;
-		}
-
-		long now = (long)Time.GetTicksMsec();
-		if (_debugNextLogAtByKey.TryGetValue(key, out long nextAllowedAt) && now < nextAllowedAt)
-		{
-			return;
-		}
-
-		_debugNextLogAtByKey[key] = now + Mathf.Max(50, DebugLogIntervalMs);
-		GD.Print($"[NPC DEBUG:{Name}] {message}");
+		if (DebugLos) GD.Print($"[NPC:{Name}] {msg}");
 	}
 }
