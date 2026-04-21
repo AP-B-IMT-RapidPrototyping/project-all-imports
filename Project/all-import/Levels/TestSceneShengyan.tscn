@@ -1,14 +1,49 @@
 [gd_scene format=3 uid="uid://dmi4qh3glxxyh"]
 
-[ext_resource type="Material" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebug.tres" id="1_41pbi"]
+[ext_resource type="Material" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebugPurple.tres" id="1_41pbi"]
+[ext_resource type="PackedScene" uid="uid://ci6482x7llk5u" path="res://Actors/Npc.tscn" id="2_bu15h"]
+[ext_resource type="PackedScene" uid="uid://cu7co1hj0c36m" path="res://Actors/debugPlayer.tscn" id="3_ir1cd"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_4o7dn"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bu15h"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ir1cd"]
+sky_material = SubResource("ProceduralSkyMaterial_bu15h")
+
+[sub_resource type="Environment" id="Environment_c8nyi"]
+background_mode = 2
+sky = SubResource("Sky_ir1cd")
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_bu15h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ir1cd"]
 
 [node name="Node3D" type="Node3D" unique_id=110902969]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=405859312]
-transform = Transform3D(12.515027, 0, 0, 0, 1, 0, 0, 0, 12.515027, 0, 0, 0)
-material_override = ExtResource("1_41pbi")
-mesh = SubResource("BoxMesh_4o7dn")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=592441902]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=2064301083]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=14855157]
+environment = SubResource("Environment_c8nyi")
+
+[node name="NPC" parent="." unique_id=1717770710 instance=ExtResource("2_bu15h")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.4429357, 5.6544027, 3.7676218)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=28183956]
+transform = Transform3D(1, 0, 0, 0, 0.7082043, 0.70600754, 0, -0.70600754, 0.7082043, -4.7683716e-07, 8.331057, 4.924593)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1712006704]
+transform = Transform3D(12.071458, 0, 0, 0, 1, 0, 0, 0, 12.071458, 0, -0.48932767, 0)
+material_override = ExtResource("1_41pbi")
+mesh = SubResource("BoxMesh_bu15h")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1312970903]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=820923676]
+shape = SubResource("BoxShape3D_ir1cd")
+
+[node name="DebugPlayer" parent="." unique_id=396963942 instance=ExtResource("3_ir1cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3510876, 1.3357463, -2.509232)

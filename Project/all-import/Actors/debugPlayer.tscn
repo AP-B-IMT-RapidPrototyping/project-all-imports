@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cu7co1hj0c36m"]
+
+[ext_resource type="Script" uid="uid://d1ijvnpqgjgef" path="res://Scripts/Npc.cs" id="1_p5m08"]
+[ext_resource type="Material" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebugPurple.tres" id="2_ft0ty"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cjcwr"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bo8xx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_r0g10"]
+size = Vector3(0.2, 0.2, 1)
+
+[node name="DebugPlayer" type="CharacterBody3D" unique_id=1717770710 groups=["player"]]
+script = ExtResource("1_p5m08")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=581422871 groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_cjcwr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1292615827 groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = ExtResource("2_ft0ty")
+mesh = SubResource("CapsuleMesh_bo8xx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=263276944 groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38284636, -0.5092149)
+material_override = ExtResource("2_ft0ty")
+mesh = SubResource("BoxMesh_r0g10")

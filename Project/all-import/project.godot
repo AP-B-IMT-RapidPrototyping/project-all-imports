@@ -11,12 +11,17 @@ config_version=5
 [application]
 
 config/name="All Import"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+run/main_scene="uid://bmv0gly2qb8fl"
+config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="All Import"
+
+[global_group]
+
+player="player character, used for npc player detection"
 
 [physics]
 

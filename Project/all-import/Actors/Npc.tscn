@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://ci6482x7llk5u"]
 
-[ext_resource type="Material" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebug.tres" id="1_bo8xx"]
+[ext_resource type="Material" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebugPurple.tres" id="1_bo8xx"]
+[ext_resource type="Script" uid="uid://d1ijvnpqgjgef" path="res://Scripts/Npc.cs" id="1_r0g10"]
+[ext_resource type="PackedScene" uid="uid://dxic2kficc6r6" path="res://Assets/cone.tscn" id="3_ujybo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cjcwr"]
 
@@ -9,7 +11,11 @@
 [sub_resource type="BoxMesh" id="BoxMesh_r0g10"]
 size = Vector3(0.2, 0.2, 1)
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5spca"]
+points = PackedVector3Array(-0.00019574165, 1, -0.00019574165, 0.19498825, -1, -0.9808144, -0.00019574165, -1, -1, -0.19518405, -1, -0.9808144, -0.382733, -1, -0.92404073, -0.5555991, -1, -0.83163667, -0.7071261, -1, -0.7071261, -0.83163667, -1, -0.5555991, -0.92404073, -1, -0.382733, -0.9808144, -1, -0.19518405, -1, -1, -0.00019574165, -0.9808144, -1, 0.19498825, -0.92404073, -1, 0.38253725, -0.83163667, -1, 0.55540323, -0.7071261, -1, 0.7069303, -0.5555991, -1, 0.8314409, -0.382733, -1, 0.92384493, -0.19518405, -1, 0.9806186, -0.00019574165, -1, 1, 0.19498825, -1, 0.9806186, 0.38253725, -1, 0.92384493, 0.55540323, -1, 0.8314409, 0.7069303, -1, 0.7069303, 0.8314409, -1, 0.55540323, 0.92384493, -1, 0.38253725, 0.9806186, -1, 0.19498825, 1, -1, -0.00019574165, 0.9806186, -1, -0.19518405, 0.92384493, -1, -0.382733, 0.8314409, -1, -0.5555991, 0.7069303, -1, -0.7071261, 0.55540323, -1, -0.83163667, 0.38253725, -1, -0.92404073)
+
 [node name="NPC" type="CharacterBody3D" unique_id=1717770710]
+script = ExtResource("1_r0g10")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=581422871]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -21,6 +27,21 @@ material_override = ExtResource("1_bo8xx")
 mesh = SubResource("CapsuleMesh_bo8xx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=263276944]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38284636, -0.5092149)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38284636, 0.5697093)
 material_override = ExtResource("1_bo8xx")
 mesh = SubResource("BoxMesh_r0g10")
+
+[node name="Detection" type="Area3D" parent="." unique_id=370972957]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Cone" parent="Detection" unique_id=1903275656 instance=ExtResource("3_ujybo")]
+transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 1.4064484, -3.7151241)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detection" unique_id=876152406]
+transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 1.4064484, -3.7151241)
+shape = SubResource("ConvexPolygonShape3D_5spca")
+
+[node name="AlertTimer" type="Timer" parent="." unique_id=198413789]
+wait_time = 1.5
+one_shot = true
