@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebugPurple.tres" id="1_41pbi"]
 [ext_resource type="PackedScene" uid="uid://ci6482x7llk5u" path="res://Actors/Npc.tscn" id="2_bu15h"]
-[ext_resource type="PackedScene" uid="uid://cu7co1hj0c36m" path="res://Actors/debugPlayer.tscn" id="3_ir1cd"]
+[ext_resource type="PackedScene" uid="uid://05eeeuehno13" path="res://Actors/Player.tscn" id="4_b475f"]
 [ext_resource type="PackedScene" uid="uid://dxic2kficc6r6" path="res://Assets/cone.tscn" id="4_c8nyi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bu15h"]
@@ -33,9 +33,6 @@ environment = SubResource("Environment_c8nyi")
 [node name="NPC" parent="." unique_id=1717770710 instance=ExtResource("2_bu15h")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.4429357, 5.6544027, 3.7676218)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=28183956]
-transform = Transform3D(1, 0, 0, 0, 0.7082043, 0.70600754, 0, -0.70600754, 0.7082043, -4.7683716e-07, 8.331057, 4.924593)
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1712006704]
 transform = Transform3D(12.071458, 0, 0, 0, 1, 0, 0, 0, 12.071458, 0, -0.48932767, 0)
 material_override = ExtResource("1_41pbi")
@@ -46,8 +43,8 @@ mesh = SubResource("BoxMesh_bu15h")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=820923676]
 shape = SubResource("BoxShape3D_ir1cd")
 
-[node name="DebugPlayer" parent="." unique_id=396963942 instance=ExtResource("3_ir1cd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3510876, 1.3357463, -2.509232)
-
 [node name="Cone" parent="." unique_id=1903275656 instance=ExtResource("4_c8nyi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 10)
+
+[node name="Player" parent="." unique_id=561623431 instance=ExtResource("4_b475f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46141434, 3.934163, 0.6028302)
