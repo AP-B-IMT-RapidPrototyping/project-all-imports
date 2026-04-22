@@ -2,6 +2,9 @@ using Godot;
 
 public partial class Npc : CharacterBody3D
 {
+	// ── Signals ───────────────────────────────────────────────────────────────
+	[Signal] public delegate void CaughtPlayerEventHandler();
+
 	private enum NpcState { Neutral, Alert }
 
 	// ── Inspector exports ────────────────────────────────────────────────────
@@ -15,6 +18,7 @@ public partial class Npc : CharacterBody3D
 	private bool     _hasCaught;
 
 	private Area3D _detectionArea;
+	private Area3D _catchArea;
 	private Timer  _alertTimer;
 
 	// ────────────────────────────────────────────────────────────────────────
@@ -24,11 +28,25 @@ public partial class Npc : CharacterBody3D
 		if (_detectionArea == null)
 			GD.PushWarning($"{Name}: 'Detection' Area3D child not found.");
 
+		_catchArea = GetNodeOrNull<Area3D>("Catch");
+		if (_catchArea != null)
+			_catchArea.BodyEntered += OnCatchBodyEntered;
+
 		_alertTimer = GetNodeOrNull<Timer>("AlertTimer");
 		if (_alertTimer != null)
 			_alertTimer.Timeout += OnAlertTimerTimeout;
 		else
 			GD.PushWarning($"{Name}: 'AlertTimer' child not found.");
+	}
+
+	private void OnCatchBodyEntered(Node3D body)
+	{
+		if (_state == NpcState.Alert && !_hasCaught && body.IsInGroup("player"))
+		{
+			GD.Print($"{Name} caught the player in 'Catch' area!");
+			_hasCaught = true;
+			EmitSignal(SignalName.CaughtPlayer);
+		}
 	}
 
 	// ────────────────────────────────────────────────────────────────────────
@@ -218,16 +236,17 @@ public partial class Npc : CharacterBody3D
 
 		if (dist2d <= CatchDistance)
 		{
-			if (!_hasCaught)
+			// Simulate jumping to catch the bird
+			if (IsOnFloor())
 			{
-				GD.Print($"{Name} caught the player!");
-				_hasCaught = true;
+				Vector3 vel = Velocity;
+				vel.Y = 6.0f; // Jump impulse
+				Velocity = vel;
 			}
-			Decelerate(dt);
+			ApplyMove(_target.GlobalPosition, Speed, dt);
 		}
 		else
 		{
-			_hasCaught = false;
 			ApplyMove(_target.GlobalPosition, Speed, dt);
 		}
 	}

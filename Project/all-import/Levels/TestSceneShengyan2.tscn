@@ -1,0 +1,289 @@
+[gd_scene format=3 uid="uid://bcsr33grtbqgq"]
+
+[ext_resource type="PackedScene" uid="uid://ci6482x7llk5u" path="res://Actors/Npc.tscn" id="1_npc"]
+[ext_resource type="PackedScene" uid="uid://05eeeuehno13" path="res://Actors/Player.tscn" id="2_player"]
+[ext_resource type="Material" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebugPurple.tres" id="3_purple"]
+[ext_resource type="Material" path="res://Assets/Materials/MatRed.tres" id="4_red"]
+[ext_resource type="Material" path="res://Assets/Materials/MatGold.tres" id="5_gold"]
+[ext_resource type="Material" path="res://Assets/Materials/MatGreen.tres" id="6_green"]
+[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="7_gm"]
+[ext_resource type="Script" path="res://Scripts/FinishZone.cs" id="8_fz"]
+
+[sub_resource type="ProceduralSkyMaterial" id="Sky_mat"]
+sky_top_color = Color(0.1, 0.25, 0.65, 1)
+sky_horizon_color = Color(0.55, 0.72, 0.95, 1)
+ground_bottom_color = Color(0.1, 0.1, 0.14, 1)
+ground_horizon_color = Color(0.2, 0.45, 0.2, 1)
+
+[sub_resource type="Sky" id="Sky_res"]
+sky_material = SubResource("Sky_mat")
+
+[sub_resource type="Environment" id="Env_res"]
+background_mode = 2
+sky = SubResource("Sky_res")
+ambient_light_source = 3
+ambient_light_color = Color(0.5, 0.6, 0.8, 1)
+ambient_light_energy = 0.4
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(11, 0.5, 64)
+
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(11, 0.5, 133.64746)
+
+[sub_resource type="BoxMesh" id="SideWallMesh"]
+size = Vector3(1, 9, 64)
+
+[sub_resource type="BoxShape3D" id="SideWallShape"]
+size = Vector3(1, 9, 64)
+
+[sub_resource type="BoxMesh" id="GateBlockMesh"]
+size = Vector3(3.5, 9, 1)
+
+[sub_resource type="BoxShape3D" id="GateBlockShape"]
+size = Vector3(3.5, 9, 1)
+
+[sub_resource type="BoxMesh" id="FlyWallMesh"]
+size = Vector3(11, 3.5, 1)
+
+[sub_resource type="BoxShape3D" id="FlyWallShape"]
+size = Vector3(11, 3.5, 1)
+
+[sub_resource type="BoxMesh" id="TopBarMesh"]
+size = Vector3(11, 1.5, 1)
+
+[sub_resource type="BoxShape3D" id="TopBarShape"]
+size = Vector3(11, 1.5, 1)
+
+[sub_resource type="BoxMesh" id="RingH"]
+size = Vector3(6, 0.4, 0.4)
+
+[sub_resource type="BoxMesh" id="RingV"]
+size = Vector3(0.4, 5, 0.4)
+
+[sub_resource type="BoxShape3D" id="FinishShape"]
+size = Vector3(6, 5, 2)
+
+[node name="ObstacleCourse" type="Node3D" unique_id=1944303705]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1531221435]
+transform = Transform3D(0.866, -0.433, 0.25, 0, 0.5, 0.866, -0.5, -0.75, 0.433, 0, 15, 0)
+light_energy = 1.3
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1016166526]
+environment = SubResource("Env_res")
+
+[node name="GameManager" type="Node" parent="." unique_id=1645539793]
+script = ExtResource("7_gm")
+StatusLabelPath = NodePath("../HUD/StatusLabel")
+HintLabelPath = NodePath("../HUD/HintLabel")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=745281437]
+
+[node name="StatusLabel" type="Label" parent="HUD" unique_id=974548516]
+visible = false
+anchors_preset = -1
+anchor_top = 0.35
+anchor_right = 1.0
+anchor_bottom = 0.65
+theme_override_font_sizes/font_size = 80
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HintLabel" type="Label" parent="HUD" unique_id=17485577]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 18
+text = "Hold SPACE to fly  |  WASD steer  |  Reach the gold ring!  |  R = restart"
+horizontal_alignment = 1
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=275812452]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.0716877, 0, -0.25, -28)
+material_override = ExtResource("6_green")
+mesh = SubResource("FloorMesh")
+
+[node name="FloorBody" type="StaticBody3D" parent="Floor" unique_id=686004145]
+
+[node name="FloorCol" type="CollisionShape3D" parent="Floor/FloorBody" unique_id=1983862823]
+shape = SubResource("FloorShape")
+
+[node name="WallLeft" type="MeshInstance3D" parent="." unique_id=1869427367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 4.5, -28)
+material_override = ExtResource("3_purple")
+mesh = SubResource("SideWallMesh")
+
+[node name="WallLeftBody" type="StaticBody3D" parent="WallLeft" unique_id=1835712557]
+
+[node name="WallLeftCol" type="CollisionShape3D" parent="WallLeft/WallLeftBody" unique_id=1007493023]
+shape = SubResource("SideWallShape")
+
+[node name="WallRight" type="MeshInstance3D" parent="." unique_id=1776639943]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 4.5, -28)
+material_override = ExtResource("3_purple")
+mesh = SubResource("SideWallMesh")
+
+[node name="WallRightBody" type="StaticBody3D" parent="WallRight" unique_id=1793345830]
+
+[node name="WallRightCol" type="CollisionShape3D" parent="WallRight/WallRightBody" unique_id=1589489350]
+shape = SubResource("SideWallShape")
+
+[node name="Gate1_L" type="MeshInstance3D" parent="." unique_id=1743366264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 4.5, -8)
+material_override = ExtResource("4_red")
+mesh = SubResource("GateBlockMesh")
+
+[node name="Gate1_L_Body" type="StaticBody3D" parent="Gate1_L" unique_id=1820795195]
+
+[node name="Gate1_L_Col" type="CollisionShape3D" parent="Gate1_L/Gate1_L_Body" unique_id=657769013]
+shape = SubResource("GateBlockShape")
+
+[node name="Gate1_R" type="MeshInstance3D" parent="." unique_id=513355547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 4.5, -8)
+material_override = ExtResource("4_red")
+mesh = SubResource("GateBlockMesh")
+
+[node name="Gate1_R_Body" type="StaticBody3D" parent="Gate1_R" unique_id=608309833]
+
+[node name="Gate1_R_Col" type="CollisionShape3D" parent="Gate1_R/Gate1_R_Body" unique_id=74579649]
+shape = SubResource("GateBlockShape")
+
+[node name="Gate2_FlyWall" type="MeshInstance3D" parent="." unique_id=742348557]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -16)
+material_override = ExtResource("4_red")
+mesh = SubResource("FlyWallMesh")
+
+[node name="Gate2_FlyWall_Body" type="StaticBody3D" parent="Gate2_FlyWall" unique_id=1018812427]
+
+[node name="Gate2_FlyWall_Col" type="CollisionShape3D" parent="Gate2_FlyWall/Gate2_FlyWall_Body" unique_id=2013639922]
+shape = SubResource("FlyWallShape")
+
+[node name="Gate2_Top" type="MeshInstance3D" parent="." unique_id=1566495134]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.25, -16)
+material_override = ExtResource("4_red")
+mesh = SubResource("TopBarMesh")
+
+[node name="Gate2_Top_Body" type="StaticBody3D" parent="Gate2_Top" unique_id=527393386]
+
+[node name="Gate2_Top_Col" type="CollisionShape3D" parent="Gate2_Top/Gate2_Top_Body" unique_id=1057573375]
+shape = SubResource("TopBarShape")
+
+[node name="Gate3_L" type="MeshInstance3D" parent="." unique_id=1278079758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 4.5, -24)
+material_override = ExtResource("4_red")
+mesh = SubResource("GateBlockMesh")
+
+[node name="Gate3_L_Body" type="StaticBody3D" parent="Gate3_L" unique_id=1357979986]
+
+[node name="Gate3_L_Col" type="CollisionShape3D" parent="Gate3_L/Gate3_L_Body" unique_id=584050803]
+shape = SubResource("GateBlockShape")
+
+[node name="Gate3_R" type="MeshInstance3D" parent="." unique_id=175015741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 4.5, -24)
+material_override = ExtResource("4_red")
+mesh = SubResource("GateBlockMesh")
+
+[node name="Gate3_R_Body" type="StaticBody3D" parent="Gate3_R" unique_id=2087397920]
+
+[node name="Gate3_R_Col" type="CollisionShape3D" parent="Gate3_R/Gate3_R_Body" unique_id=698212375]
+shape = SubResource("GateBlockShape")
+
+[node name="Gate4_FlyWall" type="MeshInstance3D" parent="." unique_id=1782109190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -32)
+material_override = ExtResource("4_red")
+mesh = SubResource("FlyWallMesh")
+
+[node name="Gate4_FlyWall_Body" type="StaticBody3D" parent="Gate4_FlyWall" unique_id=1420112873]
+
+[node name="Gate4_FlyWall_Col" type="CollisionShape3D" parent="Gate4_FlyWall/Gate4_FlyWall_Body" unique_id=680908466]
+shape = SubResource("FlyWallShape")
+
+[node name="Gate4_Top" type="MeshInstance3D" parent="." unique_id=877941934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.25, -32)
+material_override = ExtResource("4_red")
+mesh = SubResource("TopBarMesh")
+
+[node name="Gate4_Top_Body" type="StaticBody3D" parent="Gate4_Top" unique_id=564985249]
+
+[node name="Gate4_Top_Col" type="CollisionShape3D" parent="Gate4_Top/Gate4_Top_Body" unique_id=144535921]
+shape = SubResource("TopBarShape")
+
+[node name="Gate5_L" type="MeshInstance3D" parent="." unique_id=400498222]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 4.5, -40)
+material_override = ExtResource("4_red")
+mesh = SubResource("GateBlockMesh")
+
+[node name="Gate5_L_Body" type="StaticBody3D" parent="Gate5_L" unique_id=315726862]
+
+[node name="Gate5_L_Col" type="CollisionShape3D" parent="Gate5_L/Gate5_L_Body" unique_id=1893007767]
+shape = SubResource("GateBlockShape")
+
+[node name="Gate5_R" type="MeshInstance3D" parent="." unique_id=244057470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 4.5, -40)
+material_override = ExtResource("4_red")
+mesh = SubResource("GateBlockMesh")
+
+[node name="Gate5_R_Body" type="StaticBody3D" parent="Gate5_R" unique_id=1703636315]
+
+[node name="Gate5_R_Col" type="CollisionShape3D" parent="Gate5_R/Gate5_R_Body" unique_id=1117638440]
+shape = SubResource("GateBlockShape")
+
+[node name="FinishRing_Top" type="MeshInstance3D" parent="." unique_id=772622038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -52)
+material_override = ExtResource("5_gold")
+mesh = SubResource("RingH")
+
+[node name="FinishRing_Bot" type="MeshInstance3D" parent="." unique_id=1241424087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -52)
+material_override = ExtResource("5_gold")
+mesh = SubResource("RingH")
+
+[node name="FinishRing_L" type="MeshInstance3D" parent="." unique_id=600377727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.5, -52)
+material_override = ExtResource("5_gold")
+mesh = SubResource("RingV")
+
+[node name="FinishRing_R" type="MeshInstance3D" parent="." unique_id=1809847037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.5, -52)
+material_override = ExtResource("5_gold")
+mesh = SubResource("RingV")
+
+[node name="FinishZone" type="Area3D" parent="." unique_id=89325705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -52)
+monitorable = false
+script = ExtResource("8_fz")
+
+[node name="FinishZone_Col" type="CollisionShape3D" parent="FinishZone" unique_id=686076957]
+shape = SubResource("FinishShape")
+
+[node name="Player" parent="." unique_id=1971502615 instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+
+[node name="NPC_Start" parent="." unique_id=1537047965 instance=ExtResource("1_npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+Speed = 3.5
+CatchDistance = 1.5
+
+[node name="NPC_Gate1" parent="." unique_id=2118661640 instance=ExtResource("1_npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -11)
+Speed = 3.5
+CatchDistance = 1.5
+
+[node name="NPC_Gate3" parent="." unique_id=59889881 instance=ExtResource("1_npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -27)
+Speed = 3.5
+CatchDistance = 1.5
+
+[node name="NPC_Finish" parent="." unique_id=688844228 instance=ExtResource("1_npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -45)
+Speed = 3.5
+CatchDistance = 1.5
+
+[node name="CeilingBody" type="StaticBody3D" parent="." unique_id=513077080]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.509338, -86.007256)
+
+[node name="CeilingCol" type="CollisionShape3D" parent="CeilingBody" unique_id=1783277792]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 34.82373)
+shape = SubResource("FloorShape")
