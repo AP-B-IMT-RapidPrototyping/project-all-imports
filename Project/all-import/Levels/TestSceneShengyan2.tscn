@@ -130,16 +130,6 @@ mesh = SubResource("SideWallMesh")
 [node name="WallRightCol" type="CollisionShape3D" parent="WallRight/WallRightBody" unique_id=1589489350]
 shape = SubResource("SideWallShape")
 
-[node name="Gate1_L" type="MeshInstance3D" parent="." unique_id=1743366264]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 4.5, -8)
-material_override = ExtResource("4_red")
-mesh = SubResource("GateBlockMesh")
-
-[node name="Gate1_L_Body" type="StaticBody3D" parent="Gate1_L" unique_id=1820795195]
-
-[node name="Gate1_L_Col" type="CollisionShape3D" parent="Gate1_L/Gate1_L_Body" unique_id=657769013]
-shape = SubResource("GateBlockShape")
-
 [node name="Gate1_R" type="MeshInstance3D" parent="." unique_id=513355547]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 4.5, -8)
 material_override = ExtResource("4_red")
@@ -178,16 +168,6 @@ mesh = SubResource("GateBlockMesh")
 [node name="Gate3_L_Body" type="StaticBody3D" parent="Gate3_L" unique_id=1357979986]
 
 [node name="Gate3_L_Col" type="CollisionShape3D" parent="Gate3_L/Gate3_L_Body" unique_id=584050803]
-shape = SubResource("GateBlockShape")
-
-[node name="Gate3_R" type="MeshInstance3D" parent="." unique_id=175015741]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 4.5, -24)
-material_override = ExtResource("4_red")
-mesh = SubResource("GateBlockMesh")
-
-[node name="Gate3_R_Body" type="StaticBody3D" parent="Gate3_R" unique_id=2087397920]
-
-[node name="Gate3_R_Col" type="CollisionShape3D" parent="Gate3_R/Gate3_R_Body" unique_id=698212375]
 shape = SubResource("GateBlockShape")
 
 [node name="Gate4_FlyWall" type="MeshInstance3D" parent="." unique_id=1782109190]
