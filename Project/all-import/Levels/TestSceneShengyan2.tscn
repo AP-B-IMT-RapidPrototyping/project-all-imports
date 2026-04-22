@@ -151,7 +151,7 @@ mesh = SubResource("FlyWallMesh")
 shape = SubResource("FlyWallShape")
 
 [node name="Gate2_Top" type="MeshInstance3D" parent="." unique_id=1566495134]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.25, -16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008415937, 8.689998, -16)
 material_override = ExtResource("4_red")
 mesh = SubResource("TopBarMesh")
 
@@ -181,7 +181,7 @@ mesh = SubResource("FlyWallMesh")
 shape = SubResource("FlyWallShape")
 
 [node name="Gate4_Top" type="MeshInstance3D" parent="." unique_id=877941934]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.25, -32)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11408806, 8.181873, -32)
 material_override = ExtResource("4_red")
 mesh = SubResource("TopBarMesh")
 
