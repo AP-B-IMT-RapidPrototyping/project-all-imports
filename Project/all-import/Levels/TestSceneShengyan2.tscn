@@ -210,30 +210,30 @@ mesh = SubResource("GateBlockMesh")
 [node name="Gate5_R_Col" type="CollisionShape3D" parent="Gate5_R/Gate5_R_Body" unique_id=1117638440]
 shape = SubResource("GateBlockShape")
 
-[node name="FinishRing_Top" type="MeshInstance3D" parent="." unique_id=772622038]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -52)
-material_override = ExtResource("5_gold")
-mesh = SubResource("RingH")
-
-[node name="FinishRing_Bot" type="MeshInstance3D" parent="." unique_id=1241424087]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -52)
-material_override = ExtResource("5_gold")
-mesh = SubResource("RingH")
-
-[node name="FinishRing_L" type="MeshInstance3D" parent="." unique_id=600377727]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.5, -52)
-material_override = ExtResource("5_gold")
-mesh = SubResource("RingV")
-
-[node name="FinishRing_R" type="MeshInstance3D" parent="." unique_id=1809847037]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.5, -52)
-material_override = ExtResource("5_gold")
-mesh = SubResource("RingV")
-
 [node name="FinishZone" type="Area3D" parent="." unique_id=89325705]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -52)
 monitorable = false
 script = ExtResource("8_fz")
+
+[node name="FinishRing_Top" type="MeshInstance3D" parent="FinishZone" unique_id=772622038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+material_override = ExtResource("5_gold")
+mesh = SubResource("RingH")
+
+[node name="FinishRing_Bot" type="MeshInstance3D" parent="FinishZone" unique_id=1241424087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
+material_override = ExtResource("5_gold")
+mesh = SubResource("RingH")
+
+[node name="FinishRing_L" type="MeshInstance3D" parent="FinishZone" unique_id=600377727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+material_override = ExtResource("5_gold")
+mesh = SubResource("RingV")
+
+[node name="FinishRing_R" type="MeshInstance3D" parent="FinishZone" unique_id=1809847037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+material_override = ExtResource("5_gold")
+mesh = SubResource("RingV")
 
 [node name="FinishZone_Col" type="CollisionShape3D" parent="FinishZone" unique_id=686076957]
 shape = SubResource("FinishShape")

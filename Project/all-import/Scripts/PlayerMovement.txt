@@ -1,0 +1,17 @@
+Ground mode: camera follow direction
+
+mouse movement: pan camera, turn char
+wasd: move
+space: jump
+
+flight mode: free orbit camera, reduced gravity
+mouse movement: orbit camera
+maintain (local)forward velocity, reduce by drag*dt
+ws: pitch up/down with max degree +-45 so clamp the deg
+ad: rotate, not roll.
+space: flap wing: add forward acceleration
+
+Ground detect: 
+if left ground, start fly mode
+if touched ground, start ground mode
+
