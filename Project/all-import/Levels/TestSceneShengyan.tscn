@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dmi4qh3glxxyh"]
 
 [ext_resource type="Material" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebugPurple.tres" id="1_41pbi"]
-[ext_resource type="PackedScene" uid="uid://ci6482x7llk5u" path="res://Actors/Npc.tscn" id="2_bu15h"]
 [ext_resource type="PackedScene" uid="uid://05eeeuehno13" path="res://Actors/Player.tscn" id="4_b475f"]
 [ext_resource type="PackedScene" uid="uid://dxic2kficc6r6" path="res://Assets/cone.tscn" id="4_c8nyi"]
 
@@ -29,9 +28,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=14855157]
 environment = SubResource("Environment_c8nyi")
-
-[node name="NPC" parent="." unique_id=1717770710 instance=ExtResource("2_bu15h")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.4429357, 5.6544027, 3.7676218)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1712006704]
 transform = Transform3D(99, 0, 0, 0, 1, 0, 0, 0, 99, 0, -0.48932767, 0)

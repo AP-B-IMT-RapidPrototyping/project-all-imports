@@ -146,7 +146,7 @@ public partial class Player : CharacterBody3D
 
         float targetPitch = Mathf.Clamp(Rotation.X - (pitchInput * FlightPitchSpeed * delta), Mathf.DegToRad(-FlightMaxPitch), Mathf.DegToRad(FlightMaxPitch));
         float targetYaw = Rotation.Y - (turnInput * FlightTurnSpeed * delta);
-        float targetBank = Mathf.DegToRad(turnInput * FlightBankAngle);
+        float targetBank = Mathf.DegToRad(-turnInput * FlightBankAngle);
         float targetBankAngle = Mathf.Lerp(Rotation.Z, targetBank, Mathf.Clamp(FlightBankSpeed * delta, 0f, 1f));
 
         Rotation = new Vector3(targetPitch, targetYaw, targetBankAngle);
