@@ -88,11 +88,11 @@ public partial class Player : CharacterBody3D
         MoveAndSlide();
 
         bool isOnFloor = IsOnFloor();
-        if (isOnFloor)
+        if (isOnFloor && _mode != MovementMode.Ground)
         {
             EnterGroundMode();
         }
-        else
+        else if (!isOnFloor && _mode != MovementMode.Flight)
         {
             EnterFlightMode();
         }
@@ -145,8 +145,8 @@ public partial class Player : CharacterBody3D
         float pitchInput = Input.GetAxis("forward_up", "backwards_down");
 
         float targetPitch = Mathf.Clamp(Rotation.X - (pitchInput * FlightPitchSpeed * delta), Mathf.DegToRad(-FlightMaxPitch), Mathf.DegToRad(FlightMaxPitch));
-        float targetYaw = Rotation.Y + (turnInput * FlightTurnSpeed * delta);
-        float targetBank = Mathf.DegToRad(-turnInput * FlightBankAngle);
+        float targetYaw = Rotation.Y - (turnInput * FlightTurnSpeed * delta);
+        float targetBank = Mathf.DegToRad(turnInput * FlightBankAngle);
         float targetBankAngle = Mathf.Lerp(Rotation.Z, targetBank, Mathf.Clamp(FlightBankSpeed * delta, 0f, 1f));
 
         Rotation = new Vector3(targetPitch, targetYaw, targetBankAngle);
