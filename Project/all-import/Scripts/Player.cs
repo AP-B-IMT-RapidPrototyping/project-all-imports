@@ -167,17 +167,20 @@ public partial class Player : CharacterBody3D
 
         Rotation = new Vector3(targetPitch, targetYaw, targetBankAngle);
 
-        // Apply drag and redirect momentum in local space
-        Vector3 localVelocity = Transform.Basis.Inverse() * velocity;
-        
-        // Adhere to front: redirect lateral sliding (X) into forward momentum (Z)
-        float forwardSpeed = new Vector2(localVelocity.X, localVelocity.Z).Length();
-        localVelocity.Z = localVelocity.Z < 0f ? -forwardSpeed : forwardSpeed;
-        localVelocity.X = 0f;
+        // Shift camera yaw along with A/D so it stays behind the character.
+        // W/S pitch does NOT shift the camera.
+        _flightCameraYaw += Mathf.RadToDeg(yawDelta);
 
-        // Apply forward drag. We deliberately do NOT drag localVelocity.Y 
-        // to 0 so that downward gravity can organically accelerate the bird.
-        localVelocity.Z = Mathf.MoveToward(localVelocity.Z, 0f, FlightDrag * delta);
+        // --- Bird-like momentum: redirect ALL velocity along the 3D forward ---
+        // The bird always flies where it faces.
+        float speed = velocity.Length();
+        Vector3 forward = -Transform.Basis.Z; // character's current 3D forward
+        velocity = forward * speed;
+
+        // Apply drag in local space
+        Vector3 localVelocity = Transform.Basis.Inverse() * velocity;
+        localVelocity.X = Mathf.MoveToward(localVelocity.X, 0f, FlightDrag * delta);
+        localVelocity.Y = Mathf.MoveToward(localVelocity.Y, 0f, FlightDrag * delta);
         localVelocity.Z = Mathf.Clamp(localVelocity.Z, -FlightMaxForwardSpeed, FlightMaxForwardSpeed);
 
         // Flap pulse (one-shot impulse with cooldown)
@@ -223,9 +226,8 @@ public partial class Player : CharacterBody3D
         }
         else
         {
-            // Camera is independent from WS pitch, but sticks to player AD yaw
-            _cameraPivot.GlobalRotationDegrees = new Vector3(_flightCameraPitch, GlobalRotationDegrees.Y + _flightCameraYaw, 0f);
-        }
+// Camera is independent from WS pitch, but sticks to player AD yaw
+            _cameraPivot.GlobalRotationDegrees = new Vector3(_flightCameraPitch, GlobalRotationDegrees.Y + _flightCameraYaw, 0f);        }
 
         _camera.LookAt(GlobalPosition + Vector3.Up * 1.5f, Vector3.Up);
     }
