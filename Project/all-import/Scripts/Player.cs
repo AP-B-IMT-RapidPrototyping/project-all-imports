@@ -16,8 +16,9 @@ public partial class Player : CharacterBody3D
     [Export] public float Gravity = 13f;
 
     [Export] public float FlightGravityMultiplier = 0.35f;
-    [Export] public float FlightDrag = 3.5f;
-    [Export] public float FlightFlapAcceleration = 18f;
+    [Export] public float FlightDrag = 20f;
+    [Export] public float FlightFlapImpulse = 5f;
+    [Export] public float FlightFlapCooldown = 0.2f;
     [Export] public float FlightMaxForwardSpeed = 20f;
     [Export] public float FlightTurnSpeed = 2.5f;
     [Export] public float FlightPitchSpeed = 2.0f;
@@ -26,6 +27,7 @@ public partial class Player : CharacterBody3D
     [Export] public float FlightBankSpeed = 5f;
 
     [Export] public float CameraFollowSpeed = 6f;
+    [Export] public float CameraSnapSpeed = 14f;
     [Export] public Vector3 GroundCameraOffset = new Vector3(0f, 2.5f, 6f);
     [Export] public Vector3 FlightCameraOffset = new Vector3(0f, 2f, 8f);
     [Export] public float GroundCameraPitchLimit = 55f;
@@ -35,6 +37,8 @@ public partial class Player : CharacterBody3D
     private float _groundCameraPitch;
     private float _flightCameraYaw;
     private float _flightCameraPitch;
+    private float _flapCooldownTimer;
+    private bool _justLanded;
 
     private Node3D _cameraPivot;
     private Camera3D _camera;
@@ -63,6 +67,7 @@ public partial class Player : CharacterBody3D
         }
         else
         {
+            // In flight, mouse controls full camera orbit (both axes).
             _flightCameraYaw -= motion.Relative.X * MouseSensitivity;
             _flightCameraPitch -= motion.Relative.Y * MouseSensitivity;
             _flightCameraPitch = Mathf.Clamp(_flightCameraPitch, -FlightCameraPitchLimit, FlightCameraPitchLimit);
@@ -74,6 +79,11 @@ public partial class Player : CharacterBody3D
         float deltaF = (float)delta;
         bool wasOnFloor = IsOnFloor();
         Vector3 velocity = Velocity;
+
+        if (_flapCooldownTimer > 0f)
+        {
+            _flapCooldownTimer -= deltaF;
+        }
 
         if (_mode == MovementMode.Ground)
         {
@@ -142,23 +152,41 @@ public partial class Player : CharacterBody3D
     private Vector3 ProcessFlightMovement(Vector3 velocity, float delta)
     {
         float turnInput = Input.GetAxis("move_left", "move_right");
-        float pitchInput = Input.GetAxis("forward_up", "backwards_down");
+        // Reversed: W (forward_up) now pitches DOWN, S (backwards_down) pitches UP
+        float pitchInput = -Input.GetAxis("forward_up", "backwards_down");
 
-        float targetPitch = Mathf.Clamp(Rotation.X - (pitchInput * FlightPitchSpeed * delta), Mathf.DegToRad(-FlightMaxPitch), Mathf.DegToRad(FlightMaxPitch));
-        float targetYaw = Rotation.Y - (turnInput * FlightTurnSpeed * delta);
+        float yawDelta = turnInput * FlightTurnSpeed * delta;
+
+        float targetPitch = Mathf.Clamp(
+            Rotation.X - (pitchInput * FlightPitchSpeed * delta),
+            Mathf.DegToRad(-FlightMaxPitch),
+            Mathf.DegToRad(FlightMaxPitch));
+        float targetYaw = Rotation.Y - yawDelta;
         float targetBank = Mathf.DegToRad(-turnInput * FlightBankAngle);
         float targetBankAngle = Mathf.Lerp(Rotation.Z, targetBank, Mathf.Clamp(FlightBankSpeed * delta, 0f, 1f));
 
         Rotation = new Vector3(targetPitch, targetYaw, targetBankAngle);
 
+        // Apply drag and redirect momentum in local space
         Vector3 localVelocity = Transform.Basis.Inverse() * velocity;
-        localVelocity.X = Mathf.MoveToward(localVelocity.X, 0f, FlightDrag * delta);
-        localVelocity.Y = Mathf.MoveToward(localVelocity.Y, 0f, FlightDrag * delta);
+        
+        // Adhere to front: redirect lateral sliding (X) into forward momentum (Z)
+        float forwardSpeed = new Vector2(localVelocity.X, localVelocity.Z).Length();
+        localVelocity.Z = localVelocity.Z < 0f ? -forwardSpeed : forwardSpeed;
+        localVelocity.X = 0f;
+
+        // Apply forward drag. We deliberately do NOT drag localVelocity.Y 
+        // to 0 so that downward gravity can organically accelerate the bird.
+        localVelocity.Z = Mathf.MoveToward(localVelocity.Z, 0f, FlightDrag * delta);
         localVelocity.Z = Mathf.Clamp(localVelocity.Z, -FlightMaxForwardSpeed, FlightMaxForwardSpeed);
 
-        if (Input.IsActionPressed("fly"))
+        // Flap pulse (one-shot impulse with cooldown)
+        if (Input.IsActionJustPressed("fly") && _flapCooldownTimer <= 0f)
         {
-            localVelocity.Z = Mathf.Max(localVelocity.Z - (FlightFlapAcceleration * delta), -FlightMaxForwardSpeed);
+            localVelocity.Z -= FlightFlapImpulse;
+            // Clamp after impulse
+            localVelocity.Z = Mathf.Max(localVelocity.Z, -FlightMaxForwardSpeed);
+            _flapCooldownTimer = FlightFlapCooldown;
         }
 
         velocity = Transform.Basis * localVelocity;
@@ -174,17 +202,29 @@ public partial class Player : CharacterBody3D
             return;
         }
 
-        float cameraBlend = Mathf.Clamp(CameraFollowSpeed * delta, 0f, 1f);
+        // Use a fast snap speed right after landing, otherwise normal follow speed
+        float blendSpeed = _justLanded ? CameraSnapSpeed : CameraFollowSpeed;
+        float cameraBlend = Mathf.Clamp(blendSpeed * delta, 0f, 1f);
         Vector3 targetOffset = _mode == MovementMode.Ground ? GroundCameraOffset : FlightCameraOffset;
         _camera.Position = _camera.Position.Lerp(targetOffset, cameraBlend);
 
         if (_mode == MovementMode.Ground)
         {
-            _cameraPivot.RotationDegrees = new Vector3(_groundCameraPitch, 0f, 0f);
+            // Smoothly interpolate the pivot back to behind the PC
+            Vector3 currentRot = _cameraPivot.RotationDegrees;
+            Vector3 targetRot = new Vector3(_groundCameraPitch, 0f, 0f);
+            _cameraPivot.RotationDegrees = currentRot.Lerp(targetRot, cameraBlend);
+
+            // Once close enough, clear the just-landed flag
+            if (_justLanded && currentRot.DistanceTo(targetRot) < 1f)
+            {
+                _justLanded = false;
+            }
         }
         else
         {
-            _cameraPivot.RotationDegrees = new Vector3(_flightCameraPitch, _flightCameraYaw, 0f);
+            // Camera is independent from WS pitch, but sticks to player AD yaw
+            _cameraPivot.GlobalRotationDegrees = new Vector3(_flightCameraPitch, GlobalRotationDegrees.Y + _flightCameraYaw, 0f);
         }
 
         _camera.LookAt(GlobalPosition + Vector3.Up * 1.5f, Vector3.Up);
@@ -194,8 +234,10 @@ public partial class Player : CharacterBody3D
     {
         _mode = MovementMode.Ground;
         Rotation = new Vector3(0f, Rotation.Y, 0f);
+        // Snap camera yaw immediately; pitch will be smoothed in UpdateCamera
         _flightCameraYaw = 0f;
         _flightCameraPitch = 0f;
+        _justLanded = true;
     }
 
     private void EnterFlightMode()
@@ -203,5 +245,6 @@ public partial class Player : CharacterBody3D
         _mode = MovementMode.Flight;
         _flightCameraYaw = 0f;
         _flightCameraPitch = Mathf.Clamp(_groundCameraPitch, -FlightCameraPitchLimit, FlightCameraPitchLimit);
+        _flapCooldownTimer = 0f;
     }
 }
