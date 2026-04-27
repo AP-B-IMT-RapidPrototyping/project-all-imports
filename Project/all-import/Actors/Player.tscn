@@ -1,15 +1,21 @@
-[gd_scene format=3 uid="uid://05eeeuehno13"]
+[gd_scene format=3 uid="uid://c8urqbm12foac"]
 
+<<<<<<< Updated upstream
 [ext_resource type="Script" uid="uid://cbj7hjwy4ikra" path="res://Scripts/Player.cs" id="1_3obwd"]
 [ext_resource type="PackedScene" uid="uid://dxic2kficc6r6" path="res://Assets/cone.tscn" id="2_80rbv"]
 [ext_resource type="PackedScene" uid="uid://ik4g5glwa80i" path="res://Assets/parrot.tscn" id="3_1jtgk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_80rbv"]
+=======
+[ext_resource type="Script" uid="uid://cp57b0kqbmvin" path="res://Actors/GrabBehavior.cs" id="1_3obwd"]
+>>>>>>> Stashed changes
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vbwdf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_h1khe"]
 radius = 0.51416165
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_80rbv"]
 
 [node name="Player" type="CharacterBody3D" unique_id=561623431 groups=["player"]]
 script = ExtResource("1_3obwd")
@@ -35,7 +41,23 @@ shape = SubResource("SphereShape3D_h1khe")
 [node name="CameraPivot" type="Node3D" parent="." unique_id=2059840789 groups=["player"]]
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=721154783 groups=["player"]]
+<<<<<<< Updated upstream
 transform = Transform3D(1, 0, 1.7682974e-07, 0, 1, 0, -1.7682974e-07, 0, 1, 0, 2.0085962, 5.8116674)
 
 [node name="Parrot_3" parent="." unique_id=1514530088 instance=ExtResource("3_1jtgk")]
 transform = Transform3D(-2.1855694e-10, 0, 0.005, 0, 0.005, 0, -0.005, 0, -2.1855694e-10, 0, 0, 0.12227839)
+=======
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)
+
+[node name="GrabBehavior" type="Node" parent="." unique_id=1334429703]
+script = ExtResource("1_3obwd")
+
+[node name="GrabArea" type="Area3D" parent="." unique_id=1358784798]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabArea" unique_id=2063422897]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("SphereShape3D_80rbv")
+
+[node name="HoldPosition" type="Marker3D" parent="." unique_id=6173870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 1.5)
+>>>>>>> Stashed changes
