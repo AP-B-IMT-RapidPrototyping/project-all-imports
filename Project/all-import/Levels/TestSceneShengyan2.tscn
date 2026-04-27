@@ -97,7 +97,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 52.0
 theme_override_font_sizes/font_size = 18
-text = "Hold SPACE to fly  |  WASD steer  |  Reach the gold ring!  |  R = restart"
+text = "Spam SPACE to fly  |  WASD steer  |  Reach the gold ring!  |  R = restart"
 horizontal_alignment = 1
 
 [node name="Floor" type="MeshInstance3D" parent="." unique_id=275812452]
@@ -240,11 +240,6 @@ shape = SubResource("FinishShape")
 
 [node name="Player" parent="." unique_id=1971502615 instance=ExtResource("2_player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
-
-[node name="NPC_Start" parent="." unique_id=1537047965 instance=ExtResource("1_npc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
-Speed = 3.5
-CatchDistance = 1.5
 
 [node name="NPC_Gate1" parent="." unique_id=2118661640 instance=ExtResource("1_npc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -11)
