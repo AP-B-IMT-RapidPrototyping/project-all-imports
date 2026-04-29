@@ -14,4 +14,3 @@ space: flap wing: add forward acceleration
 Ground detect: 
 if left ground, start fly mode
 if touched ground, start ground mode
-
