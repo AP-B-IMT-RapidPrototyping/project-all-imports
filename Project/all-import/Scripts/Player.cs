@@ -29,8 +29,8 @@ public partial class Player : CharacterBody3D
     [Export] public float FlightBankAngle = 22f;
     [Export] public float FlightBankSpeed = 5f;
 
-    [Export] public float CameraFollowSpeed = 6f;
-    [Export] public float CameraSnapSpeed = 14f;
+    [Export] public float CameraFollowSpeed = 5f;
+    [Export] public float CameraSnapSpeed = 3f;
     [Export] public Vector3 GroundCameraOffset = new Vector3(0f, 2.5f, 6f);
     [Export] public Vector3 FlightCameraOffset = new Vector3(0f, 2f, 8f);
     [Export] public float GroundCameraPitchLimit = 55f;
@@ -219,6 +219,9 @@ public partial class Player : CharacterBody3D
             localVelocity.Z = Mathf.Max(localVelocity.Z, -FlightMaxForwardSpeed);
             _flapCooldownTimer = FlightFlapCooldown;
         }
+
+        // Add minimal speed so that player don't stop mid air
+        localVelocity.Z = Mathf.Min(localVelocity.Z, -FlightMinForwardSpeed);
 
         velocity = Transform.Basis * localVelocity;
         velocity.Y -= Gravity * FlightGravityMultiplier * delta;
