@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lgnaw6ivqve8"
-path.s3tc="res://.godot/imported/Chicken.png-a4fad12f4ba0455d941f77288f42e410.s3tc.ctex"
+path.s3tc="res://.godot/imported/Chicken.png-4fbf9a9be29817a185eed6034872afb9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/House/textures/Chicken.png"
-dest_files=["res://.godot/imported/Chicken.png-a4fad12f4ba0455d941f77288f42e410.s3tc.ctex"]
+source_file="res://Assets/House/Textures/Chicken.png"
+dest_files=["res://.godot/imported/Chicken.png-4fbf9a9be29817a185eed6034872afb9.s3tc.ctex"]
 
 [params]
 

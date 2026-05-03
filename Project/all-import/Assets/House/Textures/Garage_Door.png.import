@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cb3qyacncpwsd"
-path.s3tc="res://.godot/imported/Garage_Door.png-df1079e261a09f9041b3dc1b707814c0.s3tc.ctex"
+path.s3tc="res://.godot/imported/Garage_Door.png-6440ac8245a48de455b45b65185f7c44.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/House/textures/Garage_Door.png"
-dest_files=["res://.godot/imported/Garage_Door.png-df1079e261a09f9041b3dc1b707814c0.s3tc.ctex"]
+source_file="res://Assets/House/Textures/Garage_Door.png"
+dest_files=["res://.godot/imported/Garage_Door.png-6440ac8245a48de455b45b65185f7c44.s3tc.ctex"]
 
 [params]
 
