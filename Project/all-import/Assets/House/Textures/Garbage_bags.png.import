@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dq8yl8xkwus6f"
-path.s3tc="res://.godot/imported/Garbage_bags.png-316f389e2f7ee9058e1d1b64854fe5ac.s3tc.ctex"
+path.s3tc="res://.godot/imported/Garbage_bags.png-e84c20b9274ccea34f8c3784caf741b3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/House/textures/Garbage_bags.png"
-dest_files=["res://.godot/imported/Garbage_bags.png-316f389e2f7ee9058e1d1b64854fe5ac.s3tc.ctex"]
+source_file="res://Assets/House/Textures/Garbage_bags.png"
+dest_files=["res://.godot/imported/Garbage_bags.png-e84c20b9274ccea34f8c3784caf741b3.s3tc.ctex"]
 
 [params]
 
