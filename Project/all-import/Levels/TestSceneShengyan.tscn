@@ -3,6 +3,10 @@
 [ext_resource type="Material" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebugPurple.tres" id="1_41pbi"]
 [ext_resource type="PackedScene" uid="uid://05eeeuehno13" path="res://Actors/Player.tscn" id="4_b475f"]
 [ext_resource type="PackedScene" uid="uid://dxic2kficc6r6" path="res://Assets/cone.tscn" id="4_c8nyi"]
+[ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="4_jxf08"]
+[ext_resource type="PackedScene" uid="uid://buq5okat4c4ng" path="res://Systems/checkpointDebug.tscn" id="5_b475f"]
+[ext_resource type="PackedScene" uid="uid://ci6482x7llk5u" path="res://Actors/Npc.tscn" id="6_jxf08"]
+[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="7_c64jx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bu15h"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -54,3 +58,43 @@ mesh = SubResource("BoxMesh_bu15h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D" unique_id=659696581]
 shape = SubResource("BoxShape3D_ir1cd")
+
+[node name="UI" parent="." unique_id=751870079 instance=ExtResource("4_jxf08")]
+
+[node name="HintLabel" parent="UI" index="1" unique_id=591152745]
+grow_horizontal = 2
+
+[node name="Checkpoints" type="Node3D" parent="." unique_id=1810190711]
+
+[node name="CheckpointDebug" parent="Checkpoints" unique_id=501896326 instance=ExtResource("5_b475f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2826653, 6.5130153, 7.3818307)
+
+[node name="CheckpointDebug2" parent="Checkpoints" unique_id=769428991 instance=ExtResource("5_b475f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.4838533, 7.1605597, 26.256554)
+
+[node name="CheckpointDebug3" parent="Checkpoints" unique_id=980988926 instance=ExtResource("5_b475f")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 35.736835, 13.673573, 5.834984)
+
+[node name="CheckpointDebug4" parent="Checkpoints" unique_id=1737800822 instance=ExtResource("5_b475f")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 15.777613, 2.9876404, -14.39235)
+
+[node name="NPCs" type="Node3D" parent="." unique_id=1844300902]
+
+[node name="NPC" parent="NPCs" unique_id=1717770710 instance=ExtResource("6_jxf08")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 9.977569, 3.3088183, -18.554087)
+Speed = 7.0
+
+[node name="NPC2" parent="NPCs" unique_id=397009822 instance=ExtResource("6_jxf08")]
+transform = Transform3D(1.5105636, 0, 1.3108003, 0, 2, 0, -1.3108003, 0, 1.5105636, -12.914814, 3.3088183, -25.476597)
+Speed = 7.0
+
+[node name="NPC3" parent="NPCs" unique_id=992026148 instance=ExtResource("6_jxf08")]
+transform = Transform3D(-0.20843202, 0, 1.9891093, 0, 2, 0, -1.9891093, 0, -0.20843202, -15.71199, 3.3088183, 21.429277)
+Speed = 7.0
+
+[node name="GameManagerTestlvl" type="Node" parent="." unique_id=2013973658]
+script = ExtResource("7_c64jx")
+StatusLabelPath = NodePath("../UI/StatusLabel")
+HintLabelPath = NodePath("../UI/HintLabel")
+
+[editable path="UI"]

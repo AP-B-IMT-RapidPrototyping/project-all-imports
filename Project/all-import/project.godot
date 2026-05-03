@@ -22,6 +22,7 @@ project/assembly_name="All Import"
 [global_group]
 
 player="player character, used for npc player detection"
+checkpoint=""
 
 [input]
 
