@@ -1,17 +1,19 @@
-[gd_scene format=4 uid="uid://6exf6g3w83wa"]
+[gd_scene format=4 uid="uid://dkoyhln7r5for"]
 
-[ext_resource type="Texture2D" uid="uid://bplwty4gch2ru" path="res://Assets/House/Textures/ConcreteBare.jpg" id="1_xdc2n"]
-[ext_resource type="Texture2D" uid="uid://cwwcqe0cbqft5" path="res://Assets/House/Textures/WoodFine_01.jpg" id="2_lqban"]
-[ext_resource type="Texture2D" uid="uid://7nrqq5bxjnqc" path="res://Assets/House/Textures/WoodPlanks.jpg" id="3_0vkir"]
-[ext_resource type="Texture2D" uid="uid://hpcpdw7utbt" path="res://Assets/House/Textures/Wood.jpg" id="4_fq3mu"]
-[ext_resource type="Texture2D" uid="uid://dsrw513ohhf5b" path="res://Assets/House/Textures/WoodPlanks_01.jpg" id="5_ldkr2"]
-[ext_resource type="Texture2D" uid="uid://dcic01itsje3g" path="res://Assets/House/Textures/RooftilesSlate.jpg" id="6_q3c45"]
-[ext_resource type="Texture2D" uid="uid://bk3e1u8w70o3l" path="res://Assets/House/Textures/Wood_06.jpg" id="7_wwyym"]
-[ext_resource type="Texture2D" uid="uid://ctqjvkhyayyha" path="res://Assets/House/Textures/Door.jpg" id="8_mh70t"]
-[ext_resource type="Texture2D" uid="uid://ctmjb265wngr0" path="res://Assets/House/Textures/Wood_03.jpg" id="9_2vy8t"]
-[ext_resource type="Texture2D" uid="uid://c86ihofq572jp" path="res://Assets/House/Textures/Garage_Door.png" id="10_510hf"]
-[ext_resource type="Texture2D" uid="uid://bbilsenwnjnyo" path="res://Assets/House/Textures/Windows.jpg" id="11_b6r7x"]
-[ext_resource type="Texture2D" uid="uid://wdfclmhaihhj" path="res://Assets/House/Textures/Metal.jpg" id="12_lnyu6"]
+[ext_resource type="Texture2D" uid="uid://c467hpxspdvoq" path="res://Assets/House/Textures/ConcreteBare.jpg" id="1_xdc2n"]
+[ext_resource type="Texture2D" uid="uid://dcth1ikhdfcvm" path="res://Assets/House/Textures/WoodFine_01.jpg" id="2_lqban"]
+[ext_resource type="Texture2D" uid="uid://c417pgl7c3pma" path="res://Assets/House/Textures/WoodPlanks.jpg" id="3_0vkir"]
+[ext_resource type="Texture2D" uid="uid://c238vtukvyn24" path="res://Assets/House/Textures/Wood.jpg" id="4_fq3mu"]
+[ext_resource type="Texture2D" uid="uid://qjnpkqlykxxx" path="res://Assets/House/Textures/WoodPlanks_01.jpg" id="5_ldkr2"]
+[ext_resource type="Texture2D" uid="uid://33hhiyexke4u" path="res://Assets/House/Textures/RooftilesSlate.jpg" id="6_q3c45"]
+[ext_resource type="Texture2D" uid="uid://cstper22k0va" path="res://Assets/House/Textures/Wood_06.jpg" id="7_wwyym"]
+[ext_resource type="Texture2D" uid="uid://cqi16u1n530a1" path="res://Assets/House/Textures/Door.jpg" id="8_mh70t"]
+[ext_resource type="Texture2D" uid="uid://cvhm0obbi5ulo" path="res://Assets/House/Textures/Wood_03.jpg" id="9_2vy8t"]
+[ext_resource type="Texture2D" uid="uid://cb3qyacncpwsd" path="res://Assets/House/Textures/Garage_Door.png" id="10_510hf"]
+[ext_resource type="Texture2D" uid="uid://bkdh4srxr30qb" path="res://Assets/House/Textures/Windows.jpg" id="11_b6r7x"]
+[ext_resource type="Texture2D" uid="uid://cm7x7b5vlilte" path="res://Assets/House/Textures/Metal.jpg" id="12_lnyu6"]
+[ext_resource type="Texture2D" uid="uid://clgbiwbwollhl" path="res://Assets/Materials/7_diffuseOriginal.bmp" id="13_0vkir"]
+[ext_resource type="Texture2D" uid="uid://dpbwue2qmx6e7" path="res://Assets/Materials/5_diffuseOriginal.bmp" id="14_fq3mu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wx3l0"]
 resource_name = "ConcreteBare"
@@ -371,12 +373,25 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_galxw")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldkr2"]
+albedo_texture = ExtResource("13_0vkir")
+uv1_triplanar = true
+uv1_triplanar_sharpness = 1.3461329
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3c45"]
+albedo_texture = ExtResource("14_fq3mu")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(2, 2, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_xdc2n"]
 size = Vector3(0.22262573, 0.2662201, 0.16259766)
 
 [node name="House_028" type="MeshInstance3D" unique_id=119480740]
 transform = Transform3D(-100, 0, 0, 0, 4.371139e-06, 100, 0, -100, 4.371139e-06, 0, 0, 0)
 mesh = SubResource("ArrayMesh_xo66w")
+surface_material_override/2 = SubResource("StandardMaterial3D_ldkr2")
+surface_material_override/5 = SubResource("StandardMaterial3D_q3c45")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1098857914]
 

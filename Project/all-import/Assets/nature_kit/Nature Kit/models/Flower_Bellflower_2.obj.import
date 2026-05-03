@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c0eby7c0375ra"
+path="res://.godot/imported/Flower_Bellflower_2.obj-e35d0541870fb272ec1cf6be871dbbff.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Flower_Bellflower_2.obj-e35d0541870fb272ec1cf6be871dbbff.mesh"]
+
+source_file="res://Assets/nature_kit/Nature Kit/models/Flower_Bellflower_2.obj"
+dest_files=["res://.godot/imported/Flower_Bellflower_2.obj-e35d0541870fb272ec1cf6be871dbbff.mesh", "res://.godot/imported/Flower_Bellflower_2.obj-e35d0541870fb272ec1cf6be871dbbff.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
