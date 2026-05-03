@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://51jgr2pv1kbh"
-path.s3tc="res://.godot/imported/Lights_01.jpg-cf527865af72a369a00d402947d785db.s3tc.ctex"
+uid="uid://b2g7uqqbide5s"
+path.s3tc="res://.godot/imported/Lights_01.jpg-e86b891234492bab625646b8006417e2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/House/Textures/Lights_01.jpg"
-dest_files=["res://.godot/imported/Lights_01.jpg-cf527865af72a369a00d402947d785db.s3tc.ctex"]
+source_file="res://Assets/House/textures/Lights_01.jpg"
+dest_files=["res://.godot/imported/Lights_01.jpg-e86b891234492bab625646b8006417e2.s3tc.ctex"]
 
 [params]
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwwcqe0cbqft5"
-path.s3tc="res://.godot/imported/WoodFine_01.jpg-1ddf24b5b21ddbe971fe3cde8ab7f2c3.s3tc.ctex"
+uid="uid://dcth1ikhdfcvm"
+path.s3tc="res://.godot/imported/WoodFine_01.jpg-59df38783d48514a1ad807b5fb6325ae.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/House/Textures/WoodFine_01.jpg"
-dest_files=["res://.godot/imported/WoodFine_01.jpg-1ddf24b5b21ddbe971fe3cde8ab7f2c3.s3tc.ctex"]
+source_file="res://Assets/House/textures/WoodFine_01.jpg"
+dest_files=["res://.godot/imported/WoodFine_01.jpg-59df38783d48514a1ad807b5fb6325ae.s3tc.ctex"]
 
 [params]
 

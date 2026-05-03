@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv0c8sn4qi702"
-path.s3tc="res://.godot/imported/Tool_Table_01.png-1b46681cbc918a97b958c86c70f9d4c4.s3tc.ctex"
+uid="uid://fdqfx6f05a1n"
+path.s3tc="res://.godot/imported/Tool_Table_01.png-509f781bb0c9b81ee1dafe7587c6c229.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/House/Textures/Tool_Table_01.png"
-dest_files=["res://.godot/imported/Tool_Table_01.png-1b46681cbc918a97b958c86c70f9d4c4.s3tc.ctex"]
+source_file="res://Assets/House/textures/Tool_Table_01.png"
+dest_files=["res://.godot/imported/Tool_Table_01.png-509f781bb0c9b81ee1dafe7587c6c229.s3tc.ctex"]
 
 [params]
 

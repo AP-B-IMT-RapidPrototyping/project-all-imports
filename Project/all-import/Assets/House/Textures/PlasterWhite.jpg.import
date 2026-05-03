@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4u0hwitfp50j"
-path.s3tc="res://.godot/imported/PlasterWhite.jpg-dcb32baf017645a7cf90ce479d585ba8.s3tc.ctex"
+uid="uid://se5teioauwns"
+path.s3tc="res://.godot/imported/PlasterWhite.jpg-ff31d1e2681cc58df0b8bea5b8b07a4a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/House/Textures/PlasterWhite.jpg"
-dest_files=["res://.godot/imported/PlasterWhite.jpg-dcb32baf017645a7cf90ce479d585ba8.s3tc.ctex"]
+source_file="res://Assets/House/textures/PlasterWhite.jpg"
+dest_files=["res://.godot/imported/PlasterWhite.jpg-ff31d1e2681cc58df0b8bea5b8b07a4a.s3tc.ctex"]
 
 [params]
 

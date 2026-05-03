@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm1kixdj4dxgn"
-path.s3tc="res://.godot/imported/Box_Pizza.png-9ec465c0c973e6566c24d37328fefef8.s3tc.ctex"
+uid="uid://cxo22utbvwdut"
+path.s3tc="res://.godot/imported/Box_Pizza.png-4927a9e893fe6940f7d6626b95bf70a9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/House/Textures/Box_Pizza.png"
-dest_files=["res://.godot/imported/Box_Pizza.png-9ec465c0c973e6566c24d37328fefef8.s3tc.ctex"]
+source_file="res://Assets/House/textures/Box_Pizza.png"
+dest_files=["res://.godot/imported/Box_Pizza.png-4927a9e893fe6940f7d6626b95bf70a9.s3tc.ctex"]
 
 [params]
 
