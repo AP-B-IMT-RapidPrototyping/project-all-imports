@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://erwcjbns8mcr"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_6m1vk"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ea1vv"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_788n5"]
+height = 0.56103516
+radius = 0.85791016
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_51bqi"]
+height = 11.35498
+radius = 9.677246
+
+[node name="Checkpoint" type="Node3D" unique_id=1909012529]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=206623889]
+transform = Transform3D(7, 0, 0, 0, -0.077578425, -6.999571, 0, 6.999571, -0.077578425, 0, 0, 0)
+mesh = SubResource("TorusMesh_6m1vk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=2125193693]
+physics_material_override = SubResource("PhysicsMaterial_ea1vv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=904778364]
+transform = Transform3D(0.9999993, 0, 0, 0, 0.99999976, 3.7252903e-09, 0, -3.7252903e-09, 0.99999976, 0, 0.0021972633, 7.4760464e-10)
+shape = SubResource("CylinderShape3D_788n5")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=251087181]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=12846803]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2668457, 0)
+shape = SubResource("CylinderShape3D_51bqi")
