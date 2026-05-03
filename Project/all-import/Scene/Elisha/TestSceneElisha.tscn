@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://dmi4qh3glxxyh"]
+[gd_scene format=3 uid="uid://itlphngii4be"]
 
-[ext_resource type="Material" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebugPurple.tres" id="1_41pbi"]
-[ext_resource type="PackedScene" uid="uid://05eeeuehno13" path="res://Actors/Player.tscn" id="4_b475f"]
-[ext_resource type="PackedScene" uid="uid://dxic2kficc6r6" path="res://Assets/cone.tscn" id="4_c8nyi"]
+[ext_resource type="PackedScene" uid="uid://dxic2kficc6r6" path="res://Assets/cone.tscn" id="2_khris"]
+[ext_resource type="Material" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebugPurple.tres" id="3_hb4qy"]
+[ext_resource type="PackedScene" uid="uid://05eeeuehno13" path="res://Actors/Player.tscn" id="7_ggmbe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bu15h"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -30,8 +30,8 @@ shadow_enabled = true
 environment = SubResource("Environment_c8nyi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1712006704]
-transform = Transform3D(99, 0, 0, 0, 1, 0, 0, 0, 99, 9.762249, -0.48932767, 0)
-material_override = ExtResource("1_41pbi")
+transform = Transform3D(99, 0, 0, 0, 1, 0, 0, 0, 99, 0, -0.48932767, 0)
+material_override = ExtResource("3_hb4qy")
 mesh = SubResource("BoxMesh_bu15h")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1312970903]
@@ -39,15 +39,15 @@ mesh = SubResource("BoxMesh_bu15h")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=820923676]
 shape = SubResource("BoxShape3D_ir1cd")
 
-[node name="Cone" parent="." unique_id=1903275656 instance=ExtResource("4_c8nyi")]
+[node name="Cone" parent="." unique_id=1903275656 instance=ExtResource("2_khris")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 10)
 
-[node name="Player" parent="." unique_id=561623431 instance=ExtResource("4_b475f")]
+[node name="Player" parent="." unique_id=561623431 instance=ExtResource("7_ggmbe")]
 transform = Transform3D(-0.66363895, 0, 0.748053, 0, 1, 0, -0.748053, 0, -0.66363895, -0.46141434, 4.005956, -8.602016)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1676489209]
 transform = Transform3D(3.135, 0, 0, 0, 3.135, 0, 0, 0, 3.135, 0, 1.45403, 0)
-material_override = ExtResource("1_41pbi")
+material_override = ExtResource("3_hb4qy")
 mesh = SubResource("BoxMesh_bu15h")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2" unique_id=359116428]
