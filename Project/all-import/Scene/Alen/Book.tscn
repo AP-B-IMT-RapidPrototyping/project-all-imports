@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cash17lsm7yx3"]
+
+[ext_resource type="Script" uid="uid://d38dnf356o2yb" path="res://Scripts/Glowable.cs" id="1_yp3eh"]
+[ext_resource type="ArrayMesh" uid="uid://bjd0y7nppjjdx" path="res://Assets/House interior/addons/kaykit_furniture_bits/Assets/obj/book_single.obj" id="2_yp3eh"]
+[ext_resource type="Material" uid="uid://bp5utucswx1c5" path="res://Scene/Alen/GlowMaterial.tres" id="3_jqhlw"]
+[ext_resource type="Script" uid="uid://da1mjgqnpa4s8" path="res://Scripts/HighLightTarget.cs" id="4_jqhlw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jqhlw"]
+
+[node name="Book" type="RigidBody3D" unique_id=1568862650]
+script = ExtResource("1_yp3eh")
+
+[node name="BookSingle" type="MeshInstance3D" parent="." unique_id=1600306883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10391331, 0, -0.14069963)
+mesh = ExtResource("2_yp3eh")
+surface_material_override/0 = ExtResource("3_jqhlw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=920035589]
+shape = SubResource("BoxShape3D_jqhlw")
+
+[node name="Highlight" type="Node3D" parent="." unique_id=1787581033]
+script = ExtResource("4_jqhlw")

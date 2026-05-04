@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bp5utucswx1c5"]
+
+[ext_resource type="Shader" uid="uid://ceyejlvxvxcc2" path="res://Scene/Alen/GlowMaterial.gdshader" id="1_bs4ut"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_bs4ut")
+shader_parameter/glow_color = Color(1, 0.8, 0, 1)
+shader_parameter/glow_strength = 0.0

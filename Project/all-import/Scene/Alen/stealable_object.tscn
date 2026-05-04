@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cdassxx2ugg1f"]
+
+[ext_resource type="Script" uid="uid://cc884d7kefqhf" path="res://StealableObject.cs" id="1_3klkk"]
+
+[node name="StealableObject" type="Node3D" unique_id=1767346333]
+script = ExtResource("1_3klkk")

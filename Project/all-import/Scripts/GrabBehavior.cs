@@ -4,25 +4,25 @@ using System.Collections.Generic;
 
 public partial class GrabBehavior : Node
 {
-    [Export] public string GrabAction = "grab"; 
+    [Export] public string GrabAction = "grab";
 
-    
+
     private Area3D grabArea;
     private Marker3D holdPosition;
-    private Player player; 
+    private Player player;
     private RigidBody3D heldObject = null;
     private List<RigidBody3D> objectsInRange = new List<RigidBody3D>();
 
     public override void _Ready()
     {
-        
+
         player = GetParent<Player>();
 
-        
+
         grabArea = GetNode<Area3D>("../GrabArea");
         holdPosition = GetNode<Marker3D>("../HoldPosition");
 
-        
+
         grabArea.BodyEntered += OnGrabAreaBodyEntered;
         grabArea.BodyExited += OnGrabAreaBodyExited;
 
@@ -47,62 +47,45 @@ public partial class GrabBehavior : Node
 
     private void TryGrab()
     {
-        if (objectsInRange.Count == 0)
-        {
-            GD.Print("Niks in de buurt om op te pakken.");
-            return;
-        }
 
+        if (objectsInRange.Count == 0) return;
+
+        foreach (RigidBody3D obj in objectsInRange)
+        {
+            if (IsInstanceValid(obj) && obj is StealableObject stealable && !stealable.IsBeingHeld)
+            {
+                heldObject = obj;
+                stealable.PickUp();
+
+                heldObject.Reparent(holdPosition);
+                heldObject.Position = Vector3.Zero;
+                heldObject.Rotation = Vector3.Zero;
+
+                GD.Print($"Opgepakt: {stealable.ItemName} (waarde: {stealable.Value})");
+                return;
+            }
+        }
        
-        RigidBody3D target = objectsInRange[0];
-
-        
-        if (IsInstanceValid(target))
-        {
-            heldObject = target;
-
-            
-            heldObject.Freeze = true;
-            
-            heldObject.CollisionLayer = 0;
-            heldObject.CollisionMask = 0;
-
-            
-            heldObject.Reparent(holdPosition);
-            heldObject.Position = Vector3.Zero;
-            heldObject.Rotation = Vector3.Zero;
-
-            GD.Print($"Opgepakt: {heldObject.Name}");
-        }
-        else
-        {
-            objectsInRange.Remove(target);
-        }
     }
 
     private void TryRelease()
     {
         if (heldObject == null) return;
 
-        
+        StealableObject stealable = heldObject as StealableObject;
+
         heldObject.Reparent(GetTree().CurrentScene);
 
-        
-        heldObject.CollisionLayer = 1;
-        heldObject.CollisionMask = 1;
-        heldObject.Freeze = false;
-
-        
         Vector3 throwDir = -player.Transform.Basis.Z * 5.0f;
-        heldObject.ApplyCentralImpulse(throwDir);
+        stealable.LetGo(throwDir);
 
-        GD.Print($"Losgelaten: {heldObject.Name}");
+        GD.Print($"Losgelaten: {stealable.ItemName}");
         heldObject = null;
     }
 
     private void OnGrabAreaBodyEntered(Node3D body)
     {
-        
+
         if (body.IsInGroup("Pickable") && body is RigidBody3D rb)
         {
             if (!objectsInRange.Contains(rb))

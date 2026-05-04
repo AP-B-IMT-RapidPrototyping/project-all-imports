@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c2mtcea5ys2gv"]
+
+[ext_resource type="Script" uid="uid://d38dnf356o2yb" path="res://Scripts/Glowable.cs" id="1_n2ltb"]
+[ext_resource type="ArrayMesh" uid="uid://twlhsxyu3dcl" path="res://Assets/House interior/addons/kaykit_furniture_bits/Assets/obj/pictureframe_small_A.obj" id="2_n2ltb"]
+[ext_resource type="Material" uid="uid://bp5utucswx1c5" path="res://Scene/Alen/GlowMaterial.tres" id="3_82fn2"]
+[ext_resource type="Script" uid="uid://da1mjgqnpa4s8" path="res://Scripts/HighLightTarget.cs" id="4_82fn2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_82fn2"]
+
+[node name="Pictureframe" type="RigidBody3D" unique_id=2082123240]
+script = ExtResource("1_n2ltb")
+
+[node name="PictureframeSmallA" type="MeshInstance3D" parent="." unique_id=1383952547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19164038, -1.1920929e-07, -0.31641793)
+mesh = ExtResource("2_n2ltb")
+surface_material_override/0 = ExtResource("3_82fn2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1143046223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19164038, -1.1920929e-07, -0.31641793)
+shape = SubResource("BoxShape3D_82fn2")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1967493189]
+script = ExtResource("4_82fn2")
