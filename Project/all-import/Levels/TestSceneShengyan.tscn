@@ -60,6 +60,7 @@ mesh = SubResource("BoxMesh_bu15h")
 shape = SubResource("BoxShape3D_ir1cd")
 
 [node name="UI" parent="." unique_id=751870079 instance=ExtResource("4_jxf08")]
+script = null
 
 [node name="HintLabel" parent="UI" index="1" unique_id=591152745]
 grow_horizontal = 2
@@ -96,5 +97,6 @@ Speed = 7.0
 script = ExtResource("7_c64jx")
 StatusLabelPath = NodePath("../UI/StatusLabel")
 HintLabelPath = NodePath("../UI/HintLabel")
+ScoreLabelPath = NodePath("../UI/ScoreLabel")
 
 [editable path="UI"]
