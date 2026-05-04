@@ -1,11 +1,81 @@
 [gd_scene format=3 uid="uid://b0oa2eswv2jrw"]
 
+[ext_resource type="Theme" uid="uid://b0hyu6o25kx86" path="res://Scene/Alen/new_theme.tres" id="1_ofwuk"]
+[ext_resource type="Script" uid="uid://b36nt5n4pmqq7" path="res://Scene/Alen/MainMenu.cs" id="2_1qhyg"]
+
 [node name="MainMenu" type="Node3D" unique_id=1884375488]
 
-[node name="Control" type="Control" parent="." unique_id=1896898581]
+[node name="MainMenu" type="Control" parent="." unique_id=1896898581]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ofwuk")
+script = ExtResource("2_1qhyg")
+
+[node name="Control" type="Control" parent="MainMenu" unique_id=1554289711]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.75
+offset_top = -110.0
+offset_right = 103.75
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="MainMenu/Control" unique_id=724305553]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -53.0
+offset_right = 53.0
+offset_bottom = 31.0
+grow_horizontal = 2
+text = "START GAME"
+
+[node name="Button2" type="Button" parent="MainMenu/Control" unique_id=1609050126]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -15.5
+offset_right = 41.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "SETTINGS"
+
+[node name="Button3" type="Button" parent="MainMenu/Control" unique_id=538575726]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.5
+offset_top = -31.0
+offset_right = 23.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "QUIT"
+
+[node name="Label" type="Label" parent="MainMenu" unique_id=1655477544]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.5
+offset_right = 46.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "VOGEL SPEL"
