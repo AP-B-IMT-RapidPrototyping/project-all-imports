@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cgwtef72fe4fs"
+path="res://.godot/imported/Rock_3.obj-dcae868dea198a179b905e1aed1efdb7.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Rock_3.obj-dcae868dea198a179b905e1aed1efdb7.mesh"]
+
+source_file="res://Assets/nature_kit/Nature Kit/models/Rock_3.obj"
+dest_files=["res://.godot/imported/Rock_3.obj-dcae868dea198a179b905e1aed1efdb7.mesh", "res://.godot/imported/Rock_3.obj-dcae868dea198a179b905e1aed1efdb7.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

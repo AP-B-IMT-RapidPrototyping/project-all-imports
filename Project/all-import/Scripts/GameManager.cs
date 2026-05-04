@@ -9,32 +9,39 @@ using Godot;
 public partial class GameManager : Node
 {
     // ── Node refs wired up in scene ───────────────────────────────────────────
-    [Export] public NodePath StatusLabelPath  = "HUD/StatusLabel";
-    [Export] public NodePath HintLabelPath    = "HUD/HintLabel";
+    [Export] public NodePath StatusLabelPath = "HUD/StatusLabel";
+    [Export] public NodePath HintLabelPath = "HUD/HintLabel";
 
     private Label _statusLabel;
     private Label _hintLabel;
-    private bool  _gameOver = false;
+    private bool _gameOver = false;
 
     public override void _Ready()
     {
         _statusLabel = GetNodeOrNull<Label>(StatusLabelPath);
-        _hintLabel   = GetNodeOrNull<Label>(HintLabelPath);
+        _hintLabel = GetNodeOrNull<Label>(HintLabelPath);
 
         // Show controls hint
-        SetHint("Hold SPACE to fly • WASD to steer • Reach the gold ring!\nESC = unlock mouse   R = restart");
+        // SetHint("Hold SPACE to fly • WASD to steer • Reach the gold ring!\nESC = unlock mouse   R = restart");
 
-        // Dynamically connect to all NPCs in the level
-        var parent = GetParent();
-        if (parent != null)
+        // Dynamically connect to all NPCs in the level (search recursively so NPCs
+        // nested under container nodes like `NPCs` are found).
+        var root = GetParent() ?? this;
+        ConnectAllNpcs(root);
+    }
+
+    private void ConnectAllNpcs(Node node)
+    {
+        if (node == null) return;
+
+        foreach (Node child in node.GetChildren())
         {
-            foreach (Node child in parent.GetChildren())
+            if (child is Npc npc)
             {
-                if (child is Npc npc)
-                {
-                    npc.CaughtPlayer += OnPlayerCaught;
-                }
+                npc.CaughtPlayer += OnPlayerCaught;
             }
+            // Recurse into descendants so NPCs inside groups/containers are found
+            ConnectAllNpcs(child);
         }
     }
 
@@ -61,9 +68,9 @@ public partial class GameManager : Node
 
         if (_statusLabel != null)
         {
-            _statusLabel.Text       = "GAME OVER";
+            _statusLabel.Text = "GAME OVER";
             _statusLabel.AddThemeColorOverride("font_color", new Color(1f, 0.2f, 0.2f));
-            _statusLabel.Visible    = true;
+            _statusLabel.Visible = true;
         }
         SetHint("Press R to try again");
         GD.Print("[GameManager] Player was caught!");
@@ -82,9 +89,9 @@ public partial class GameManager : Node
 
         if (_statusLabel != null)
         {
-            _statusLabel.Text       = "YOU WIN!";
+            _statusLabel.Text = "YOU WIN!";
             _statusLabel.AddThemeColorOverride("font_color", new Color(1f, 0.85f, 0.1f));
-            _statusLabel.Visible    = true;
+            _statusLabel.Visible = true;
         }
         SetHint("Press R to play again");
         GD.Print("[GameManager] Player won!");

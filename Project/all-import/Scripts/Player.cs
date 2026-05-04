@@ -13,21 +13,24 @@ public partial class Player : CharacterBody3D
     [Export] public float Speed = 5f;
     [Export] public float RunMultiplier = 1.8f;
     [Export] public float JumpForce = 5f;
-    [Export] public float Gravity = 13f;
+    [Export] public float Gravity = 3f;
 
-    [Export] public float FlightGravityMultiplier = 0.35f;
-    [Export] public float FlightDrag = 20f;
-    [Export] public float FlightFlapImpulse = 5f;
+    [Export] public float FlightGravityMultiplier = 0.7f;
+    [Export] public float FlightDrag = 40f;
+    [Export] public float FlightDragMinScale = .3f;
+    [Export] public float FlightFlapImpulseForward = 2f;
+    [Export] public float FlightFlapImpulseUpward = 2f;
     [Export] public float FlightFlapCooldown = 0.2f;
-    [Export] public float FlightMaxForwardSpeed = 20f;
+    [Export] public float FlightMaxForwardSpeed = 30f;
+    [Export] public float FlightMinForwardSpeed = 2f;
     [Export] public float FlightTurnSpeed = 2.5f;
     [Export] public float FlightPitchSpeed = 2.0f;
     [Export] public float FlightMaxPitch = 45f;
     [Export] public float FlightBankAngle = 22f;
     [Export] public float FlightBankSpeed = 5f;
 
-    [Export] public float CameraFollowSpeed = 6f;
-    [Export] public float CameraSnapSpeed = 14f;
+    [Export] public float CameraFollowSpeed = 5f;
+    [Export] public float CameraSnapSpeed = 3f;
     [Export] public Vector3 GroundCameraOffset = new Vector3(0f, 2.5f, 6f);
     [Export] public Vector3 FlightCameraOffset = new Vector3(0f, 2f, 8f);
     [Export] public float GroundCameraPitchLimit = 55f;
@@ -39,6 +42,8 @@ public partial class Player : CharacterBody3D
     private float _flightCameraPitch;
     private float _flapCooldownTimer;
     private bool _justLanded;
+
+    private float _gravityVelocity = 0f;
 
     private Node3D _cameraPivot;
     private Camera3D _camera;
@@ -177,27 +182,52 @@ public partial class Player : CharacterBody3D
         Vector3 forward = -Transform.Basis.Z; // character's current 3D forward
         velocity = forward * speed;
 
+        // // Apply drag in local space
+        // Vector3 localVelocity = Transform.Basis.Inverse() * velocity;
+        // localVelocity.X = Mathf.MoveToward(localVelocity.X, 0f, FlightDrag * delta);
+        // localVelocity.Y = Mathf.MoveToward(localVelocity.Y, 0f, FlightDrag * delta);
+        // localVelocity.Z = Mathf.Clamp(localVelocity.Z, -FlightMaxForwardSpeed, -FlightMinForwardSpeed);
+
         // Apply drag in local space
         Vector3 localVelocity = Transform.Basis.Inverse() * velocity;
-        localVelocity.X = Mathf.MoveToward(localVelocity.X, 0f, FlightDrag * delta);
-        localVelocity.Y = Mathf.MoveToward(localVelocity.Y, 0f, FlightDrag * delta);
-        localVelocity.Z = Mathf.Clamp(localVelocity.Z, -FlightMaxForwardSpeed, FlightMaxForwardSpeed);
 
-        // Flap pulse (one-shot impulse with cooldown)
+        float forwardSpeed = Mathf.Abs(localVelocity.Z);
+        float speedRatio = Mathf.Clamp(forwardSpeed / FlightMaxForwardSpeed, 0f, 1f);
+        float scaledDrag = FlightDrag * Mathf.Max(FlightDragMinScale, speedRatio);
+
+
+        localVelocity.X = Mathf.MoveToward(localVelocity.X, 0f, scaledDrag * delta);
+        localVelocity.Y = Mathf.MoveToward(localVelocity.Y, 0f, scaledDrag * delta);
+
+        float zRatio = Mathf.Clamp(
+            (forwardSpeed - FlightMinForwardSpeed) / (FlightMaxForwardSpeed - FlightMinForwardSpeed),
+            0f, 1f);
+        float zDrag = FlightDrag * zRatio * zRatio;
+        localVelocity.Z = Mathf.MoveToward(localVelocity.Z, -FlightMinForwardSpeed, zDrag * delta);
+
+
+        // --- Gravity accumulates separately and is always added on top ---
+        _gravityVelocity -= Gravity * FlightGravityMultiplier * delta;
+        velocity.Y += _gravityVelocity;
+
+        //Flap pulse (one-shot impulse with cooldown)
         if (Input.IsActionJustPressed("fly") && _flapCooldownTimer <= 0f)
         {
-            localVelocity.Z -= FlightFlapImpulse;
+            _gravityVelocity = 0;
+            localVelocity.Z -= FlightFlapImpulseForward;
             // Clamp after impulse
             localVelocity.Z = Mathf.Max(localVelocity.Z, -FlightMaxForwardSpeed);
             _flapCooldownTimer = FlightFlapCooldown;
         }
+
+        // Add minimal speed so that player don't stop mid air
+        localVelocity.Z = Mathf.Min(localVelocity.Z, -FlightMinForwardSpeed);
 
         velocity = Transform.Basis * localVelocity;
         velocity.Y -= Gravity * FlightGravityMultiplier * delta;
 
         return velocity;
     }
-
     private void UpdateCamera(float delta)
     {
         if (_camera == null || _cameraPivot == null)
@@ -226,21 +256,13 @@ public partial class Player : CharacterBody3D
         }
         else
         {
-// Camera is independent from WS pitch, but sticks to player AD yaw
-            _cameraPivot.GlobalRotationDegrees = new Vector3(_flightCameraPitch, GlobalRotationDegrees.Y + _flightCameraYaw, 0f);        }
+            // Camera is independent from WS pitch, but sticks to player AD yaw
+            _cameraPivot.GlobalRotationDegrees = new Vector3(_flightCameraPitch, GlobalRotationDegrees.Y + _flightCameraYaw, 0f);
+        }
 
         _camera.LookAt(GlobalPosition + Vector3.Up * 1.5f, Vector3.Up);
     }
 
-    private void EnterGroundMode()
-    {
-        _mode = MovementMode.Ground;
-        Rotation = new Vector3(0f, Rotation.Y, 0f);
-        // Snap camera yaw immediately; pitch will be smoothed in UpdateCamera
-        _flightCameraYaw = 0f;
-        _flightCameraPitch = 0f;
-        _justLanded = true;
-    }
 
     private void EnterFlightMode()
     {
@@ -248,5 +270,18 @@ public partial class Player : CharacterBody3D
         _flightCameraYaw = 0f;
         _flightCameraPitch = Mathf.Clamp(_groundCameraPitch, -FlightCameraPitchLimit, FlightCameraPitchLimit);
         _flapCooldownTimer = 0f;
+        _gravityVelocity = 0f;  // add this
+    }
+
+    private void EnterGroundMode()
+    {
+        _mode = MovementMode.Ground;
+        Rotation = new Vector3(0f, Rotation.Y, 0f);
+        // Snap camera yaw immediately; pitch will be smoothed in UpdateCamera
+
+        _flightCameraYaw = 0f;
+        _flightCameraPitch = 0f;
+        _justLanded = true;
+        _gravityVelocity = 0f;  // add this
     }
 }

@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bmr4vbcm0407s"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1087780374]
+
+[node name="HintLabel" type="Label" parent="." unique_id=1501827220]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_top = 9.0
+offset_right = -1694.0
+offset_bottom = 271.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 18
+text = "-Throw Rock on car
+-Steal an vase
+-poop on 3 people"
+horizontal_alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="." unique_id=2031583404]
+visible = false
+offset_left = -685.0
+offset_top = 209.0
+offset_right = 672.0
+offset_bottom = 393.0
+theme_override_font_sizes/font_size = 114
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Label" type="Label" parent="." unique_id=1204579253]
+visible = false
+offset_left = -672.0
+offset_top = 100.0
+offset_right = 648.0
+offset_bottom = 410.0
+theme_override_font_sizes/font_size = 81
+text = "Level Complete!"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true

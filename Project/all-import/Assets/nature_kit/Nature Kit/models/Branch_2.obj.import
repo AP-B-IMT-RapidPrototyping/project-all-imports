@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c2hr4hydknve"
+path="res://.godot/imported/Branch_2.obj-7d2e1b5441004d054fffb34fdba3940c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Branch_2.obj-7d2e1b5441004d054fffb34fdba3940c.mesh"]
+
+source_file="res://Assets/nature_kit/Nature Kit/models/Branch_2.obj"
+dest_files=["res://.godot/imported/Branch_2.obj-7d2e1b5441004d054fffb34fdba3940c.mesh", "res://.godot/imported/Branch_2.obj-7d2e1b5441004d054fffb34fdba3940c.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

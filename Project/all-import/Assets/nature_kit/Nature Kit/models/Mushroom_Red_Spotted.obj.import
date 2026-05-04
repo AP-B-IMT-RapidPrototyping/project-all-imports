@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b4d07ytcqviph"
+path="res://.godot/imported/Mushroom_Red_Spotted.obj-ae56bf8212caaf2f23d3c021ae625913.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Mushroom_Red_Spotted.obj-ae56bf8212caaf2f23d3c021ae625913.mesh"]
+
+source_file="res://Assets/nature_kit/Nature Kit/models/Mushroom_Red_Spotted.obj"
+dest_files=["res://.godot/imported/Mushroom_Red_Spotted.obj-ae56bf8212caaf2f23d3c021ae625913.mesh", "res://.godot/imported/Mushroom_Red_Spotted.obj-ae56bf8212caaf2f23d3c021ae625913.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b7ejrnf5ifi4t"]
+
+[ext_resource type="PackedScene" uid="uid://55836v2stn61" path="res://Assets/Models/kenney/kenney_space-kit/piperingSupport.glb" id="1_uvgis"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnjky"]
+albedo_color = Color(0, 1, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_i3kew"]
+height = 0.5
+radius = 2.5
+
+[node name="checkpoint" unique_id=2132972920 instance=ExtResource("1_uvgis")]
+
+[node name="piperingSupport" parent="." index="0" unique_id=879947802]
+surface_material_override/0 = SubResource("StandardMaterial3D_tnjky")
+
+[node name="Area3D" type="Area3D" parent="." index="1" unique_id=1090009920 groups=["checkpoint"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=1257756964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75314283, 0)
+shape = SubResource("CylinderShape3D_i3kew")

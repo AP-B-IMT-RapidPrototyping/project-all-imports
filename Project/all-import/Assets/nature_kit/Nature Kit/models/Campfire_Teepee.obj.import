@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://koofcv3p4mjf"
+path="res://.godot/imported/Campfire_Teepee.obj-e2546ad74c8d8e4459b50f6c630d0eba.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Campfire_Teepee.obj-e2546ad74c8d8e4459b50f6c630d0eba.mesh"]
+
+source_file="res://Assets/nature_kit/Nature Kit/models/Campfire_Teepee.obj"
+dest_files=["res://.godot/imported/Campfire_Teepee.obj-e2546ad74c8d8e4459b50f6c630d0eba.mesh", "res://.godot/imported/Campfire_Teepee.obj-e2546ad74c8d8e4459b50f6c630d0eba.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

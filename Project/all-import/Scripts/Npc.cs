@@ -1,3 +1,25 @@
+/*
+External control guide for `Npc`:
+
+- To set an NPC's state externally, call `SetStateExternal(NpcState newState, Node3D target = null)`.
+	• This marks the NPC as externally controlled so it will not change state autonomously.
+	• If `target` is `null`, the NPC will use its visible player or search the scene for a node in group "player".
+
+- To relinquish external control and allow normal autonomous behaviour again, call
+	`ReleaseExternalControl()`.
+
+- Notes:
+	• External state changes must use `SetStateExternal(... )` so the NPC accepts the change.
+	• While `_externallyControlled` is true, autonomous timers and state transitions are suppressed
+		(the NPC still performs movement/chase according to the externally-set state).
+
+Example:
+	var npc = GetNode<Npc>("../NpcInstance");
+	npc.SetStateExternal(Npc.NpcState.Alert, playerNode);
+	// later
+	npc.ReleaseExternalControl();
+*/
+
 using Godot;
 
 public partial class Npc : CharacterBody3D
@@ -5,21 +27,23 @@ public partial class Npc : CharacterBody3D
 	// ── Signals ───────────────────────────────────────────────────────────────
 	[Signal] public delegate void CaughtPlayerEventHandler();
 
-	private enum NpcState { Neutral, Alert }
+	public enum NpcState { Neutral, Alert }
 
 	// ── Inspector exports ────────────────────────────────────────────────────
-	[Export] public float Speed        = 2.0f;
+	[Export] public float Speed = 2.0f;
 	[Export] public float CatchDistance = 1.5f;
-	[Export] public bool  DebugLos     = true;
+	[Export] public bool DebugLos = true;
 
 	// ── Runtime state ────────────────────────────────────────────────────────
-	private NpcState _state  = NpcState.Neutral;
-	private Node3D   _target;
-	private bool     _hasCaught;
+	private NpcState _state = NpcState.Neutral;
+	private Node3D _target;
+	private bool _hasCaught;
 
 	private Area3D _detectionArea;
 	private Area3D _catchArea;
-	private Timer  _alertTimer;
+	private Timer _alertTimer;
+
+	private bool _externallyControlled = false;
 
 	// ────────────────────────────────────────────────────────────────────────
 	public override void _Ready()
@@ -57,7 +81,7 @@ public partial class Npc : CharacterBody3D
 		// Invalidate stale target
 		if (_target != null && !IsInstanceValid(_target))
 		{
-			_target    = null;
+			_target = null;
 			_hasCaught = false;
 		}
 
@@ -91,6 +115,7 @@ public partial class Npc : CharacterBody3D
 	{
 		if (_target == null)
 		{
+			GD.PushWarning($"{Name} Entered alert without a target!");
 			// No target at all — wait for timer
 			Decelerate(dt);
 			return;
@@ -107,13 +132,24 @@ public partial class Npc : CharacterBody3D
 		}
 		else
 		{
-			// Lost sight: start grace timer and keep chasing last known position
-			StartAlertTimer();
+			// Lost sight: start grace timer if autonomous and keep chasing
+
+			if (!_externallyControlled)
+			{
+				StartAlertTimer();
+			}
 			ChaseTarget(dt);
 		}
 	}
 
 	// ── Helpers ──────────────────────────────────────────────────────────────
+
+
+	private Node3D SearchForPlayer()
+	{
+		// Finds any node in the "player" group as a fallback
+		return GetTree().GetFirstNodeInGroup("player") as Node3D;
+	}
 
 	/// Scan the detection cone for the first player body we have LOS to.
 	private Node3D FindVisiblePlayer()
@@ -148,14 +184,14 @@ public partial class Npc : CharacterBody3D
 	{
 		if (!IsInstanceValid(target)) return false;
 
-		// NPC eye ≈ 1.4 m, player torso ≈ 0.8 m (avoids clipping floor)
+		// NPC eye ≈ 1.4 m, player ≈ 0.8 m (avoids clipping floor)
 		Vector3 from = GlobalPosition + Vector3.Up * 1.4f;
-		Vector3 to   = target.GlobalPosition + Vector3.Up * 0.8f;
+		Vector3 to = target.GlobalPosition + Vector3.Up * 0.8f;
 
 		var query = PhysicsRayQueryParameters3D.Create(from, to);
-		query.CollideWithAreas   = false;
-		query.CollideWithBodies  = true;
-		query.HitFromInside      = true;
+		query.CollideWithAreas = false;
+		query.CollideWithBodies = true;
+		query.HitFromInside = true;
 		// Only exclude this NPC's own physics body so we never self-block
 		query.Exclude = new Godot.Collections.Array<Rid> { GetRid() };
 
@@ -198,7 +234,7 @@ public partial class Npc : CharacterBody3D
 	private void OnAlertTimerTimeout()
 	{
 		GD.Print($"[NPC:{Name}] Alert timer expired → Neutral");
-		_target    = null;
+		_target = null;
 		_hasCaught = false;
 		ChangeState(NpcState.Neutral);
 	}
@@ -208,7 +244,7 @@ public partial class Npc : CharacterBody3D
 		if (_alertTimer == null)
 		{
 			// No timer node — drop target immediately
-			_target    = null;
+			_target = null;
 			_hasCaught = false;
 			ChangeState(NpcState.Neutral);
 			return;
@@ -221,18 +257,31 @@ public partial class Npc : CharacterBody3D
 		}
 	}
 
-	private void ChangeState(NpcState next)
+	private void ChangeState(NpcState next, bool isExternalChange = false)
 	{
 		if (_state == next) return;
+		// If already controlled externally and change not from external, cancel.
+		if (_externallyControlled && !isExternalChange) return;
 		_state = next;
 		GD.Print($"{Name} → {_state}");
 	}
 
+	public void SetStateExternal(NpcState newState, Node3D target = null)
+	{
+		_externallyControlled = true;
+		_target = target ?? FindVisiblePlayer() ?? SearchForPlayer();
+		ChangeState(newState, true);
+	}
+
+	public void ReleaseExternalControl()
+	{
+		_externallyControlled = false;
+	}
 	// ── Movement ──────────────────────────────────────────────────────────────
 	private void ChaseTarget(float dt)
 	{
 		Vector3 offset = _target.GlobalPosition - GlobalPosition;
-		float   dist2d = new System.Numerics.Vector2(offset.X, offset.Z).Length();
+		float dist2d = new System.Numerics.Vector2(offset.X, offset.Z).Length();
 
 		if (dist2d <= CatchDistance)
 		{
@@ -261,8 +310,8 @@ public partial class Npc : CharacterBody3D
 			vel += GetGravity() * dt;
 
 		Vector3 offset = targetPos - GlobalPosition;
-		Vector3 dir    = new Vector3(offset.X, 0f, offset.Z).Normalized();
-		float   dist2d = new System.Numerics.Vector2(offset.X, offset.Z).Length();
+		Vector3 dir = new Vector3(offset.X, 0f, offset.Z).Normalized();
+		float dist2d = new System.Numerics.Vector2(offset.X, offset.Z).Length();
 
 		if (speed > 0f && dist2d > 0.05f && dir != Vector3.Zero)
 		{
