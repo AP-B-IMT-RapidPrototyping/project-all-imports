@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bllgloqi0yjtx"]
+
+[ext_resource type="Shader" uid="uid://cp56g87sva5nt" path="res://Assets/GlassUi/shader/glass_panel.gdshader" id="1_ljgv8"]
+[ext_resource type="StyleBox" uid="uid://db8ltl18fdi1n" path="res://Assets/GlassUi/shader/base_stylebox.tres" id="1_wxc8d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ow61b"]
+shader = ExtResource("1_ljgv8")
+shader_parameter/brightness = 0.1
+shader_parameter/chromatic_shift_amount = 0.2
+shader_parameter/bend_amount = 0.4
+shader_parameter/blur_amount = 2.0
+shader_parameter/grain_amount = 0.05
+shader_parameter/curve_light_blend = 0.5
+shader_parameter/rim_light_blend = 0.8
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+
+[node name="LevelUI" type="Control" unique_id=1502398835]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=288819766]
+material = SubResource("ShaderMaterial_ow61b")
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -422.0
+offset_bottom = 227.0
+grow_horizontal = 0
+theme_override_styles/panel = ExtResource("1_wxc8d")
+
+[node name="Label" type="Label" parent="." unique_id=1804285774]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -272.0
+offset_top = 96.0
+offset_right = -195.0
+offset_bottom = 119.0
+grow_horizontal = 0
+scale = Vector2(2, 2)
+text = "TUTORIAL"
