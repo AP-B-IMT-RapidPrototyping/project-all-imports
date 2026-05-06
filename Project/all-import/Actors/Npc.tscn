@@ -57,7 +57,7 @@ visible = false
 shape = SubResource("ConvexPolygonShape3D_ujybo")
 
 [node name="AlertTimer" type="Timer" parent="." unique_id=198413789]
-wait_time = 1.5
+wait_time = 2.0
 one_shot = true
 
 [node name="Catch" type="Area3D" parent="." unique_id=1047477466]
