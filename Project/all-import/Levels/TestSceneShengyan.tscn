@@ -60,10 +60,6 @@ mesh = SubResource("BoxMesh_bu15h")
 shape = SubResource("BoxShape3D_ir1cd")
 
 [node name="UI" parent="." unique_id=751870079 instance=ExtResource("4_jxf08")]
-script = null
-
-[node name="HintLabel" parent="UI" index="1" unique_id=591152745]
-grow_horizontal = 2
 
 [node name="Checkpoints" type="Node3D" parent="." unique_id=1810190711]
 
