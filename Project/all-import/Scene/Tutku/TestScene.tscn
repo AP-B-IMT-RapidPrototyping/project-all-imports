@@ -174,6 +174,18 @@ albedo_color = Color(0.27752772, 0.27752772, 0.27752772, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pgr6h"]
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lq5jl"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_b2nkc"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_sgxsx"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2ndy0"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jnh2r"]
 albedo_color = Color(0.08627451, 0.08627451, 0.08627451, 1)
 
@@ -1139,20 +1151,40 @@ transform = Transform3D(53.502, 0, 0, 0, 0.3, 0, 0, 0, 42.149704, 77.444, 0.3774
 material_override = SubResource("StandardMaterial3D_m2frx")
 mesh = SubResource("BoxMesh_pgr6h")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Straat/MeshInstance3D6" unique_id=356219245]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Straat/MeshInstance3D6/StaticBody3D" unique_id=903851656]
+shape = SubResource("ConcavePolygonShape3D_lq5jl")
+
 [node name="Sidewalk2" type="MeshInstance3D" parent="Straat" unique_id=1698031394]
 transform = Transform3D(53.502, 0, 0, 0, 0.463, 0, 0, 0, 3, 77.444466, 0.4728098, 40.867218)
 material_override = SubResource("StandardMaterial3D_85s8y")
 mesh = SubResource("BoxMesh_m2frx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Straat/Sidewalk2" unique_id=91467794]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Straat/Sidewalk2/StaticBody3D" unique_id=2035726560]
+shape = SubResource("ConcavePolygonShape3D_b2nkc")
 
 [node name="Sidewalk" type="MeshInstance3D" parent="Straat" unique_id=738196960]
 transform = Transform3D(53.502, 0, 0, 0, 0.463, 0, 0, 0, 3, 77.444466, 0.4728098, -4.4577494)
 material_override = SubResource("StandardMaterial3D_85s8y")
 mesh = SubResource("BoxMesh_m2frx")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Straat/Sidewalk" unique_id=1703277151]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Straat/Sidewalk/StaticBody3D" unique_id=33109833]
+shape = SubResource("ConcavePolygonShape3D_sgxsx")
+
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Straat" unique_id=1966921962]
 transform = Transform3D(53.502, 0, 0, 0, 0.3, 0, 0, 0, 42.149704, 130.78592, 0.37749618, 18.25885)
 material_override = SubResource("StandardMaterial3D_m2frx")
 mesh = SubResource("BoxMesh_pgr6h")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Straat/MeshInstance3D5" unique_id=1310771994]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Straat/MeshInstance3D5/StaticBody3D" unique_id=1864550637]
+shape = SubResource("ConcavePolygonShape3D_2ndy0")
 
 [node name="MeshInstance3D15" type="MeshInstance3D" parent="Straat" unique_id=1601991264]
 transform = Transform3D(-1.8851904e-07, 0, 3.6148257, 0, 0.05761104, 0, -4.312813, 0, -1.5800904e-07, 91.30801, 0.6652812, 44.728165)

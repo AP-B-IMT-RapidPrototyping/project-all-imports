@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dj4q2yn1k0tvt"]
 
 [ext_resource type="Texture2D" uid="uid://b685efx3l42cy" path="res://Assets/Farm/FarmTextures/textures/color_128x128.jpg" id="1_uyalb"]
-[ext_resource type="Texture2D" uid="uid://clgbiwbwollhl" path="res://Assets/Materials/7_diffuseOriginal.bmp" id="2_5ef2g"]
+[ext_resource type="Texture2D" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebugPurple.tres" id="2_5ef2g"]
 [ext_resource type="Material" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebugPurple.tres" id="3_hpldm"]
 [ext_resource type="Texture2D" uid="uid://b7xalwn870emm" path="res://Assets/Farm/FarmTextures/textures/color_1024x1024.jpg" id="4_lru0v"]
 
