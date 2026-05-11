@@ -1,3 +1,21 @@
+// TODO: Stamina
+// public float
+// min=0.f, max=1.f (percentage, easier to draw bar in ui later)
+// Pressing space (jump/flap) consume stamina
+// Gliding reduce/pause stamina regen
+// 
+//
+// Goal: 
+// 	Player should maintain their level of stamina if they maintain their height,
+// i.e. moderate flapping when gliding, height doesn't change;
+// pulling up drain stamina quickly.
+// 	Limit player reachable height not with invis wall ceiling
+// but by limiting stamina.
+
+
+
+
+
 using Godot;
 
 public partial class PlayerMovement : CharacterBody3D
@@ -9,7 +27,6 @@ public partial class PlayerMovement : CharacterBody3D
 	[Export] public float JumpVelocity = 4.0f;
 	[Export] public float AirJumpVelocity = 3.0f;
 	[Export] public float JumpCooldown = 0.2f;
-
 	[Export] public float GlideFallSpeed = .3f;
 	[Export] public float GlideLerpSpeed = 5.0f;
 	[Export] public float GlideTurnSpeed = 2.5f;

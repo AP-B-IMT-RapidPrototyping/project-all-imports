@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://05eeeuehno13"]
 
-[ext_resource type="Script" uid="uid://bqg1a6xhtdf8y" path="res://Actors/PlayerMovement.cs" id="1_x82gw"]
+[ext_resource type="Script" uid="uid://bqg1a6xhtdf8y" path="res://Scripts/PlayerMovement.cs" id="1_x82gw"]
 [ext_resource type="PackedScene" uid="uid://ik4g5glwa80i" path="res://Assets/parrot.tscn" id="3_1jtgk"]
 [ext_resource type="Script" uid="uid://cp57b0kqbmvin" path="res://Scripts/GrabBehavior.cs" id="4_x82gw"]
 
