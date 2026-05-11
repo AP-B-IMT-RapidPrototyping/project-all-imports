@@ -34,6 +34,13 @@ public partial class Npc : CharacterBody3D
 	[Export] public float CatchDistance = 1.5f;
 	[Export] public bool DebugLos = true;
 
+	[Export] public float HeadPitchSpeed = 6f;
+	[Export(PropertyHint.Range, "0,90,1,radians_as_degrees")]
+	public float MaxHeadPitch = Mathf.DegToRad(80f);
+
+	// Head pivot height (matches LOS eye level)
+	private const float HeadHeight = 1.4f;
+
 	// ── Runtime state ────────────────────────────────────────────────────────
 	private NpcState _state = NpcState.Neutral;
 	private Node3D _target;
@@ -42,6 +49,8 @@ public partial class Npc : CharacterBody3D
 	private Area3D _detectionArea;
 	private Area3D _catchArea;
 	private Timer _alertTimer;
+
+	private float _headPitch = 0f;
 
 	private bool _externallyControlled = false;
 
@@ -108,6 +117,7 @@ public partial class Npc : CharacterBody3D
 		else
 		{
 			Decelerate(dt);
+			UpdateHeadPitch(0f, dt);
 		}
 	}
 
@@ -118,6 +128,7 @@ public partial class Npc : CharacterBody3D
 			GD.PushWarning($"{Name} Entered alert without a target!");
 			// No target at all — wait for timer
 			Decelerate(dt);
+			UpdateHeadPitch(0f, dt);
 			return;
 		}
 
@@ -140,6 +151,26 @@ public partial class Npc : CharacterBody3D
 			}
 			ChaseTarget(dt);
 		}
+
+		// Track target with the head so the cone can pitch up/down toward fliers.
+		UpdateHeadPitch(ComputeDesiredHeadPitch(_target), dt);
+	}
+
+	// ── Head aim ──────────────────────────────────────────────────────────────
+	private float ComputeDesiredHeadPitch(Node3D target)
+	{
+		Vector3 local = ToLocal(target.GlobalPosition);
+		float dy = local.Y - HeadHeight;
+		float horizontal = Mathf.Sqrt(local.X * local.X + local.Z * local.Z);
+		return Mathf.Clamp(Mathf.Atan2(dy, horizontal), -MaxHeadPitch, MaxHeadPitch);
+	}
+
+	private void UpdateHeadPitch(float desired, float dt)
+	{
+		float t = Mathf.Min(1f, dt * HeadPitchSpeed);
+		_headPitch = Mathf.Lerp(_headPitch, desired, t);
+		if (_detectionArea != null)
+			_detectionArea.Rotation = new Vector3(_headPitch, 0f, 0f);
 	}
 
 	// ── Helpers ──────────────────────────────────────────────────────────────
