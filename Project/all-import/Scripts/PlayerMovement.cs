@@ -101,12 +101,14 @@ public partial class PlayerMovement : CharacterBody3D
 
 		if (jumpPressed && _jumpCooldownTimer <= 0f)
 		{
+			// TODO: ALTER STAMINA
 			velocity.Y += onFloor ? JumpVelocity : AirJumpVelocity;
 			_jumpCooldownTimer = JumpCooldown;
 		}
 
 		if (gliding)
 		{
+			// TODO: ALTER STAMINA
 			if (velocity.Y < -GlideFallSpeed)
 			{
 				velocity.Y = Mathf.Lerp(velocity.Y, -GlideFallSpeed,
