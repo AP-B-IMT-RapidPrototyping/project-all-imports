@@ -9,7 +9,7 @@ public partial class PlayerMovement : CharacterBody3D
 	[Export] public float AirJumpVelocity = 4.0f;
 	[Export] public float JumpCooldown = 0.2f;
 
-	[Export] public float GlideFallSpeed = 1.0f;
+	[Export] public float GlideFallSpeed = .2f;
 	[Export] public float GlideLerpSpeed = 5.0f;
 	[Export] public float GlideTurnSpeed = 2.5f;
 	[Export] public float GlideBankAngle = 22f;
