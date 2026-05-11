@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cb3qyacncpwsd" path="res://Assets/House/Textures/Garage_Door.png" id="10_510hf"]
 [ext_resource type="Texture2D" uid="uid://bkdh4srxr30qb" path="res://Assets/House/Textures/Windows.jpg" id="11_b6r7x"]
 [ext_resource type="Texture2D" uid="uid://cm7x7b5vlilte" path="res://Assets/House/Textures/Metal.jpg" id="12_lnyu6"]
-[ext_resource type="Texture2D" uid="uid://clgbiwbwollhl" path="res://Assets/Materials/7_diffuseOriginal.bmp" id="13_0vkir"]
-[ext_resource type="Texture2D" uid="uid://dpbwue2qmx6e7" path="res://Assets/Materials/5_diffuseOriginal.bmp" id="14_fq3mu"]
+[ext_resource type="Texture2D" uid="uid://bj2iu8padm673" path="res://Assets/Materials/MatDebugPurple.tres" id="13_0vkir"]
+[ext_resource type="Texture2D" path="res://Assets/Materials/MatGold.tres" id="14_fq3mu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wx3l0"]
 resource_name = "ConcreteBare"
