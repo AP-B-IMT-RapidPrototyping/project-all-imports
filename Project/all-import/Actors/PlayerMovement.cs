@@ -5,8 +5,8 @@ public partial class PlayerMovement : CharacterBody3D
 	[Export] public float MouseSensitivity = 0.2f;
 
 	[Export] public float Speed = 5.0f;
-	[Export] public float JumpVelocity = 4.5f;
-	[Export] public float AirJumpVelocity = 3.0f;
+	[Export] public float JumpVelocity = 5.0f;
+	[Export] public float AirJumpVelocity = 4.0f;
 	[Export] public float JumpCooldown = 0.2f;
 
 	[Export] public float GlideFallSpeed = 1.0f;
