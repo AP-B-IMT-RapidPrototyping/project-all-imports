@@ -20,7 +20,9 @@ shape = SubResource("SphereShape3D_h1khe")
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=721154783 groups=["player"]]
 transform = Transform3D(1, 0, 1.7682974e-07, 0, 1, 0, -1.7682974e-07, 0, 1, 0, 2.0085962, 5.8116674)
 
-[node name="Visual" parent="." unique_id=1514530088 instance=ExtResource("3_1jtgk")]
+[node name="VisualTilt" type="Node3D" parent="." unique_id=1903421857]
+
+[node name="Visual" parent="VisualTilt" unique_id=1514530088 instance=ExtResource("3_1jtgk")]
 transform = Transform3D(-2.1855694e-10, 0, 0.005, 0, 0.005, 0, -0.005, 0, -2.1855694e-10, 0, 0, 0.12227839)
 
 [node name="GrabBehavior" type="Node" parent="." unique_id=1188639795]

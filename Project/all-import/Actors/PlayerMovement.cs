@@ -5,6 +5,7 @@ public partial class PlayerMovement : CharacterBody3D
 	[Export] public float MouseSensitivity = 0.2f;
 
 	[Export] public float Speed = 5.0f;
+	[Export] public float GlideSpeed = 7.0f;
 	[Export] public float JumpVelocity = 5.0f;
 	[Export] public float AirJumpVelocity = 4.0f;
 	[Export] public float JumpCooldown = 0.2f;
@@ -14,6 +15,7 @@ public partial class PlayerMovement : CharacterBody3D
 	[Export] public float GlideTurnSpeed = 2.5f;
 	[Export] public float GlideBankAngle = 22f;
 	[Export] public float GlideBankSpeed = 5f;
+	[Export(PropertyHint.Range, "0,1,0.01")] public float GlideGravityMultiplier = 0.3f;
 
 	[Export] public float TurnSpeed = 12f;
 
@@ -21,12 +23,17 @@ public partial class PlayerMovement : CharacterBody3D
 	[Export] public Vector3 CameraOffset = new Vector3(0f, 2f, 8f);
 	[Export] public float CameraFollowSpeed = 5f;
 
+	[Export] public float VisualTiltMaxAngleDeg = 35f;
+	[Export] public float VisualTiltVelocityRange = 6f;
+	[Export] public float VisualTiltLerpSpeed = 8f;
+
 	private float _cameraYawDeg;
 	private float _cameraPitchDeg;
 	private float _jumpCooldownTimer;
 
 	private Node3D _cameraPivot;
 	private Camera3D _camera;
+	private Node3D _visualTilt;
 
 	public override void _Ready()
 	{
@@ -35,6 +42,7 @@ public partial class PlayerMovement : CharacterBody3D
 		_camera = GetNode<Camera3D>("CameraPivot/Camera3D");
 		_camera.MakeCurrent();
 		_cameraYawDeg = Mathf.RadToDeg(Rotation.Y);
+		_visualTilt = GetNodeOrNull<Node3D>("VisualTilt");
 	}
 
 	public override void _Input(InputEvent @event)
@@ -60,18 +68,19 @@ public partial class PlayerMovement : CharacterBody3D
 		}
 
 		bool onFloor = IsOnFloor();
+		bool jumpHeld = Input.IsActionPressed("jump");
+		bool jumpPressed = Input.IsActionJustPressed("jump");
+		bool gliding = jumpHeld && !onFloor;
 
 		if (!onFloor)
 		{
-			velocity += GetGravity() * deltaF;
+			float gravityMul = gliding ? GlideGravityMultiplier : 1f;
+			velocity += GetGravity() * deltaF * gravityMul;
 		}
 		else if (velocity.Y < 0f)
 		{
 			velocity.Y = 0f;
 		}
-
-		bool jumpHeld = Input.IsActionPressed("jump");
-		bool jumpPressed = Input.IsActionJustPressed("jump");
 
 		if (jumpPressed && _jumpCooldownTimer <= 0f)
 		{
@@ -79,12 +88,13 @@ public partial class PlayerMovement : CharacterBody3D
 			_jumpCooldownTimer = JumpCooldown;
 		}
 
-		bool gliding = jumpHeld && !onFloor && velocity.Y < 0f;
-
 		if (gliding)
 		{
-			velocity.Y = Mathf.Lerp(velocity.Y, -GlideFallSpeed,
-				Mathf.Clamp(GlideLerpSpeed * deltaF, 0f, 1f));
+			if (velocity.Y < -GlideFallSpeed)
+			{
+				velocity.Y = Mathf.Lerp(velocity.Y, -GlideFallSpeed,
+					Mathf.Clamp(GlideLerpSpeed * deltaF, 0f, 1f));
+			}
 			velocity = ProcessGlideHorizontal(velocity, deltaF);
 		}
 		else
@@ -96,6 +106,7 @@ public partial class PlayerMovement : CharacterBody3D
 		MoveAndSlide();
 
 		UpdateCamera(deltaF);
+		UpdateVisualTilt(deltaF, velocity);
 	}
 
 	private Vector3 ProcessGroundedHorizontal(Vector3 velocity, float delta)
@@ -143,6 +154,8 @@ public partial class PlayerMovement : CharacterBody3D
 
 		Vector2 horiz = new Vector2(velocity.X, velocity.Z);
 		float horizSpeed = horiz.Length();
+		horizSpeed = Mathf.Lerp(horizSpeed, GlideSpeed, Mathf.Clamp(GlideLerpSpeed * delta, 0f, 1f));
+
 		Vector3 forward = -Transform.Basis.Z;
 		Vector2 forwardHoriz = new Vector2(forward.X, forward.Z);
 		if (forwardHoriz.LengthSquared() > 0.0001f)
@@ -166,5 +179,20 @@ public partial class PlayerMovement : CharacterBody3D
 		_camera.Position = _camera.Position.Lerp(CameraOffset, blend);
 		_cameraPivot.GlobalRotationDegrees = new Vector3(_cameraPitchDeg, _cameraYawDeg, 0f);
 		_camera.LookAt(GlobalPosition + Vector3.Up * 1.5f, Vector3.Up);
+	}
+
+	private void UpdateVisualTilt(float delta, Vector3 velocity)
+	{
+		if (_visualTilt == null)
+		{
+			return;
+		}
+
+		float normalizedY = Mathf.Clamp(velocity.Y / VisualTiltVelocityRange, -1f, 1f);
+		float targetPitch = Mathf.DegToRad(normalizedY * VisualTiltMaxAngleDeg);
+		float blend = Mathf.Clamp(VisualTiltLerpSpeed * delta, 0f, 1f);
+		Vector3 current = _visualTilt.Rotation;
+		float newPitch = Mathf.Lerp(current.X, targetPitch, blend);
+		_visualTilt.Rotation = new Vector3(newPitch, 0f, 0f);
 	}
 }
