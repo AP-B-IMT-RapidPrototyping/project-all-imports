@@ -5,12 +5,12 @@ public partial class PlayerMovement : CharacterBody3D
 	[Export] public float MouseSensitivity = 0.2f;
 
 	[Export] public float Speed = 5.0f;
-	[Export] public float GlideSpeed = 7.0f;
-	[Export] public float JumpVelocity = 5.0f;
-	[Export] public float AirJumpVelocity = 4.0f;
+	[Export] public float GlideSpeed = 8.0f;
+	[Export] public float JumpVelocity = 4.0f;
+	[Export] public float AirJumpVelocity = 3.0f;
 	[Export] public float JumpCooldown = 0.2f;
 
-	[Export] public float GlideFallSpeed = .2f;
+	[Export] public float GlideFallSpeed = .3f;
 	[Export] public float GlideLerpSpeed = 5.0f;
 	[Export] public float GlideTurnSpeed = 2.5f;
 	[Export] public float GlideBankAngle = 22f;
@@ -23,7 +23,7 @@ public partial class PlayerMovement : CharacterBody3D
 	[Export] public Vector3 CameraOffset = new Vector3(0f, 2f, 8f);
 	[Export] public float CameraFollowSpeed = 5f;
 
-	[Export] public float VisualTiltMaxAngleDeg = 35f;
+	[Export] public float VisualTiltMaxAngleDeg = 50f;
 	[Export] public float VisualTiltVelocityRange = 6f;
 	[Export] public float VisualTiltLerpSpeed = 8f;
 
