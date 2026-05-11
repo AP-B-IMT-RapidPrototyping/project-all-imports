@@ -3,8 +3,12 @@ using System;
 
 public partial class PlayerMovement : CharacterBody3D
 {
-	public const float Speed = 5.0f;
-	public const float JumpVelocity = 4.5f;
+	[Export]
+	public float Speed = 5.0f;
+	[Export]
+	public float JumpVelocity = 4.5f;
+	[Export]
+	public float GlideVelocity = 0.01f;
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -17,14 +21,21 @@ public partial class PlayerMovement : CharacterBody3D
 		}
 
 		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+		if (Input.IsActionJustPressed("ui_accept"))
 		{
 			velocity.Y = JumpVelocity;
 		}
 
+		// Glide when space is held down.
+		if (Input.IsActionPressed("ui_accept") && velocity.Y < 0)
+		{
+			// Clamp the downward velocity to create a gliding effect.
+			velocity.Y = Mathf.MoveToward(velocity.Y, -GlideVelocity, GlideVelocity * (float)delta);
+		}
+
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+		Vector2 inputDir = Input.GetVector("move_left", "move_right", "forward_up", "backwards_down");
 		Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 		if (direction != Vector3.Zero)
 		{

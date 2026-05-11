@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://05eeeuehno13"]
 
 [ext_resource type="Script" uid="uid://bqg1a6xhtdf8y" path="res://Actors/PlayerMovement.cs" id="1_x82gw"]
-[ext_resource type="PackedScene" uid="uid://dxic2kficc6r6" path="res://Assets/cone.tscn" id="2_80rbv"]
 [ext_resource type="PackedScene" uid="uid://ik4g5glwa80i" path="res://Assets/parrot.tscn" id="3_1jtgk"]
 [ext_resource type="Script" uid="uid://cp57b0kqbmvin" path="res://Scripts/GrabBehavior.cs" id="4_x82gw"]
 
@@ -16,10 +15,6 @@ radius = 0.51416165
 
 [node name="Player" type="CharacterBody3D" unique_id=561623431 groups=["player"]]
 script = ExtResource("1_x82gw")
-
-[node name="Cone" parent="." unique_id=1903275656 instance=ExtResource("2_80rbv")]
-transform = Transform3D(-0.3, -4.5298744e-08, 1.980071e-15, 0, -1.3113417e-08, -0.3, 4.5298744e-08, -0.3, 1.3113417e-08, 0, 0, -0.60149205)
-visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=650276136]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 1.1158197, 0, 0, 0.12227839)
