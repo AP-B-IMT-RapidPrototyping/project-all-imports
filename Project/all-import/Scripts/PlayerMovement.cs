@@ -25,7 +25,7 @@ public partial class PlayerMovement : CharacterBody3D
 	[Export] public float Speed = 5.0f;
 	[Export] public float GlideSpeed = 8.0f;
 	[Export] public float JumpVelocity = 4.0f;
-	[Export] public float AirJumpVelocity = 3.0f;
+	[Export] public float AirJumpVelocity = 2.0f;
 	[Export] public float JumpCooldown = 0.2f;
 	[Export] public float GlideFallSpeed = .3f;
 	[Export] public float GlideLerpSpeed = 5.0f;
@@ -34,7 +34,7 @@ public partial class PlayerMovement : CharacterBody3D
 	[Export] public float GlideBankSpeed = 5f;
 	[Export(PropertyHint.Range, "0,1,0.01")] public float GlideGravityMultiplier = 0.3f;
 
-	[Export] public float TurnSpeed = 12f;
+	[Export] public float TurnSpeed = 4.5f;
 
 	[Export] public float CameraPitchLimit = 70f;
 	[Export] public Vector3 CameraOffset = new Vector3(0f, 2f, 8f);
@@ -116,7 +116,7 @@ public partial class PlayerMovement : CharacterBody3D
 		}
 		else
 		{
-			velocity = ProcessGroundedHorizontal(velocity, deltaF);
+			velocity = ProcessGroundedHorizontal(velocity, deltaF, onFloor);
 		}
 
 		Velocity = velocity;
@@ -126,17 +126,17 @@ public partial class PlayerMovement : CharacterBody3D
 		UpdateVisualTilt(deltaF, velocity);
 	}
 
-	private Vector3 ProcessGroundedHorizontal(Vector3 velocity, float delta)
+	private Vector3 ProcessGroundedHorizontal(Vector3 velocity, float delta, bool onFloor)
 	{
 		float bankBlend = Mathf.Clamp(GlideBankSpeed * delta, 0f, 1f);
 		float clearedBank = Mathf.Lerp(Rotation.Z, 0f, bankBlend);
 
 		Vector2 inputDir = Input.GetVector("move_left", "move_right", "forward_up", "backwards_down");
 
-		float camYawRad = Mathf.DegToRad(_cameraYawDeg);
-		Vector3 camRight = new Vector3(Mathf.Cos(camYawRad), 0f, -Mathf.Sin(camYawRad));
-		Vector3 camBack = new Vector3(Mathf.Sin(camYawRad), 0f, Mathf.Cos(camYawRad));
-		Vector3 direction = (camRight * inputDir.X + camBack * inputDir.Y).Normalized();
+		float referenceYawRad = onFloor ? Mathf.DegToRad(_cameraYawDeg) : Rotation.Y;
+		Vector3 refRight = new Vector3(Mathf.Cos(referenceYawRad), 0f, -Mathf.Sin(referenceYawRad));
+		Vector3 refBack = new Vector3(Mathf.Sin(referenceYawRad), 0f, Mathf.Cos(referenceYawRad));
+		Vector3 direction = (refRight * inputDir.X + refBack * inputDir.Y).Normalized();
 
 		float newYaw = Rotation.Y;
 		if (direction != Vector3.Zero)
