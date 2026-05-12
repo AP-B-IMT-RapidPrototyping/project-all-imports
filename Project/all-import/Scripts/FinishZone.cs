@@ -2,7 +2,7 @@ using Godot;
 
 /// <summary>
 /// Placed at the end of the obstacle course.
-/// When the player enters this Area3D, it fires "player_won" on the GameManager.
+/// When the player enters this Area3D, it checks if objectives are complete.
 /// </summary>
 public partial class FinishZone : Area3D
 {
@@ -15,9 +15,22 @@ public partial class FinishZone : Area3D
 
     private void OnBodyEntered(Node3D body)
     {
-        if (!body.IsInGroup("player")) return;
+        if (!body.IsInGroup("player"))
+            return;
 
         var gm = GetNodeOrNull<GameManager>(GameManagerPath);
-        gm?.OnPlayerWon();
+
+        if (gm == null)
+            return;
+
+        // Only allow winning after both objectives are complete
+        if (gm.AreObjectivesComplete())
+        {
+            gm.OnPlayerWon();
+        }
+        else
+        {
+            GD.Print("Objectives not complete yet!");
+        }
     }
 }

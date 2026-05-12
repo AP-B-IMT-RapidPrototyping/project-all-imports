@@ -16,7 +16,7 @@ anchor_right = 1.0
 offset_left = -40.0
 offset_bottom = 23.0
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 20
 text = "-Go through first ring"
 
 [node name="CheckLabel2" type="Label" parent="." unique_id=1627434593]
@@ -24,9 +24,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -118.0
-offset_top = 13.0
-offset_bottom = 36.0
+offset_left = -233.0
+offset_top = 20.0
+offset_right = 2.0
+offset_bottom = 48.0
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 20
 text = "-Go through Second ring"

@@ -2,45 +2,54 @@ using Godot;
 
 /// <summary>
 /// Manages the obstacle-course mini-game:
-///   • Score via checkpoints
+///   • Objectives via checkpoints (first pass → FirstObjective disappears,
+///     second pass → SecondObjective disappears)
+///   • Both objectives done → MissionComplete becomes visible
 ///   • NPC catch → Game Over
 ///   • Finish → You Win
 ///   • R key restarts the scene
 /// </summary>
 public partial class GameManager : Node
 {
-    // ── UI references ─────────────────────────────────────────────
-    [Export] public NodePath StatusLabelPath = "HUD/StatusLabel";
-    [Export] public NodePath HintLabelPath = "HUD/HintLabel";
-    [Export] public NodePath ScoreLabelPath = "HUD/ScoreLabel";
-
     private Label _statusLabel;
     private Label _hintLabel;
-    private Label _scoreLabel;
+    private Label _firstObjective;
+    private Label _secondObjective;
+    private Label _missionComplete;
+    private Label _gameOverLabel;
 
     // ── Game state ────────────────────────────────────────────────
-    private bool _gameOver = false;
+    private bool _gameOver    = false;
     private bool _gameStarted = false;
-    private int _score = 0;
+    private bool _firstDone   = false;
+    private bool _secondDone  = false;
 
     public override void _Ready()
     {
-        _statusLabel = GetNodeOrNull<Label>(StatusLabelPath);
-        _hintLabel = GetNodeOrNull<Label>(HintLabelPath);
-        _scoreLabel = GetNodeOrNull<Label>(ScoreLabelPath);
+        _statusLabel     = GetTree().Root.FindChild("StatusLabel",     true, false) as Label;
+        _hintLabel       = GetTree().Root.FindChild("HintLabel",       true, false) as Label;
+        _firstObjective  = GetTree().Root.FindChild("FirstObjective",  true, false) as Label;
+        _secondObjective = GetTree().Root.FindChild("SecondObjective", true, false) as Label;
+        _missionComplete = GetTree().Root.FindChild("MissionComplete", true, false) as Label;
+        _gameOverLabel   = GetTree().Root.FindChild("GameOver",        true, false) as Label;
 
-        if (_scoreLabel == null)
-            GD.Print("GameManager: ScoreLabel not assigned and not found.");
+        // Debug: confirm every label was found
+        GD.Print($"[GameManager] StatusLabel:     {(_statusLabel     != null ? "OK" : "NOT FOUND")}");
+        GD.Print($"[GameManager] HintLabel:       {(_hintLabel       != null ? "OK" : "NOT FOUND")}");
+        GD.Print($"[GameManager] FirstObjective:  {(_firstObjective  != null ? "OK" : "NOT FOUND")}");
+        GD.Print($"[GameManager] SecondObjective: {(_secondObjective != null ? "OK" : "NOT FOUND")}");
+        GD.Print($"[GameManager] MissionComplete: {(_missionComplete != null ? "OK" : "NOT FOUND")}");
+        GD.Print($"[GameManager] GameOver:        {(_gameOverLabel   != null ? "OK" : "NOT FOUND")}");
 
-        // Initialize score text
-        if (_scoreLabel != null)
-            _scoreLabel.Text = $"Score: {_score}";
+        // Both objective labels start visible
+        if (_firstObjective  != null) _firstObjective.Visible  = true;
+        if (_secondObjective != null) _secondObjective.Visible = true;
 
-        // Connect NPCs
-        var root = GetParent() ?? this;
-        ConnectAllNpcs(root);
+        // These start hidden
+        if (_missionComplete != null) _missionComplete.Visible = false;
+        if (_gameOverLabel   != null) _gameOverLabel.Visible   = false;
 
-        // Connect checkpoints
+        ConnectAllNpcs(GetParent() ?? this);
         ConnectCheckpoints();
     }
 
@@ -48,27 +57,21 @@ public partial class GameManager : Node
     private void ConnectCheckpoints()
     {
         var checkpoints = GetTree().GetNodesInGroup("checkpoint");
-
-        GD.Print($"GameManager found {checkpoints.Count} checkpoints");
+        GD.Print($"[GameManager] Found {checkpoints.Count} checkpoints");
 
         foreach (Node node in checkpoints)
         {
             Area3D area = null;
 
-            // If node itself is Area3D
             if (node is Area3D a)
             {
                 area = a;
             }
             else
             {
-                // Search upward for Area3D parent
                 Node parent = node;
-
                 while (parent != null && parent is not Area3D)
-                {
                     parent = parent.GetParent();
-                }
 
                 if (parent is Area3D foundArea)
                     area = foundArea;
@@ -76,85 +79,95 @@ public partial class GameManager : Node
 
             if (area != null)
             {
-                // Prevent duplicate connections (safely disconnect first)
-                try
+                if (!area.IsConnected(Area3D.SignalName.BodyEntered,
+                        Callable.From<Node3D>(OnCheckpointBodyEntered)))
                 {
-                    area.BodyEntered -= OnCheckpointBodyEntered;
+                    area.BodyEntered += OnCheckpointBodyEntered;
                 }
-                catch
-                {
-                    // Connection didn't exist, that's fine
-                }
-                
-                area.BodyEntered += OnCheckpointBodyEntered;
 
-                GD.Print($"GameManager: connected to checkpoint '{area.Name}'");
+                GD.Print($"[GameManager] Connected checkpoint '{area.Name}'");
             }
             else
             {
-                GD.Print($"GameManager: '{node.Name}' has no Area3D parent.");
+                GD.Print($"[GameManager] '{node.Name}' has no Area3D parent — skipped.");
             }
         }
 
-        // Enable scoring after everything is connected
         _gameStarted = true;
     }
 
-    private void OnCheckpointBodyEntered(Node body)
+    private void OnCheckpointBodyEntered(Node3D body)
     {
-        GD.Print($"Entered checkpoint with: {body.Name}");
-
-        // Walk up the node tree looking for the player group
         Node current = body;
-
         while (current != null)
         {
             if (current.IsInGroup("player"))
             {
-                GD.Print("Player detected!");
-                AddPoint();
+                RegisterCheckpointHit();
                 return;
             }
-
             current = current.GetParent();
         }
-
-        GD.Print("Not player, ignored.");
     }
 
-    private void AddPoint()
+    private void RegisterCheckpointHit()
     {
-        if (!_gameStarted)
-            return;
+        if (!_gameStarted) return;
 
-        _score++;
-
-        if (_scoreLabel != null)
+        // Complete FirstObjective if not yet done
+        if (!_firstDone)
         {
-            _scoreLabel.Text = $"Score: {_score}";
+            _firstDone = true;
+
+            if (_firstObjective != null)
+                _firstObjective.Visible = false;
+
+            GD.Print("[GameManager] FirstObjective completed.");
+            CheckMissionComplete();
+            return;
+        }
+
+        // Complete SecondObjective if first is done but second isn't
+        if (_firstDone && !_secondDone)
+        {
+            _secondDone = true;
+
+            if (_secondObjective != null)
+                _secondObjective.Visible = false;
+
+            GD.Print("[GameManager] SecondObjective completed.");
+            CheckMissionComplete();
+            return;
+        }
+    }
+
+    private void CheckMissionComplete()
+    {
+        if (!_firstDone || !_secondDone) return;
+
+        GD.Print("[GameManager] Both objectives complete — showing MissionComplete.");
+
+        if (_missionComplete != null)
+        {
+            _missionComplete.Visible = true;
+            GD.Print("[GameManager] MissionComplete is now visible.");
         }
         else
         {
-            GD.Print("ScoreLabel missing!");
+            GD.PrintErr("[GameManager] MissionComplete label is NULL — check node name spelling in the scene tree!");
         }
-
-        GD.Print($"Added point, total {_score}");
     }
 
     // ── NPC CONNECTION ────────────────────────────────────────────
     private void ConnectAllNpcs(Node node)
     {
-        if (node == null)
-            return;
+        if (node == null) return;
 
         foreach (Node child in node.GetChildren())
         {
             if (child is Npc npc)
-            {
                 npc.CaughtPlayer += OnPlayerCaught;
-            }
 
-            // Recurse into children
             ConnectAllNpcs(child);
         }
     }
@@ -169,73 +182,52 @@ public partial class GameManager : Node
         }
 
         if (Input.IsKeyPressed(Key.R))
-        {
             Restart();
-        }
     }
 
     // ── GAME EVENTS ───────────────────────────────────────────────
     public void OnPlayerCaught()
     {
-        if (_gameOver)
-            return;
-
+        if (_gameOver) return;
         _gameOver = true;
 
-        if (_statusLabel != null)
-        {
-            _statusLabel.Text = "GAME OVER";
-            _statusLabel.AddThemeColorOverride(
-                "font_color",
-                new Color(1f, 0.2f, 0.2f)
-            );
-
-            _statusLabel.Visible = true;
-        }
+        if (_gameOverLabel != null)
+            _gameOverLabel.Visible = true;
 
         SetHint("Press R to try again");
-
         GD.Print("[GameManager] Player was caught!");
 
-        // Freeze player
         var player = GetTree().GetFirstNodeInGroup("player") as CharacterBody3D;
-
         if (player != null)
-        {
             player.SetPhysicsProcess(false);
-        }
     }
 
     public void OnPlayerWon()
     {
-        if (_gameOver)
-            return;
-
+        if (_gameOver) return;
         _gameOver = true;
 
         if (_statusLabel != null)
         {
             _statusLabel.Text = "YOU WIN!";
-            _statusLabel.AddThemeColorOverride(
-                "font_color",
-                new Color(1f, 0.85f, 0.1f)
-            );
-
+            _statusLabel.AddThemeColorOverride("font_color", new Color(1f, 0.85f, 0.1f));
             _statusLabel.Visible = true;
         }
 
-        SetHint($"Final Score: {_score} | Press R to play again");
-
+        SetHint("Press R to play again");
         GD.Print("[GameManager] Player won!");
     }
 
     // ── HELPERS ───────────────────────────────────────────────────
+    public bool AreObjectivesComplete()
+    {
+        return _firstDone && _secondDone;
+    }
+
     private void SetHint(string text)
     {
         if (_hintLabel != null)
-        {
             _hintLabel.Text = text;
-        }
     }
 
     private void Restart()
@@ -244,4 +236,3 @@ public partial class GameManager : Node
         GetTree().ReloadCurrentScene();
     }
 }
-
