@@ -1,0 +1,11 @@
+Model Information:
+* title:	Low poly security guard 2
+* source:	https://sketchfab.com/3d-models/low-poly-security-guard-2-bad4a888229c4447acd8d1c34959b531
+* author:	Jose Manuel (https://sketchfab.com/manre)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Low poly security guard 2" (https://sketchfab.com/3d-models/low-poly-security-guard-2-bad4a888229c4447acd8d1c34959b531) by Jose Manuel (https://sketchfab.com/manre) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
