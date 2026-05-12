@@ -24,6 +24,9 @@ albedo_color = Color(0.48962224, 0.48962224, 0.48962218, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lwf8e"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_uavcn"]
+size = Vector3(2, 1, 1.5)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwf8e"]
 albedo_color = Color(0.4117647, 0, 0.11764706, 1)
 
@@ -1138,6 +1141,11 @@ navigation_mesh = SubResource("NavigationMesh_smj3k")
 transform = Transform3D(138.20491, 0, 0, 0, 0.2, 0, 0, 0, 105.59003, 42.08931, 0, 11.473238)
 material_override = SubResource("StandardMaterial3D_042ga")
 mesh = SubResource("BoxMesh_lwf8e")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D" unique_id=1425074552]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D" unique_id=564281011]
+shape = SubResource("BoxShape3D_uavcn")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1302470974]
 
