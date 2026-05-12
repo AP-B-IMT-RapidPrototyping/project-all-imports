@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba2lwl6cej8di"
-path.s3tc="res://.godot/imported/Fuzzy_Sky-Blue_01-512x512.png-b63ea6da5a53c9374b4f7659576efd0e.s3tc.ctex"
+uid="uid://bvrj5giljcjmh"
+path.s3tc="res://.godot/imported/ColorPaletteMuseum.png-8909c2c1c3f6ccd67352ab3f84f91bf5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Sky Backgrounds512x512/512x512/Fuzzy Sky/Fuzzy_Sky-Blue_01-512x512.png"
-dest_files=["res://.godot/imported/Fuzzy_Sky-Blue_01-512x512.png-b63ea6da5a53c9374b4f7659576efd0e.s3tc.ctex"]
+source_file="res://Assets/MuseumAsset/ColorPaletteMuseum.png"
+dest_files=["res://.godot/imported/ColorPaletteMuseum.png-8909c2c1c3f6ccd67352ab3f84f91bf5.s3tc.ctex"]
 
 [params]
 
