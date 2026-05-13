@@ -4,7 +4,7 @@ using Godot;
 /// Manages the obstacle-course mini-game:
 ///   • Objectives via checkpoints (first pass → FirstObjective disappears,
 ///     second pass → SecondObjective disappears)
-///   • Both objectives done → MissionComplete becomes visible
+///   • Both objectives done → MissionComplete becomes visible, NPCs go Neutral
 ///   • NPC catch → Game Over
 ///   • Finish → You Win
 ///   • R key restarts the scene
@@ -155,6 +155,31 @@ public partial class GameManager : Node
         else
         {
             GD.PrintErr("[GameManager] MissionComplete label is NULL — check node name spelling in the scene tree!");
+        }
+
+        // Set all NPCs to Neutral so they stop chasing the player
+        NeutraliseAllNpcs();
+    }
+
+    private void NeutraliseAllNpcs()
+    {
+        var root = GetParent() ?? this;
+        NeutraliseNpcsRecursive(root);
+    }
+
+    private void NeutraliseNpcsRecursive(Node node)
+    {
+        if (node == null) return;
+
+        foreach (Node child in node.GetChildren())
+        {
+            if (child is Npc npc)
+            {
+                npc.SetStateExternal(Npc.NpcState.Neutral);
+                GD.Print($"[GameManager] NPC '{npc.Name}' set to Neutral.");
+            }
+
+            NeutraliseNpcsRecursive(child);
         }
     }
 
