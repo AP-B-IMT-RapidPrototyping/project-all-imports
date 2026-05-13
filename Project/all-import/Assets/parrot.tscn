@@ -2,21 +2,25 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rtrvi"]
 resource_name = "Mat.3"
+cull_mode = 2
 albedo_color = Color(0.43662706, 0.43662706, 0.43662706, 1)
 emission_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqbrg"]
 resource_name = "Mat"
+cull_mode = 2
 albedo_color = Color(0.9063318, 0.44472724, 0.34237343, 1)
 emission_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yb3fw"]
 resource_name = "Mat.2"
+cull_mode = 2
 albedo_color = Color(0, 0.5687966, 1, 1)
 emission_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_um5n0"]
 resource_name = "Mat.1"
+cull_mode = 2
 albedo_color = Color(0.36556464, 0.91725993, 1, 1)
 emission_enabled = true
 
