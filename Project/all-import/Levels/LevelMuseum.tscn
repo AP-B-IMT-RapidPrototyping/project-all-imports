@@ -1273,6 +1273,7 @@ material_override = SubResource("StandardMaterial3D_042ga")
 mesh = SubResource("BoxMesh_lwf8e")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D" unique_id=460940345]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999976, 0, -1.7743897, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D" unique_id=877954260]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
