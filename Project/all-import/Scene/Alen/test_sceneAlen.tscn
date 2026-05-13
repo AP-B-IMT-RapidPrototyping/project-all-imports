@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://b6oporun7qvqj"]
+
+[ext_resource type="PackedScene" uid="uid://05eeeuehno13" path="res://Actors/Player.tscn" id="1_n1ul5"]
+[ext_resource type="Script" uid="uid://cc884d7kefqhf" path="res://Scripts/StealableObject.cs" id="2_nmqcx"]
+[ext_resource type="Script" uid="uid://1c2jyyh5eu5b" path="res://Scripts/InventoryManager.cs" id="3_5a3hy"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nj0ou"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7on0p"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_khgdm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2622"]
+
+[node name="TestScene" type="Node3D" unique_id=760161331]
+
+[node name="Player" parent="." unique_id=561623431 instance=ExtResource("1_n1ul5")]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=61869998]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=290183552]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -0.044459343, 9.536743e-07, 0.016496658)
+mesh = SubResource("PlaneMesh_nj0ou")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1165527893]
+shape = SubResource("WorldBoundaryShape3D_7on0p")
+
+[node name="TestBox1" type="RigidBody3D" parent="." unique_id=265129501 groups=["Pickable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 3)
+script = ExtResource("2_nmqcx")
+ItemName = "Test Doos"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestBox1" unique_id=432440541]
+mesh = SubResource("BoxMesh_khgdm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestBox1" unique_id=1440138325]
+shape = SubResource("BoxShape3D_h2622")
+
+[node name="InventoryManager" type="Node" parent="." unique_id=807255646]
+script = ExtResource("3_5a3hy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2063876816]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+shadow_enabled = true

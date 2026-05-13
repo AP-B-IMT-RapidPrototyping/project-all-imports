@@ -31,9 +31,10 @@ public partial class GrabBehavior : Node
 
     public override void _Process(double delta)
     {
-        // Check voor input
         if (Input.IsActionJustPressed(GrabAction))
         {
+            GD.Print($"Grab actie gedetecteerd! objectsInRange: {objectsInRange.Count}");
+
             if (heldObject == null)
             {
                 TryGrab();
@@ -65,7 +66,7 @@ public partial class GrabBehavior : Node
                 return;
             }
         }
-       
+
     }
 
     private void TryRelease()
