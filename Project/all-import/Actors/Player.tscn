@@ -5,9 +5,12 @@
 [ext_resource type="Script" uid="uid://cp57b0kqbmvin" path="res://Scripts/GrabBehavior.cs" id="4_x82gw"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_h1khe"]
-radius = 0.51416165
+radius = 1.3
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ypwy6"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_1jtgk"]
+radius = 1.3
+
+[sub_resource type="SphereMesh" id="SphereMesh_1jtgk"]
 
 [node name="Player" type="CharacterBody3D" unique_id=561623431 groups=["player"]]
 script = ExtResource("1_x82gw")
@@ -31,6 +34,14 @@ script = ExtResource("4_x82gw")
 [node name="GrabArea" type="Area3D" parent="." unique_id=1831101568]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GrabArea" unique_id=1120467856]
-shape = SubResource("BoxShape3D_ypwy6")
+shape = SubResource("SphereShape3D_1jtgk")
 
 [node name="HoldPosition" type="Marker3D" parent="." unique_id=780201600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -1.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HoldPosition" unique_id=2118907336]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("SphereMesh_1jtgk")
+
+[connection signal="body_entered" from="GrabArea" to="GrabBehavior" method="OnGrabAreaBodyEntered"]
+[connection signal="body_exited" from="GrabArea" to="GrabBehavior" method="OnGrabAreaBodyExited"]
