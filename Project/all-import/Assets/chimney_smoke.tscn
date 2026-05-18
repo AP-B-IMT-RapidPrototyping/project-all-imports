@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://drifjuk6x5s71"]
+
+[ext_resource type="Texture2D" uid="uid://dglc56m02ii1q" path="res://Assets/smokecloud.png" id="1_no50y"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kvfeb"]
+lifetime_randomness = 0.47
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.29999998
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0.5, 0)
+scale_max = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lt4qv"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_no50y")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_enabled = true
+proximity_fade_distance = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_o4nhf"]
+material = SubResource("StandardMaterial3D_lt4qv")
+
+[node name="ChimneySmoke" type="GPUParticles3D" unique_id=669496827]
+amount = 7
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_kvfeb")
+draw_pass_1 = SubResource("QuadMesh_o4nhf")

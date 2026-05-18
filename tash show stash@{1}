@@ -1,0 +1,93 @@
+ Project/all-import/Actors/Player.tscn              |    2 [32m+[m[31m-[m
+ Project/all-import/All Import.csproj               |    2 [32m+[m[31m-[m
+ .../Textures/Alarm_clock_01_Emissor.png.import     |   13 [32m+[m[31m-[m
+ .../Bumpy Sky/Bumpy_Sky-Blue_04-512x512.png.import |   13 [32m+[m[31m-[m
+ .../Bumpy_Sky-Night_01-512x512.png.import          |   13 [32m+[m[31m-[m
+ .../Fuzzy_Sky-Sunset_01-512x512.png.import         |   13 [32m+[m[31m-[m
+ .../Fuzzy_Sky-Sunset_03-512x512.png.import         |   13 [32m+[m[31m-[m
+ .../Gradient_Sky-Foggy_01-512x512.png.import       |   13 [32m+[m[31m-[m
+ .../Gradient_Sky-Overcast_02-512x512.png.import    |   13 [32m+[m[31m-[m
+ Project/all-import/Assets/Walking (1).fbx          |  Bin [31m567552[m -> [32m0[m bytes
+ Project/all-import/Assets/Walking (1).fbx.import   |   44 [31m-[m
+ .../Others stuffs by Styloo !.url                  |    5 [31m-[m
+ .../discord for questions.url                      |    6 [31m-[m
+ .../animalasset/stylooanimalassetpack/fbx/Cow.fbx  |  Bin [31m3458892[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/Cow.fbx.import       |   44 [31m-[m
+ .../stylooanimalassetpack/fbx/Cow_0.png            |  Bin [31m399954[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/Cow_0.png.import     |   44 [31m-[m
+ .../stylooanimalassetpack/fbx/Cow_1.png            |  Bin [31m443762[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/Cow_1.png.import     |   44 [31m-[m
+ .../stylooanimalassetpack/fbx/Cow_2.png            |  Bin [31m56487[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/Cow_2.png.import     |   43 [31m-[m
+ .../stylooanimalassetpack/fbx/butterfly.fbx        |  Bin [31m230108[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/butterfly.fbx.import |   44 [31m-[m
+ .../stylooanimalassetpack/fbx/butterfly_0.png      |  Bin [31m76871[m -> [32m0[m bytes
+ .../fbx/butterfly_0.png.import                     |   44 [31m-[m
+ .../animalasset/stylooanimalassetpack/fbx/cat.fbx  |  Bin [31m420028[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/cat.fbx.import       |   44 [31m-[m
+ .../stylooanimalassetpack/fbx/cat_0.png            |  Bin [31m90262[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/cat_0.png.import     |   44 [31m-[m
+ .../stylooanimalassetpack/fbx/chicken.fbx          |  Bin [31m1052636[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/chicken.fbx.import   |   44 [31m-[m
+ .../stylooanimalassetpack/fbx/chicken_0.png        |  Bin [31m251638[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/chicken_0.png.import |   44 [31m-[m
+ .../stylooanimalassetpack/fbx/chicken_1.png        |  Bin [31m370646[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/chicken_1.png.import |   44 [31m-[m
+ .../animalasset/stylooanimalassetpack/fbx/dog.fbx  |  Bin [31m3774524[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/dog.fbx.import       |   44 [31m-[m
+ .../stylooanimalassetpack/fbx/dog_0.png            |  Bin [31m252849[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/dog_0.png.import     |   44 [31m-[m
+ .../stylooanimalassetpack/fbx/dog_1.png            |  Bin [31m452929[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/dog_1.png.import     |   44 [31m-[m
+ .../stylooanimalassetpack/fbx/girafe.fbx           |  Bin [31m772684[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/girafe.fbx.import    |   44 [31m-[m
+ .../stylooanimalassetpack/fbx/girafe_0.png         |  Bin [31m86745[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/girafe_0.png.import  |   44 [31m-[m
+ .../stylooanimalassetpack/fbx/ladybug.fbx          |  Bin [31m109004[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/ladybug.fbx.import   |   44 [31m-[m
+ .../stylooanimalassetpack/fbx/ladybug_0.png        |  Bin [31m20012[m -> [32m0[m bytes
+ .../stylooanimalassetpack/fbx/ladybug_0.png.import |   44 [31m-[m
+ .../animalasset/stylooanimalassetpack/glb/Cow.glb  |  Bin [31m1629852[m -> [32m0[m bytes
+ .../stylooanimalassetpack/glb/Cow.glb.import       |   42 [31m-[m
+ .../stylooanimalassetpack/glb/Cow_cow_color.png    |  Bin [31m465323[m -> [32m0[m bytes
+ .../glb/Cow_cow_color.png.import                   |   44 [31m-[m
+ .../stylooanimalassetpack/glb/Cow_cow_normal.png   |  Bin [31m557168[m -> [32m0[m bytes
+ .../glb/Cow_cow_normal.png.import                  |   44 [31m-[m
+ .../glb/Cow_cow_roughness.png                      |  Bin [31m64742[m -> [32m0[m bytes
+ .../glb/Cow_cow_roughness.png.import               |   44 [31m-[m
+ .../stylooanimalassetpack/glb/butterfly.glb        |  Bin [31m154256[m -> [32m0[m bytes
+ .../stylooanimalassetpack/glb/butterfly.glb.import |   42 [31m-[m
+ .../glb/butterfly_butterflytexture.png             |  Bin [31m87096[m -> [32m0[m bytes
+ .../glb/butterfly_butterflytexture.png.import      |   44 [31m-[m
+ .../animalasset/stylooanimalassetpack/glb/cat.glb  |  Bin [31m348696[m -> [32m0[m bytes
+ .../stylooanimalassetpack/glb/cat.glb.import       |   42 [31m-[m
+ .../stylooanimalassetpack/glb/cat_Cube_color.png   |  Bin [31m105541[m -> [32m0[m bytes
+ .../glb/cat_Cube_color.png.import                  |   44 [31m-[m
+ .../stylooanimalassetpack/glb/chichen.glb          |  Bin [31m1020464[m -> [32m0[m bytes
+ .../stylooanimalassetpack/glb/chichen.glb.import   |   42 [31m-[m
+ .../glb/chichen_chicken_color.png                  |  Bin [31m318734[m -> [32m0[m bytes
+ .../glb/chichen_chicken_color.png.import           |   44 [31m-[m
+ .../glb/chichen_chicken_normal.png                 |  Bin [31m508307[m -> [32m0[m bytes
+ .../glb/chichen_chicken_normal.png.import          |   44 [31m-[m
+ .../animalasset/stylooanimalassetpack/glb/dog.glb  |  Bin [31m1566808[m -> [32m0[m bytes
+ .../stylooanimalassetpack/glb/dog.glb.import       |   42 [31m-[m
+ .../stylooanimalassetpack/glb/dog_dog_color.png    |  Bin [31m321990[m -> [32m0[m bytes
+ .../glb/dog_dog_color.png.import                   |   44 [31m-[m
+ .../stylooanimalassetpack/glb/dog_dog_normal.png   |  Bin [31m599406[m -> [32m0[m bytes
+ .../glb/dog_dog_normal.png.import                  |   44 [31m-[m
+ .../stylooanimalassetpack/glb/girafe.glb           |  Bin [31m300084[m -> [32m0[m bytes
+ .../stylooanimalassetpack/glb/girafe.glb.import    |   42 [31m-[m
+ .../glb/girafe_girafetexture.png                   |  Bin [31m87889[m -> [32m0[m bytes
+ .../glb/girafe_girafetexture.png.import            |   44 [31m-[m
+ .../stylooanimalassetpack/glb/ladybug.glb          |  Bin [31m101076[m -> [32m0[m bytes
+ .../stylooanimalassetpack/glb/ladybug.glb.import   |   42 [31m-[m
+ .../glb/ladybug_cocinelle.png                      |  Bin [31m27184[m -> [32m0[m bytes
+ .../glb/ladybug_cocinelle.png.import               |   44 [31m-[m
+ .../animalasset/stylooanimalassetpack/read me .txt |   15 [31m-[m
+ .../Assets/low_polysguard/scene.gltf.import        |    2 [32m+[m[31m-[m
+ Project/all-import/Assets/scene.gltf               |  572 [31m------[m
+ Project/all-import/Assets/scene.gltf.import        |   42 [31m-[m
+ Project/all-import/Levels/LevelMuseum.tscn         | 1850 [32m+++++++++++++++[m[31m-----[m
+ Project/all-import/Levels/TestScene.tscn           | 1826 [32m++++++++++++++++[m[31m---[m
+ Project/all-import/Scene/Tutku/Guard.tscn          |    3 [32m+[m[31m-[m
+ 92 files changed, 3111 insertions(+), 2918 deletions(-)

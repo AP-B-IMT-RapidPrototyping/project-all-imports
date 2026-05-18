@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4vfanqmmfwdc"
-path.s3tc="res://.godot/imported/Gradient_Sky-Overcast_02-512x512.png-82311cb7b830d3e29855dc317e68ada6.s3tc.ctex"
+uid="uid://dy0r1b1g6ceut"
+path.s3tc="res://.godot/imported/low-poly-art (2) (1).png-dc8724458471547b885443ad6aeab2c5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Sky Backgrounds512x512/512x512/Gradient Sky/Gradient_Sky-Overcast_02-512x512.png"
-dest_files=["res://.godot/imported/Gradient_Sky-Overcast_02-512x512.png-82311cb7b830d3e29855dc317e68ada6.s3tc.ctex"]
+source_file="res://Assets/MuseumAsset/low-poly-art (2) (1).png"
+dest_files=["res://.godot/imported/low-poly-art (2) (1).png-dc8724458471547b885443ad6aeab2c5.s3tc.ctex"]
 
 [params]
 
