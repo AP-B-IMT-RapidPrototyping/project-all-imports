@@ -19,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://osd15ha0fu06" path="res://Assets/Auto textures/color_2048x2048.jpg" id="38_lq5jl"]
 [ext_resource type="PackedScene" uid="uid://bt6cje42ibdom" path="res://Assets/nature_kit/Nature Kit/models/Tree_Oak_5.fbx" id="46_2ndy0"]
 [ext_resource type="PackedScene" uid="uid://darmpkbu6030n" path="res://Assets/nature_kit/Nature Kit/models/Tree_Oak_6.fbx" id="47_b2nkc"]
-[ext_resource type="PackedScene" uid="uid://bllgloqi0yjtx" path="res://Scene/Tutku/LevelUI.tscn" id="49_2ndy0"]
 [ext_resource type="ArrayMesh" uid="uid://d3wbpoxh3s14v" path="res://Assets/nature_kit/Nature Kit/models/Tree_Oak_4.obj" id="49_a8832"]
 [ext_resource type="PackedScene" uid="uid://dwn6tfaub7c4m" path="res://Assets/FarmLite_FBX/WateringCan_01.fbx" id="49_b2nkc"]
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="50_b2nkc"]
@@ -2017,10 +2016,6 @@ mesh = ExtResource("61_7fblw")
 
 [node name="Flower_Bellflower_3" parent="." unique_id=754812857 instance=ExtResource("29_7fblw")]
 transform = Transform3D(0.4377436, 0, -0.8990998, 0, 1, 0, 0.8990998, 0, 0.4377436, 70.40787, 0.6678716, 43.9831)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=257813037]
-
-[node name="LevelUI" parent="CanvasLayer" unique_id=1502398835 instance=ExtResource("49_2ndy0")]
 
 [node name="Area3D" type="Area3D" parent="." unique_id=979791141]
 

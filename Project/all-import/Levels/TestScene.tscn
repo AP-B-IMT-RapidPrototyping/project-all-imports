@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://bpdtwpwf1bpvl"]
+[gd_scene format=4 uid="uid://cpuj8d1tc1lmh"]
 
 [ext_resource type="Texture2D" uid="uid://d4mdhghqhqq0v" path="res://Assets/Sky Backgrounds512x512/512x512/Puffy Sky/Puffy_Sky-Evening_03-512x512.png" id="1_3cjku"]
 [ext_resource type="Script" uid="uid://gj76mxkm74bf" path="res://Levels/LevelController.cs" id="1_a27ee"]
@@ -52,7 +52,9 @@
 [ext_resource type="PackedScene" uid="uid://cfclojjacuyr" path="res://Assets/nature_kit/Nature Kit/models/Flower_Bellflower_3.fbx" id="48_emas1"]
 [ext_resource type="PackedScene" uid="uid://bllgloqi0yjtx" path="res://Scene/Tutku/LevelUI.tscn" id="49_ljhiw"]
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="50_ft7st"]
-[ext_resource type="PackedScene" uid="uid://drc3rd6dnayb3" path="res://Actors/Pickable.tscn" id="51_a27ee"]
+[ext_resource type="PackedScene" path="res://Actors/Pickable.tscn" id="51_a27ee"]
+[ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="52_ggt8f"]
+[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="53_ajyva"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27ee"]
 bg_color = Color(0.047058824, 0.27058825, 0.44705883, 0.7254902)
@@ -2226,3 +2228,10 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 109.19563, 0.5278648, 11.0801
 
 [node name="TestBox1" parent="." unique_id=898709373 instance=ExtResource("51_a27ee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.08792, 1.0274963, 32.354816)
+
+[node name="UI" parent="." unique_id=600360855 instance=ExtResource("52_ggt8f")]
+
+[node name="GameManagerTestlvl" type="Node" parent="." unique_id=1630170303]
+script = ExtResource("53_ajyva")
+
+[editable path="UI"]
