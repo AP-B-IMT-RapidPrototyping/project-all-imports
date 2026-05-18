@@ -51,8 +51,6 @@
 [ext_resource type="PackedScene" uid="uid://bllgloqi0yjtx" path="res://Scene/Tutku/LevelUI.tscn" id="49_ljhiw"]
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="50_ft7st"]
 [ext_resource type="PackedScene" path="res://Actors/Pickable.tscn" id="51_a27ee"]
-[ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="52_ggt8f"]
-[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="53_ajyva"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2nkc"]
 size = Vector3(1.0795288, 49.67273, 145.71939)
@@ -2125,10 +2123,3 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 109.19563, 0.5278648, 11.0801
 
 [node name="TestBox1" parent="." unique_id=898709373 instance=ExtResource("51_a27ee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.08792, 1.0274963, 32.354816)
-
-[node name="UI" parent="." unique_id=600360855 instance=ExtResource("52_ggt8f")]
-
-[node name="GameManagerTestlvl" type="Node" parent="." unique_id=1630170303]
-script = ExtResource("53_ajyva")
-
-[editable path="UI"]
