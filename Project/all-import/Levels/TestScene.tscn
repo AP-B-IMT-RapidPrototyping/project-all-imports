@@ -54,34 +54,43 @@
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="50_ft7st"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27ee"]
-bg_color = Color(0.047058824, 0.27058825, 0.44705883, 1)
+bg_color = Color(0.047058824, 0.27058825, 0.44705883, 0.29411766)
 border_color = Color(1, 1, 1, 1)
 border_blend = true
-corner_detail = 20
-expand_margin_top = 5.0
-expand_margin_bottom = 5.0
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wib2v"]
-bg_color = Color(0.105882354, 0.43529412, 0.69411767, 0.627451)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
+bg_color = Color(0.03137255, 0.22745098, 0.3764706, 0.6666667)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0.39215687, 0.6862745, 0.95686275, 1)
 border_blend = true
-expand_margin_top = 11.0
-expand_margin_bottom = 11.0
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggt8f"]
-bg_color = Color(0.105882354, 0.43529412, 0.69411767, 0.627451)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
+bg_color = Color(0.03137255, 0.22745098, 0.3764706, 0.6666667)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0.39215687, 0.6862745, 0.95686275, 1)
 border_blend = true
-expand_margin_top = 11.0
-expand_margin_bottom = 11.0
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2nkc"]
 size = Vector3(1.0795288, 49.67273, 145.71939)
@@ -818,18 +827,27 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Panel" unique_id=2130627043]
-custom_minimum_size = Vector2(2.5, 2.5)
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 154.0
-scale = Vector2(1.5, 1.5)
-theme_override_constants/separation = 40
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 750.0
+offset_top = 465.0
+offset_right = 1100.0
+offset_bottom = 715.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-100, 100)
+theme_override_constants/separation = 25
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="PauseMenu/Panel/VBoxContainer" unique_id=805005806]
 layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 15
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_a27ee")
 text = "GEPAUZEERD"
 horizontal_alignment = 1
@@ -838,16 +856,14 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="PauseMenu/Panel/VBoxContainer" unique_id=1911839096]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 1.2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_wib2v")
 text = "DOORGAAN"
 
 [node name="Button2" type="Button" parent="PauseMenu/Panel/VBoxContainer" unique_id=502616160]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 1.2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_ggt8f")
 text = "TERUG NAAR MENU"
 
