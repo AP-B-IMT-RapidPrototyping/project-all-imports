@@ -24,8 +24,10 @@
 [ext_resource type="PackedScene" uid="uid://dwn6tfaub7c4m" path="res://Assets/FarmLite_FBX/WateringCan_01.fbx" id="49_b2nkc"]
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="50_b2nkc"]
 [ext_resource type="PackedScene" uid="uid://c8mqtnue24cfp" path="res://Assets/nature_kit/Nature Kit/models/Tree_Oak_4.fbx" id="50_rsp8e"]
+[ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="51_a8832"]
 [ext_resource type="PackedScene" uid="uid://im4p1llrfs2e" path="res://Assets/nature_kit/Nature Kit/models/Tree_Bare_6.fbx" id="51_wv0vr"]
 [ext_resource type="PackedScene" uid="uid://o018mqsmx7m4" path="res://Assets/nature_kit/Nature Kit/models/Tree_Bare_3.fbx" id="52_m8wx7"]
+[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="52_rsp8e"]
 [ext_resource type="ArrayMesh" uid="uid://blh4c6mtup8i0" path="res://Assets/nature_kit/Nature Kit/models/Stump_2.obj" id="53_2em4k"]
 [ext_resource type="ArrayMesh" uid="uid://egvbmpy64g0e" path="res://Assets/nature_kit/Nature Kit/models/Tree_Oak_8.obj" id="54_m8wx7"]
 [ext_resource type="ArrayMesh" uid="uid://dtns0enj6egwt" path="res://Assets/nature_kit/Nature Kit/models/Tree_Oak_7.obj" id="55_2em4k"]
@@ -2028,3 +2030,10 @@ shape = SubResource("BoxShape3D_2ndy0")
 
 [node name="Node3D" parent="." unique_id=1982591309 instance=ExtResource("50_b2nkc")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 109.19563, 0.5278648, 11.080109)
+
+[node name="UI" parent="." unique_id=600360855 instance=ExtResource("51_a8832")]
+
+[node name="GameManagerTestlvl" type="Node" parent="." unique_id=137806051]
+script = ExtResource("52_rsp8e")
+
+[editable path="UI"]
