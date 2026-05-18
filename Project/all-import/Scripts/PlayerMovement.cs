@@ -16,7 +16,7 @@ public partial class PlayerMovement : CharacterBody3D
 	[Export] public float GlideBankSpeed = 5f;
 	[Export(PropertyHint.Range, "0,1,0.01")] public float GlideGravityMultiplier = 0.3f;
 
-	[Export] public float TurnSpeed = 4.5f;
+	[Export] public float TurnSpeed = 4.51f;
 
 	[Export] public float CameraPitchLimit = 70f;
 	[Export] public Vector3 CameraOffset = new Vector3(0f, 2f, 8f);
