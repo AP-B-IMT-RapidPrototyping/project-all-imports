@@ -1,7 +1,9 @@
 [gd_scene format=4 uid="uid://bpdtwpwf1bpvl"]
 
 [ext_resource type="Texture2D" uid="uid://d4mdhghqhqq0v" path="res://Assets/Sky Backgrounds512x512/512x512/Puffy Sky/Puffy_Sky-Evening_03-512x512.png" id="1_3cjku"]
+[ext_resource type="Script" uid="uid://gj76mxkm74bf" path="res://Levels/LevelController.cs" id="1_a27ee"]
 [ext_resource type="PackedScene" uid="uid://dteuwtgupxd84" path="res://Scene/Tutku/Farm.tscn" id="2_a27ee"]
+[ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="2_wib2v"]
 [ext_resource type="PackedScene" uid="uid://2hdcx3o5h1e3" path="res://Scene/Tutku/Kip.tscn" id="3_wib2v"]
 [ext_resource type="PackedScene" uid="uid://dkoyhln7r5for" path="res://Scene/Tutku/house_028-coll.tscn" id="4_ggt8f"]
 [ext_resource type="Texture2D" uid="uid://b7xalwn870emm" path="res://Assets/Farm/FarmTextures/textures/color_1024x1024.jpg" id="5_ajyva"]
@@ -50,6 +52,36 @@
 [ext_resource type="PackedScene" uid="uid://cfclojjacuyr" path="res://Assets/nature_kit/Nature Kit/models/Flower_Bellflower_3.fbx" id="48_emas1"]
 [ext_resource type="PackedScene" uid="uid://bllgloqi0yjtx" path="res://Scene/Tutku/LevelUI.tscn" id="49_ljhiw"]
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="50_ft7st"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27ee"]
+bg_color = Color(0.047058824, 0.27058825, 0.44705883, 1)
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_detail = 20
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wib2v"]
+bg_color = Color(0.105882354, 0.43529412, 0.69411767, 0.627451)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.39215687, 0.6862745, 0.95686275, 1)
+border_blend = true
+expand_margin_top = 11.0
+expand_margin_bottom = 11.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggt8f"]
+bg_color = Color(0.105882354, 0.43529412, 0.69411767, 0.627451)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.39215687, 0.6862745, 0.95686275, 1)
+border_blend = true
+expand_margin_top = 11.0
+expand_margin_bottom = 11.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2nkc"]
 size = Vector3(1.0795288, 49.67273, 145.71939)
@@ -763,6 +795,61 @@ albedo_color = Color(0.08627451, 0.08627451, 0.08627451, 1)
 size = Vector3(107.52899, 1, 142.22852)
 
 [node name="Node3D2" type="Node3D" unique_id=1029517343]
+script = ExtResource("1_a27ee")
+
+[node name="UI" parent="." unique_id=600360855 instance=ExtResource("2_wib2v")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+grow_vertical = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=2058496818]
+process_mode = 3
+visible = false
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="Panel" type="Panel" parent="PauseMenu" unique_id=1435044443]
+layout_direction = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Panel" unique_id=2130627043]
+custom_minimum_size = Vector2(2.5, 2.5)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 154.0
+scale = Vector2(1.5, 1.5)
+theme_override_constants/separation = 40
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="PauseMenu/Panel/VBoxContainer" unique_id=805005806]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_a27ee")
+text = "GEPAUZEERD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="PauseMenu/Panel/VBoxContainer" unique_id=1911839096]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.2
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_wib2v")
+text = "DOORGAAN"
+
+[node name="Button2" type="Button" parent="PauseMenu/Panel/VBoxContainer" unique_id=502616160]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.2
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_ggt8f")
+text = "TERUG NAAR MENU"
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1788064489]
 
@@ -2119,3 +2206,6 @@ shape = SubResource("BoxShape3D_2ndy0")
 
 [node name="Node3D" parent="." unique_id=1982591309 instance=ExtResource("50_ft7st")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 109.19563, 0.5278648, 11.080109)
+
+[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/Button" to="." method="OnResumeButtonPressed"]
+[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/Button2" to="." method="OnBackToMenuButtonPressed"]

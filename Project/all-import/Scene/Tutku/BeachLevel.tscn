@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://blbf8253jb2fc"]
+
+[sub_resource type="Gradient" id="Gradient_388hg"]
+offsets = PackedFloat32Array(0.009925558, 1)
+colors = PackedColorArray(0.3242027, 0.32420278, 0.32420263, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qb68m"]
+frequency = 0.0001
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ngp4a"]
+noise = SubResource("FastNoiseLite_qb68m")
+color_ramp = SubResource("Gradient_388hg")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_34x4v"]
+frequency = 0.03
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fjnmo"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_34x4v")
+seamless = true
+as_normal_map = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7bpc1"]
+albedo_color = Color(0.3837854, 0.45107794, 0.7122021, 1)
+albedo_texture = SubResource("NoiseTexture2D_ngp4a")
+roughness = 0.0
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_fjnmo")
+uv1_scale = Vector3(5, 5, 5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0vvfr"]
+
+[sub_resource type="Animation" id="Animation_gphcv"]
+resource_name = "Flow"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:material_override:uv1_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(5, 5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:material_override:uv1_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_82twm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:material_override:uv1_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(5, 5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:material_override:uv1_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_frklh"]
+_data = {
+&"Flow": SubResource("Animation_gphcv"),
+&"RESET": SubResource("Animation_82twm")
+}
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ynhnh"]
+frequency = 0.0007
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m3ayl"]
+noise = SubResource("FastNoiseLite_ynhnh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vldi"]
+albedo_color = Color(0.48189366, 0.3154983, 9.62615e-08, 1)
+albedo_texture = SubResource("NoiseTexture2D_m3ayl")
+roughness = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_2r68l"]
+
+[node name="Node3D" type="Node3D" unique_id=1171376729]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=976689006]
+transform = Transform3D(40, 0, 0, 0, 60.397, 0, 0, 0, 80, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_7bpc1")
+mesh = SubResource("PlaneMesh_0vvfr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=764776166]
+libraries/ = SubResource("AnimationLibrary_frklh")
+speed_scale = 0.03
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1235882468]
+transform = Transform3D(150, 0, 0, 0, 1, 0, 0, 0, 159.99762, 36.17184, -0.51771307, -0.16114807)
+material_override = SubResource("StandardMaterial3D_5vldi")
+mesh = SubResource("BoxMesh_2r68l")

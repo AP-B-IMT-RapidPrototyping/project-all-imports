@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://dnnyian3lhbgh"]
+
+[ext_resource type="Script" uid="uid://dw1hcqihe0n74" path="res://Scene/Tutku/MainMenuController.cs" id="1_6hapo"]
+[ext_resource type="PackedScene" uid="uid://bpdtwpwf1bpvl" path="res://Levels/TestScene.tscn" id="2_6hapo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hapo"]
+bg_color = Color(0.105882354, 0.43529412, 0.69411767, 0.5882353)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.53966343, 0.5396635, 0.53966326, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w02qk"]
+bg_color = Color(0, 0.26264715, 0.5231742, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.5411765, 0.5411765, 0.5411765, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v733r"]
+bg_color = Color(0.105882354, 0.43529412, 0.69411767, 0.5882353)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.5411765, 0.5411765, 0.5411765, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jhb2"]
+bg_color = Color(0, 0.2627451, 0.52156866, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.5411765, 0.5411765, 0.5411765, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmcyh"]
+bg_color = Color(0.105882354, 0.43529412, 0.69411767, 0.5882353)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.5411765, 0.5411765, 0.5411765, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_srocr"]
+bg_color = Color(0, 0.2627451, 0.52156866, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.5411765, 0.5411765, 0.5411765, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="MainMenu2" type="Node3D" unique_id=955259259]
+script = ExtResource("1_6hapo")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=975010738]
+transform = Transform3D(0.364721, -0.13630348, 0.9210863, 0.050181072, 0.99066716, 0.12673002, -0.9297636, 0, 0.368157, 149.99527, 7.324608, 38.85899)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=81732323]
+layer = 10
+
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=150497623]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI" unique_id=850037514]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -75.0
+offset_right = -60.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(-100, 0)
+theme_override_constants/separation = 20
+
+[node name="Button" type="Button" parent="CanvasLayer/UI/VBoxContainer" unique_id=1460307696]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_6hapo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w02qk")
+text = "START GAME"
+
+[node name="Button2" type="Button" parent="CanvasLayer/UI/VBoxContainer" unique_id=1708185077]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_v733r")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7jhb2")
+text = "OPTIONS"
+
+[node name="Button3" type="Button" parent="CanvasLayer/UI/VBoxContainer" unique_id=811022463]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_gmcyh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_srocr")
+text = "EXIT"
+
+[node name="Node3D2" parent="." unique_id=1029517343 instance=ExtResource("2_6hapo")]
+process_mode = 1
+script = null
+
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="." method="OnStartButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="." method="OnOptionsButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button3" to="." method="OnExitButtonPressed"]
