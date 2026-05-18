@@ -944,7 +944,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0644989, 1.3661509, -0.7435
 shape = SubResource("BoxShape3D_a8832")
 
 [node name="Player" parent="." unique_id=561623431 instance=ExtResource("7_7kdfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 142.75371, 6.5437803, 38.06044)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 142.75371, 6.661674, 38.462036)
 
 [node name="Bomen+Tak" type="Node3D" parent="." unique_id=1786673419]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.029779434, 0.16777039, -0.24996758)
