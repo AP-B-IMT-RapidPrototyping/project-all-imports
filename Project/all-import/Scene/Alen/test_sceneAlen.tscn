@@ -11,8 +11,10 @@
 [node name="TestScene" type="Node3D" unique_id=760161331]
 
 [node name="Player" parent="." unique_id=561623431 instance=ExtResource("1_n1ul5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6696363, 0)
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=61869998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.88444364, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=290183552]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -0.044459343, 9.536743e-07, 0.016496658)
@@ -30,3 +32,6 @@ script = ExtResource("3_5a3hy")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2063876816]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
 shadow_enabled = true
+
+[node name="TestBox2" parent="." unique_id=2139434939 instance=ExtResource("2_n1ul5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5082829, -2.9259787)
