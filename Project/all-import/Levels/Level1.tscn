@@ -51,6 +51,8 @@
 [ext_resource type="PackedScene" uid="uid://bllgloqi0yjtx" path="res://Scene/Tutku/LevelUI.tscn" id="49_ufjfp"]
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="50_p22d7"]
 [ext_resource type="PackedScene" uid="uid://drc3rd6dnayb3" path="res://Actors/Pickable.tscn" id="51_n3cjp"]
+[ext_resource type="PackedScene" uid="uid://drifjuk6x5s71" path="res://Assets/chimney_smoke.tscn" id="52_ddxol"]
+[ext_resource type="PackedScene" uid="uid://cul1rjqpggkti" path="res://Actors/PickableTrash1.tscn" id="53_o4ifd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2nkc"]
 size = Vector3(1.0795288, 49.67273, 145.71939)
@@ -944,7 +946,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0644989, 1.3661509, -0.7435
 shape = SubResource("BoxShape3D_a8832")
 
 [node name="Player" parent="." unique_id=561623431 instance=ExtResource("7_yj7ns")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 142.75371, 6.661674, 38.462036)
+transform = Transform3D(-0.24716814, 0, 0.9689726, 0, 1, 0, -0.9689726, 0, -0.24716814, 152.33197, 0.90641975, -30.878836)
 
 [node name="Bomen+Tak" type="Node3D" parent="." unique_id=1786673419]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.029779434, 0.16777039, -0.24996758)
@@ -2123,3 +2125,27 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 109.19563, 0.5278648, 11.0801
 
 [node name="TestBox1" parent="." unique_id=898709373 instance=ExtResource("51_n3cjp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.08792, 1.0274963, 32.354816)
+
+[node name="ChimneySmoke" parent="." unique_id=669496827 instance=ExtResource("52_ddxol")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.4272, 8.953869, -28.896538)
+
+[node name="TestBox2" parent="." unique_id=676397308 instance=ExtResource("53_o4ifd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 135.8391, 0.8543037, -6.1241245)
+
+[node name="TestBox3" parent="." unique_id=25480985 instance=ExtResource("53_o4ifd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 137.52074, 0.85431015, -5.584493)
+
+[node name="TestBox4" parent="." unique_id=1377228610 instance=ExtResource("53_o4ifd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.4934, 6.217125, -13.065821)
+
+[node name="TestBox5" parent="." unique_id=597358668 instance=ExtResource("53_o4ifd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 129.97267, 6.385324, -15.4588585)
+
+[node name="TestBox6" parent="." unique_id=1420622003 instance=ExtResource("53_o4ifd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131.22786, 6.255441, -13.611086)
+
+[node name="TestBox7" parent="." unique_id=1351012985 instance=ExtResource("53_o4ifd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 135.3035, 2.5859053, -5.3667264)
+
+[node name="TestBox8" parent="." unique_id=1447032460 instance=ExtResource("53_o4ifd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 132.11815, 6.3904433, -15.531606)
