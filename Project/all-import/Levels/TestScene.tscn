@@ -54,7 +54,7 @@
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="50_ft7st"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27ee"]
-bg_color = Color(0.047058824, 0.27058825, 0.44705883, 0.29411766)
+bg_color = Color(0.047058824, 0.27058825, 0.44705883, 0.7254902)
 border_color = Color(1, 1, 1, 1)
 border_blend = true
 corner_radius_top_left = 20
