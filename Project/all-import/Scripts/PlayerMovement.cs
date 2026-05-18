@@ -135,6 +135,11 @@ public partial class PlayerMovement : CharacterBody3D
 
 		Vector2 inputDir = Input.GetVector("move_left", "move_right", "forward_up", "backwards_down");
 
+		if (!onFloor && inputDir.Y > 0f)
+		{
+			inputDir.Y = 0f;
+		}
+
 		float referenceYawRad = onFloor ? Mathf.DegToRad(_cameraYawDeg) : Rotation.Y;
 		Vector3 refRight = new Vector3(Mathf.Cos(referenceYawRad), 0f, -Mathf.Sin(referenceYawRad));
 		Vector3 refBack = new Vector3(Mathf.Sin(referenceYawRad), 0f, Mathf.Cos(referenceYawRad));
