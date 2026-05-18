@@ -29,8 +29,8 @@ project/assembly_name="All Import"
 
 player="player character, used for npc player detection"
 checkpoint=""
-stealableobjects=""
 Pickable=""
+stealableobjects=""
 
 [input]
 

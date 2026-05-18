@@ -52,6 +52,7 @@
 [ext_resource type="PackedScene" uid="uid://cfclojjacuyr" path="res://Assets/nature_kit/Nature Kit/models/Flower_Bellflower_3.fbx" id="48_emas1"]
 [ext_resource type="PackedScene" uid="uid://bllgloqi0yjtx" path="res://Scene/Tutku/LevelUI.tscn" id="49_ljhiw"]
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="50_ft7st"]
+[ext_resource type="PackedScene" uid="uid://drc3rd6dnayb3" path="res://Actors/Pickable.tscn" id="51_a27ee"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27ee"]
 bg_color = Color(0.047058824, 0.27058825, 0.44705883, 0.7254902)
@@ -1046,7 +1047,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0644989, 1.3661509, -0.7435
 shape = SubResource("BoxShape3D_a8832")
 
 [node name="Player" parent="." unique_id=561623431 instance=ExtResource("7_7kdfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 142.75371, 6.5437803, 38.06044)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 142.75371, 6.661674, 38.462036)
 
 [node name="Bomen+Tak" type="Node3D" parent="." unique_id=1786673419]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.029779434, 0.16777039, -0.24996758)
@@ -2223,5 +2224,5 @@ shape = SubResource("BoxShape3D_2ndy0")
 [node name="Node3D" parent="." unique_id=1982591309 instance=ExtResource("50_ft7st")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 109.19563, 0.5278648, 11.080109)
 
-[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/Button" to="." method="OnResumeButtonPressed"]
-[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/Button2" to="." method="OnBackToMenuButtonPressed"]
+[node name="TestBox1" parent="." unique_id=898709373 instance=ExtResource("51_a27ee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.08792, 1.0274963, 32.354816)
