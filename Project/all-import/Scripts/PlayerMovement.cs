@@ -2,7 +2,7 @@
 // public float
 // min=0.f, max=1.f (percentage, easier to draw bar in ui later)
 // Pressing space (jump/flap) consume stamina
-// Gliding reduce/pause stamina regen
+// Gliding reduce stamina regen
 // 
 //
 // Goal: 
@@ -43,6 +43,12 @@ public partial class PlayerMovement : CharacterBody3D
 	[Export] public float VisualTiltMaxAngleDeg = 50f;
 	[Export] public float VisualTiltVelocityRange = 6f;
 	[Export] public float VisualTiltLerpSpeed = 8f;
+
+	[ExportGroup("Stamina")]
+	[Export] public float Stamina = 1.0f;
+	[Export] public float JumpStaminaCost = 0.15f;
+	[Export] public float StaminaRegenRate = 0.2f;
+	[Export] public float GlideStaminaRegenRate = 0.05f;
 
 	private float _cameraYawDeg;
 	private float _cameraPitchDeg;
@@ -101,14 +107,21 @@ public partial class PlayerMovement : CharacterBody3D
 
 		if (jumpPressed && _jumpCooldownTimer <= 0f)
 		{
-			// TODO: ALTER STAMINA
-			velocity.Y += onFloor ? JumpVelocity : AirJumpVelocity;
-			_jumpCooldownTimer = JumpCooldown;
+			bool canJump = onFloor || Stamina >= JumpStaminaCost;
+			if (canJump)
+			{
+				velocity.Y += onFloor ? JumpVelocity : AirJumpVelocity;
+				_jumpCooldownTimer = JumpCooldown;
+				if (!onFloor)
+				{
+					Stamina -= JumpStaminaCost;
+				}
+			}
 		}
 
 		if (gliding)
 		{
-			// TODO: ALTER STAMINA
+			Stamina += GlideStaminaRegenRate * deltaF;
 			if (velocity.Y < -GlideFallSpeed)
 			{
 				velocity.Y = Mathf.Lerp(velocity.Y, -GlideFallSpeed,
@@ -118,8 +131,11 @@ public partial class PlayerMovement : CharacterBody3D
 		}
 		else
 		{
+			Stamina += StaminaRegenRate * deltaF;
 			velocity = ProcessGroundedHorizontal(velocity, deltaF, onFloor);
 		}
+
+		Stamina = Mathf.Clamp(Stamina, 0f, 1f);
 
 		Velocity = velocity;
 		MoveAndSlide();
