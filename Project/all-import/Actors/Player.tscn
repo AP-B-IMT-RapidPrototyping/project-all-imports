@@ -38,10 +38,11 @@ script = ExtResource("4_x82gw")
 shape = SubResource("SphereShape3D_1jtgk")
 
 [node name="HoldPosition" type="Marker3D" parent="." unique_id=780201600]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0074733496, -0.9376657)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="HoldPosition" unique_id=2118907336]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+visible = false
 mesh = SubResource("SphereMesh_1jtgk")
 
 [connection signal="body_entered" from="GrabArea" to="GrabBehavior" method="OnGrabAreaBodyEntered"]
