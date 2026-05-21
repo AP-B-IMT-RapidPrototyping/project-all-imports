@@ -56,6 +56,8 @@
 [ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="52_ggt8f"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="53_ajyva"]
 [ext_resource type="PackedScene" uid="uid://bkggnca2e44kp" path="res://Scene/Tutku/Nest.tscn" id="56_7kdfv"]
+[ext_resource type="PackedScene" uid="uid://drifjuk6x5s71" path="res://Assets/chimney_smoke.tscn" id="57_eynsq"]
+[ext_resource type="PackedScene" uid="uid://cul1rjqpggkti" path="res://Actors/PickableTrash1.tscn" id="58_hb4br"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27ee"]
 bg_color = Color(0.047058824, 0.27058825, 0.44705883, 0.7254902)
@@ -2237,28 +2239,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.08792, 1.0274963, 20.3895
 [node name="GameManagerTestlvl" type="Node" parent="." unique_id=1630170303]
 script = ExtResource("53_ajyva")
 
-[node name="Platform4" type="MeshInstance3D" parent="." unique_id=1160470495]
-transform = Transform3D(53.904797, 0, 0, 0, 1, 0, 0, 0, 43.871746, 23.85053, 0.20430279, -27.42669)
-material_override = SubResource("StandardMaterial3D_t2xnt")
-mesh = SubResource("BoxMesh_53gp6")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Platform4" unique_id=11146948]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform4/StaticBody3D" unique_id=1554445791]
-shape = SubResource("BoxShape3D_4y5si")
-
-[node name="Platform5" type="MeshInstance3D" parent="." unique_id=483249902]
-transform = Transform3D(53.905, 0, 0, 0, 1, 0, 0, 0, 48.846, 23.85053, 0.20430279, 54.773754)
-material_override = SubResource("StandardMaterial3D_t2xnt")
-mesh = SubResource("BoxMesh_53gp6")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Platform5" unique_id=2017610903]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform5/StaticBody3D" unique_id=267316861]
-shape = SubResource("BoxShape3D_4y5si")
-
 [node name="Node3D2" parent="." unique_id=432669837 instance=ExtResource("56_7kdfv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.80138, 6.3861156, 25.830305)
+
+[node name="ChimneySmoke" parent="." unique_id=669496827 instance=ExtResource("57_eynsq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.67067, 8.949099, -28.44994)
+
+[node name="ChimneySmoke2" parent="." unique_id=1668650382 instance=ExtResource("57_eynsq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.042236, 11.432305, -36.294125)
+
+[node name="TestBox2" parent="." unique_id=1096237150 instance=ExtResource("58_hb4br")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136.7084, 0.85431135, -4.5036635)
+
+[node name="TestBox3" parent="." unique_id=934267902 instance=ExtResource("58_hb4br")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136.041, 2.5592856, -4.903737)
+
+[node name="TestBox4" parent="." unique_id=490034078 instance=ExtResource("58_hb4br")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131.48763, 6.0163116, -9.866681)
+
+[node name="TestBox5" parent="." unique_id=1088896777 instance=ExtResource("58_hb4br")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136.51817, 0.9077563, -4.903737)
+
+[node name="TestBox6" parent="." unique_id=1113904013 instance=ExtResource("58_hb4br")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130.59329, 6.0849857, -10.866681)
+
+[node name="TestBox7" parent="." unique_id=622812437 instance=ExtResource("58_hb4br")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.93827, 6.0163116, -9.866681)
+
+[node name="TestBox8" parent="." unique_id=1642367850 instance=ExtResource("58_hb4br")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.93827, 6.304453, -14.14341)
 
 [connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/Button" to="." method="OnResumeButtonPressed"]
 [connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/Button2" to="." method="OnBackToMenuButtonPressed"]

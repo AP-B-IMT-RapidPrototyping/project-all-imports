@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://48lleks7wc52" path="res://Assets/MuseumAsset/low-poly-art (1) (1).png" id="4_qqqc6"]
 [ext_resource type="PackedScene" uid="uid://05eeeuehno13" path="res://Actors/Player.tscn" id="4_wn6vh"]
 [ext_resource type="Texture2D" uid="uid://dn0fd65tkw4ms" path="res://Assets/MuseumAsset/low-poly-art (4).png" id="5_31ks6"]
-[ext_resource type="PackedScene" uid="uid://dabxqv3oeudh8" path="res://Levels/info_desk_small.tscn" id="6_31ks6"]
+[ext_resource type="PackedScene" uid="uid://dabxqv3oeudh8" path="res://Assets/MuseumAsset/info_desk_small.tscn" id="6_31ks6"]
 [ext_resource type="PackedScene" uid="uid://b5suu3ayvu78f" path="res://Scene/Tutku/sculpture.tscn" id="6_qqqc6"]
 [ext_resource type="Texture2D" uid="uid://djs4f4ybfoqsg" path="res://Assets/MuseumAsset/low-poly-art (5) (1).png" id="8_tnhdc"]
 [ext_resource type="Texture2D" uid="uid://c8efaqh42iq6q" path="res://Assets/MuseumAsset/Schermafbeelding 2026-05-15 194830.png" id="11_spu0k"]

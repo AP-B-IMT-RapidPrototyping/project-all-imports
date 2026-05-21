@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dnnyian3lhbgh"]
 
 [ext_resource type="Script" uid="uid://dw1hcqihe0n74" path="res://Scene/Tutku/MainMenuController.cs" id="1_6hapo"]
-[ext_resource type="PackedScene" uid="uid://bpdtwpwf1bpvl" path="res://Levels/TestScene.tscn" id="2_6hapo"]
+[ext_resource type="PackedScene" uid="uid://bpdtwpwf1bpvl" path="res://Scene/Tutku/TestScene.tscn" id="2_6hapo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hapo"]
 bg_color = Color(0.105882354, 0.43529412, 0.69411767, 0.5882353)
@@ -126,6 +126,7 @@ _data = {
 
 [node name="MainMenu2" type="Node3D" unique_id=955259259]
 script = ExtResource("1_6hapo")
+GameScenePath = "res://Levels/Tutoriel-Level.tscn"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=975010738]
 transform = Transform3D(0.364721, -0.13630348, 0.9210863, 0.050181072, 0.99066716, 0.12673002, -0.9297636, 0, 0.368157, 149.99527, 7.324608, 38.85899)
@@ -195,7 +196,6 @@ color = Color(0, 0, 0, 0)
 
 [node name="Node3D2" parent="." unique_id=1029517343 instance=ExtResource("2_6hapo")]
 process_mode = 1
-script = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1741523884]
 libraries/ = SubResource("AnimationLibrary_7jhb2")
