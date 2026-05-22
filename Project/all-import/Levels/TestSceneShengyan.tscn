@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://buq5okat4c4ng" path="res://Systems/checkpointDebug.tscn" id="5_b475f"]
 [ext_resource type="PackedScene" uid="uid://ci6482x7llk5u" path="res://Actors/Npc.tscn" id="6_jxf08"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="7_c64jx"]
+[ext_resource type="PackedScene" path="res://Actors/Pickable.tscn" id="8_hneun"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bu15h"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -91,6 +92,8 @@ Speed = 7.0
 
 [node name="GameManagerTestlvl" type="Node" parent="." unique_id=2013973658]
 script = ExtResource("7_c64jx")
-HintLabelPath = NodePath("../UI/HintLabel")
+
+[node name="TestBox1" parent="." unique_id=898709373 instance=ExtResource("8_hneun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.730669, 10.9296875, -31.721413)
 
 [editable path="UI"]

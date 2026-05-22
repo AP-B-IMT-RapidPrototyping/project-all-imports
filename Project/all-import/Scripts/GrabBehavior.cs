@@ -26,24 +26,16 @@ public partial class GrabBehavior : Node
             grabArea = player.GetNodeOrNull<Area3D>("GrabArea");
             holdPosition = player.GetNodeOrNull<Marker3D>("HoldPosition");
 
-
-
+            if (grabArea != null)
+            {
+                grabArea.BodyEntered += OnGrabAreaBodyEntered;
+                grabArea.BodyExited += OnGrabAreaBodyExited;
+            }
         }
     }
 
     public override void _Process(double delta)
     {
-        // TIJDELIJKE CHEAT: Scan ALLE RigidBody3D objecten in de scene
-        objectsInRange.Clear();
-        var allNodes = GetTree().CurrentScene.GetChildren();
-        foreach (var node in allNodes)
-        {
-            if (node is RigidBody3D rb && rb.IsInGroup("Pickable"))
-            {
-                objectsInRange.Add(rb);
-            }
-        }
-
         // Check voor grab input
         if (Input.IsActionJustPressed(GrabAction))
         {

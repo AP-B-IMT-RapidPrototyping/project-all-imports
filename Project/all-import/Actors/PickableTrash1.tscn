@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cul1rjqpggkti"]
+
+[ext_resource type="Script" uid="uid://cc884d7kefqhf" path="res://Scripts/StealableObject.cs" id="1_i84sy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_khgdm"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i84sy"]
+points = PackedVector3Array(0.15, 0.15, 0.15, 0.15, 0.15, -0.15, -0.15, 0.15, 0.15, 0.15, -0.15, 0.15, 0.15, -0.15, -0.15, -0.15, 0.15, -0.15, -0.15, -0.15, 0.15, -0.15, -0.15, -0.15)
+
+[node name="TestBox1" type="RigidBody3D" unique_id=898709373 groups=["Pickable"]]
+script = ExtResource("1_i84sy")
+ItemName = "Test Doos"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1380923689]
+mesh = SubResource("BoxMesh_khgdm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1402732044]
+shape = SubResource("ConvexPolygonShape3D_i84sy")
