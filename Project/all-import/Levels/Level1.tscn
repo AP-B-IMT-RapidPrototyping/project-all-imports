@@ -53,10 +53,14 @@
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="50_p22d7"]
 [ext_resource type="PackedScene" uid="uid://drc3rd6dnayb3" path="res://Actors/Pickable.tscn" id="51_n3cjp"]
 [ext_resource type="PackedScene" uid="uid://drifjuk6x5s71" path="res://Assets/chimney_smoke.tscn" id="52_ddxol"]
+[ext_resource type="Script" uid="uid://bv3nqqg48snbx" path="res://Scripts/Chimney.cs" id="scr_chimney"]
 [ext_resource type="PackedScene" uid="uid://cul1rjqpggkti" path="res://Actors/PickableTrash1.tscn" id="53_o4ifd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2nkc"]
 size = Vector3(1.0795288, 49.67273, 145.71939)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_chimney"]
+size = Vector3(2.0, 2.0, 2.0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sgxsx"]
 size = Vector3(110.90048, 48.374283, 1)
@@ -2131,6 +2135,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.08792, 1.0274963, 32.3548
 
 [node name="ChimneySmoke" parent="." unique_id=669496827 instance=ExtResource("52_ddxol")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.4272, 8.953869, -28.896538)
+
+[node name="ChimneyArea" type="Area3D" parent="." unique_id=787968532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.4272, 8.953869, -28.896538)
+script = ExtResource("scr_chimney")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChimneyArea" unique_id=892348572]
+shape = SubResource("BoxShape3D_chimney")
 
 [node name="TestBox2" parent="." unique_id=676397308 instance=ExtResource("53_o4ifd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 135.8391, 0.8543037, -6.1241245)

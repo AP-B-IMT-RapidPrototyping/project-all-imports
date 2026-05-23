@@ -31,14 +31,29 @@ vertical_alignment = 1
 
 [node name="FirstObjective" type="Label" parent="." unique_id=1970394625]
 layout_mode = 0
-offset_left = 1715.0
+offset_left = 1350.0
 offset_top = 12.0
 offset_right = 1919.0
 offset_bottom = 40.0
 theme_override_font_sizes/font_size = 20
-text = "-Go through first ring"
+text = "-Clog the chimney with stuffs"
+
+[node name="FirstObjectiveProgress" type="ProgressBar" parent="FirstObjective" unique_id=5298418241]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 280.0
+offset_top = -14.0
+offset_right = 430.0
+offset_bottom = 14.0
+grow_vertical = 2
+max_value = 3.0
+step = 1.0
+show_percentage = false
 
 [node name="SecondObjective" type="Label" parent="." unique_id=1935678516]
+visible = false
 layout_mode = 0
 offset_left = 1684.0
 offset_top = 46.0
@@ -69,9 +84,25 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "GAME OVER!"
 
-[node name="Stamina" type="Label" parent="." unique_id=1872889853]
+[node name="Stamina" type="ProgressBar" parent="." unique_id=1872889853]
 layout_mode = 0
-offset_right = 135.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 320.0
 offset_bottom = 53.0
-theme_override_font_sizes/font_size = 50
-text = "Stamina: 0%"
+theme_override_font_sizes/font_size = 20
+max_value = 1.0
+step = 0.01
+show_percentage = false
+
+[node name="StaminaText" type="Label" parent="Stamina" unique_id=1384021287]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Stamina"
+horizontal_alignment = 1
+vertical_alignment = 1

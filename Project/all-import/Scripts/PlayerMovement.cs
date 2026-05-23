@@ -41,7 +41,7 @@ public partial class PlayerMovement : CharacterBody3D
 	private Node3D _visualTilt;
 
 	// ── NEW ──────────────────────────────────────────────
-	private Label _staminaLabel;
+	private ProgressBar _staminaBar;
 	// ─────────────────────────────────────────────────────
 
 	public override void _Ready()
@@ -55,9 +55,9 @@ public partial class PlayerMovement : CharacterBody3D
 
 		// ── NEW ─────────────────────────────────────────────────────────────────
 		// UI lives on the scene root, not under this node, so we climb up to it.
-		_staminaLabel = GetTree().CurrentScene.GetNodeOrNull<Label>("UI/Stamina");
-		if (_staminaLabel == null)
-			GD.PushWarning("PlayerMovement: UI/Stamina label not found!");
+		_staminaBar = GetTree().CurrentScene.GetNodeOrNull<ProgressBar>("UI/Stamina");
+		if (_staminaBar == null)
+			GD.PushWarning("PlayerMovement: UI/Stamina bar not found!");
 		// ────────────────────────────────────────────────────────────────────────
 	}
 
@@ -131,8 +131,8 @@ public partial class PlayerMovement : CharacterBody3D
 
 
 		// ── NEW: update HUD label ─────────────────────────────────────────────────
-		if (_staminaLabel != null)
-			_staminaLabel.Text = $"Stamina: {Mathf.RoundToInt(Stamina * 100)}%";
+		if (_staminaBar != null)
+			_staminaBar.Value = Stamina;
 		// ─────────────────────────────────────────────────────────────────────────
 
 		Velocity = velocity;
