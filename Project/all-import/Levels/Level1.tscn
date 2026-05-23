@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://b7xalwn870emm" path="res://Assets/Farm/FarmTextures/textures/color_1024x1024.jpg" id="5_rvmgl"]
 [ext_resource type="Texture2D" uid="uid://doitqejkgx0cc" path="res://Assets/Farm/FarmTextures/textures/color_2048x2048.jpg" id="6_h552l"]
 [ext_resource type="PackedScene" uid="uid://05eeeuehno13" path="res://Actors/Player.tscn" id="7_yj7ns"]
-[ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="8_30fy8"]
 [ext_resource type="PackedScene" uid="uid://xl72fsutp2b" path="res://Assets/nature_kit/Nature Kit/models/Branch_1.fbx" id="8_ctqsp"]
 [ext_resource type="PackedScene" uid="uid://b0kob13yf6m3" path="res://Assets/nature_kit/Nature Kit/models/Tree_Oak_8.fbx" id="9_jh2du"]
 [ext_resource type="PackedScene" uid="uid://darmpkbu6030n" path="res://Assets/nature_kit/Nature Kit/models/Tree_Oak_6.fbx" id="10_y3ssy"]
@@ -954,7 +953,111 @@ shape = SubResource("BoxShape3D_a8832")
 [node name="Player" parent="." unique_id=561623431 instance=ExtResource("7_yj7ns")]
 transform = Transform3D(-0.12936668, 0, 0.9915968, 0, 1, 0, -0.9915968, 0, -0.12936668, 152.06908, 4.559165, -25.814682)
 
-[node name="UI" parent="." unique_id=600360855 instance=ExtResource("8_30fy8")]
+[node name="UI" type="Control" parent="." unique_id=600360855]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HintLabel" type="Label" parent="UI" unique_id=591152745]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 52.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 18
+text = "Spam SPACE to fly up  |  Hold SPACE to glide  |  WASD steer  |  R = restart"
+horizontal_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="UI" unique_id=1050255643]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.35
+anchor_right = 1.0
+anchor_bottom = 0.65
+theme_override_font_sizes/font_size = 80
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FirstObjective" type="Label" parent="UI" unique_id=1970394625]
+layout_mode = 0
+offset_left = 1350.0
+offset_top = 12.0
+offset_right = 1919.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 20
+text = "-Go through first ring"
+
+[node name="FirstObjectiveProgress" type="ProgressBar" parent="UI/FirstObjective" unique_id=1003450945]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 280.0
+offset_top = -14.0
+offset_right = 430.0
+offset_bottom = 14.0
+grow_vertical = 2
+max_value = 3.0
+step = 1.0
+show_percentage = false
+
+[node name="SecondObjective" type="Label" parent="UI" unique_id=1935678516]
+visible = false
+layout_mode = 0
+offset_left = 1684.0
+offset_top = 46.0
+offset_right = 1918.0
+offset_bottom = 74.0
+theme_override_font_sizes/font_size = 20
+text = "-Go through second ring"
+
+[node name="MissionComplete" type="Label" parent="UI" unique_id=1200086644]
+visible = false
+layout_mode = 0
+offset_left = 750.0
+offset_top = 320.0
+offset_right = 1048.0
+offset_bottom = 362.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "MISSION COMPLETE!"
+
+[node name="GameOver" type="Label" parent="UI" unique_id=573526007]
+visible = false
+layout_mode = 0
+offset_left = 864.0
+offset_top = 365.0
+offset_right = 961.0
+offset_bottom = 388.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "GAME OVER!"
+
+[node name="Stamina" type="ProgressBar" parent="UI" unique_id=1872889853]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 20
+max_value = 1.0
+show_percentage = false
+
+[node name="StaminaText" type="Label" parent="UI/Stamina" unique_id=1384021287]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Stamina"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Bomen+Tak" type="Node3D" parent="." unique_id=1786673419]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.029779434, 0.16777039, -0.24996758)
