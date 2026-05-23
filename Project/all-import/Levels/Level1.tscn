@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://c1764t4o8tnq2" path="res://Assets/nature_kit/Nature Kit/models/Rock_8.fbx" id="24_52x18"]
 [ext_resource type="PackedScene" uid="uid://b2bsoi57i77yi" path="res://Assets/nature_kit/Nature Kit/models/Rock_7.fbx" id="25_qhbjp"]
 [ext_resource type="Texture2D" uid="uid://osd15ha0fu06" path="res://Assets/Auto textures/color_2048x2048.jpg" id="26_oyi3h"]
-[ext_resource type="PackedScene" uid="uid://bkggnca2e44kp" path="res://Scene/Tutku/Nest.tscn" id="27_30fy8"]
+[ext_resource type="PackedScene" path="res://Scene/Tutku/Nest.tscn" id="27_30fy8"]
 [ext_resource type="PackedScene" uid="uid://20jgoufny0xv" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter4.fbx" id="27_nyrxs"]
 [ext_resource type="PackedScene" uid="uid://co23ipcchnmcb" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter1.fbx" id="28_apodq"]
 [ext_resource type="PackedScene" uid="uid://e1gu0j1xmm6r" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter2.fbx" id="29_k8g5h"]
@@ -54,14 +54,11 @@
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="50_p22d7"]
 [ext_resource type="PackedScene" uid="uid://drc3rd6dnayb3" path="res://Actors/Pickable.tscn" id="51_n3cjp"]
 [ext_resource type="PackedScene" uid="uid://drifjuk6x5s71" path="res://Assets/chimney_smoke.tscn" id="52_ddxol"]
-[ext_resource type="Script" uid="uid://bv3nqqg48snbx" path="res://Scripts/Chimney.cs" id="scr_chimney"]
 [ext_resource type="PackedScene" uid="uid://cul1rjqpggkti" path="res://Actors/PickableTrash1.tscn" id="53_o4ifd"]
+[ext_resource type="Script" uid="uid://bv3nqqg48snbx" path="res://Scripts/Chimney.cs" id="scr_chimney"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2nkc"]
 size = Vector3(1.0795288, 49.67273, 145.71939)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_chimney"]
-size = Vector3(2.0, 2.0, 2.0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sgxsx"]
 size = Vector3(110.90048, 48.374283, 1)
@@ -771,6 +768,9 @@ albedo_color = Color(0.08627451, 0.08627451, 0.08627451, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ndy0"]
 size = Vector3(107.52899, 1, 142.22852)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_chimney"]
+size = Vector3(2, 2, 2)
+
 [node name="Node3D2" type="Node3D" unique_id=1029517343]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1788064489]
@@ -952,7 +952,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0644989, 1.3661509, -0.7435
 shape = SubResource("BoxShape3D_a8832")
 
 [node name="Player" parent="." unique_id=561623431 instance=ExtResource("7_yj7ns")]
-transform = Transform3D(0.9957247, 0, 0.09237059, 0.016947323, 0.98302513, -0.18268658, -0.09080261, 0.18347098, 0.9788224, 139.28703, 9.144277, 48.39283)
+transform = Transform3D(-0.12936668, 0, 0.9915968, 0, 1, 0, -0.9915968, 0, -0.12936668, 152.06908, 4.559165, -25.814682)
 
 [node name="UI" parent="." unique_id=600360855 instance=ExtResource("8_30fy8")]
 
