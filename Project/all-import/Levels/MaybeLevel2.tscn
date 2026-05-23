@@ -89,7 +89,7 @@
 [ext_resource type="PackedScene" uid="uid://bllgloqi0yjtx" path="res://Scene/Tutku/LevelUI.tscn" id="52_ysdar"]
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="53_j617d"]
 [ext_resource type="PackedScene" uid="uid://drc3rd6dnayb3" path="res://Actors/Pickable.tscn" id="54_xcwr7"]
-[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="55_2etnf"]
+[ext_resource type="Script" path="res://Scripts/GameManagerLevel1.cs" id="55_2etnf"]
 [ext_resource type="ArrayMesh" uid="uid://c5fwkffikeyvs" path="res://Assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/obj/trafficlight_B.obj" id="92_tduwh"]
 [ext_resource type="PackedScene" uid="uid://bkggnca2e44kp" path="res://Scene/Tutku/Nest.tscn" id="93_4ocs1"]
 [ext_resource type="Texture2D" uid="uid://c2hdf2xnqop4h" path="res://Assets/Auto textures/color_128x128.jpg" id="93_swb2i"]

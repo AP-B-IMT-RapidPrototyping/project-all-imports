@@ -15,7 +15,7 @@ anchor_right = 1.0
 offset_bottom = 52.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 18
-text = "Spam SPACE to fly  |  WASD steer  |  Pass through the checkpoints!  |  R = restart"
+text = "Spam SPACE to fly up  |  Hold SPACE to glide  |  WASD steer  |  R = restart"
 horizontal_alignment = 1
 
 [node name="StatusLabel" type="Label" parent="." unique_id=1050255643]
@@ -30,6 +30,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="FirstObjective" type="Label" parent="." unique_id=1970394625]
+visible = false
 layout_mode = 0
 offset_left = 1350.0
 offset_top = 12.0
@@ -38,7 +39,8 @@ offset_bottom = 40.0
 theme_override_font_sizes/font_size = 20
 text = "-Clog the chimney with stuffs"
 
-[node name="FirstObjectiveProgress" type="ProgressBar" parent="FirstObjective" unique_id=5298418241]
+[node name="FirstObjectiveProgress" type="ProgressBar" parent="FirstObjective" unique_id=1003450945]
+visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -53,7 +55,6 @@ step = 1.0
 show_percentage = false
 
 [node name="SecondObjective" type="Label" parent="." unique_id=1935678516]
-visible = false
 layout_mode = 0
 offset_left = 1684.0
 offset_top = 46.0
@@ -92,7 +93,6 @@ offset_right = 320.0
 offset_bottom = 53.0
 theme_override_font_sizes/font_size = 20
 max_value = 1.0
-step = 0.01
 show_percentage = false
 
 [node name="StaminaText" type="Label" parent="Stamina" unique_id=1384021287]

@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="51_a8832"]
 [ext_resource type="PackedScene" uid="uid://im4p1llrfs2e" path="res://Assets/nature_kit/Nature Kit/models/Tree_Bare_6.fbx" id="51_wv0vr"]
 [ext_resource type="PackedScene" uid="uid://o018mqsmx7m4" path="res://Assets/nature_kit/Nature Kit/models/Tree_Bare_3.fbx" id="52_m8wx7"]
-[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="52_rsp8e"]
+[ext_resource type="Script" path="res://Scripts/GameManagerLevel1.cs" id="52_rsp8e"]
 [ext_resource type="ArrayMesh" uid="uid://blh4c6mtup8i0" path="res://Assets/nature_kit/Nature Kit/models/Stump_2.obj" id="53_2em4k"]
 [ext_resource type="ArrayMesh" uid="uid://egvbmpy64g0e" path="res://Assets/nature_kit/Nature Kit/models/Tree_Oak_8.obj" id="54_m8wx7"]
 [ext_resource type="ArrayMesh" uid="uid://dtns0enj6egwt" path="res://Assets/nature_kit/Nature Kit/models/Tree_Oak_7.obj" id="55_2em4k"]

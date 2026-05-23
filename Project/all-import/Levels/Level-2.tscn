@@ -53,7 +53,7 @@
 [ext_resource type="PackedScene" uid="uid://bllgloqi0yjtx" path="res://Scene/Tutku/LevelUI.tscn" id="51_86cww"]
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="52_kbwob"]
 [ext_resource type="PackedScene" uid="uid://drc3rd6dnayb3" path="res://Actors/Pickable.tscn" id="53_ir76k"]
-[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="54_8risp"]
+[ext_resource type="Script" path="res://Scripts/GameManagerLevel1.cs" id="54_8risp"]
 [ext_resource type="ArrayMesh" uid="uid://d12mhctr81hf3" path="res://Assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/obj/box_A.obj" id="55_6sgsb"]
 [ext_resource type="ArrayMesh" uid="uid://bjwwwqeka3wv0" path="res://Assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/obj/box_B.obj" id="56_h4tyf"]
 [ext_resource type="PackedScene" uid="uid://drifjuk6x5s71" path="res://Assets/chimney_smoke.tscn" id="57_nvfsl"]

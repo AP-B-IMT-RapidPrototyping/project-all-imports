@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ci6bcl2cq50uv"]
+
+[ext_resource type="Script" uid="uid://dmfch0u6s2v7h" path="res://Scripts/CarSpawner.cs" id="1_car_spawner"]
+[ext_resource type="PackedScene" uid="uid://b14mjkpnq6xxt" path="res://Scene/Tutku/auto-1.tscn" id="2_car_prefab"]
+
+[node name="CarSpawner" type="Node3D" unique_id=2012594579]
+script = ExtResource("1_car_spawner")
+CarPrefab = ExtResource("2_car_prefab")
+MinSpawnTime = 0.3
+MaxSpawnTime = 1.0
+CarSpeed = 50.0
+
+[node name="StartPoint" type="Marker3D" parent="." unique_id=708298020]
+
+[node name="EndPoint" type="Marker3D" parent="." unique_id=1406702287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)

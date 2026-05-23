@@ -9,7 +9,7 @@ using Godot;
 ///   • Finish → You Win
 ///   • R key restarts the scene
 /// </summary>
-public partial class GameManager : Node
+public partial class GameManagerLevel1 : Node
 {
     private Label _statusLabel;
     private Label _hintLabel;
