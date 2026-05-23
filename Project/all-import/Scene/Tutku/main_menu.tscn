@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dnnyian3lhbgh"]
+[gd_scene format=3 uid="uid://bmxyi3is6f8v0"]
 
-[ext_resource type="Script" uid="uid://dw1hcqihe0n74" path="res://Scene/Tutku/MainMenuController.cs" id="1_6hapo"]
+[ext_resource type="Script" path="res://Scene/Tutku/MainMenuController.cs" id="1_6hapo"]
 [ext_resource type="PackedScene" uid="uid://bpdtwpwf1bpvl" path="res://Scene/Tutku/TestScene.tscn" id="2_6hapo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hapo"]
