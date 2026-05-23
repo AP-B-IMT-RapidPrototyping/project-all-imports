@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b7xalwn870emm" path="res://Assets/Farm/FarmTextures/textures/color_1024x1024.jpg" id="5_rvmgl"]
 [ext_resource type="Texture2D" uid="uid://doitqejkgx0cc" path="res://Assets/Farm/FarmTextures/textures/color_2048x2048.jpg" id="6_h552l"]
 [ext_resource type="PackedScene" uid="uid://05eeeuehno13" path="res://Actors/Player.tscn" id="7_yj7ns"]
+[ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="8_30fy8"]
 [ext_resource type="PackedScene" uid="uid://xl72fsutp2b" path="res://Assets/nature_kit/Nature Kit/models/Branch_1.fbx" id="8_ctqsp"]
 [ext_resource type="PackedScene" uid="uid://b0kob13yf6m3" path="res://Assets/nature_kit/Nature Kit/models/Tree_Oak_8.fbx" id="9_jh2du"]
 [ext_resource type="PackedScene" uid="uid://darmpkbu6030n" path="res://Assets/nature_kit/Nature Kit/models/Tree_Oak_6.fbx" id="10_y3ssy"]
@@ -26,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://c1764t4o8tnq2" path="res://Assets/nature_kit/Nature Kit/models/Rock_8.fbx" id="24_52x18"]
 [ext_resource type="PackedScene" uid="uid://b2bsoi57i77yi" path="res://Assets/nature_kit/Nature Kit/models/Rock_7.fbx" id="25_qhbjp"]
 [ext_resource type="Texture2D" uid="uid://osd15ha0fu06" path="res://Assets/Auto textures/color_2048x2048.jpg" id="26_oyi3h"]
+[ext_resource type="PackedScene" uid="uid://bkggnca2e44kp" path="res://Scene/Tutku/Nest.tscn" id="27_30fy8"]
 [ext_resource type="PackedScene" uid="uid://20jgoufny0xv" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter4.fbx" id="27_nyrxs"]
 [ext_resource type="PackedScene" uid="uid://co23ipcchnmcb" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter1.fbx" id="28_apodq"]
 [ext_resource type="PackedScene" uid="uid://e1gu0j1xmm6r" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter2.fbx" id="29_k8g5h"]
@@ -52,10 +54,14 @@
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="50_p22d7"]
 [ext_resource type="PackedScene" uid="uid://drc3rd6dnayb3" path="res://Actors/Pickable.tscn" id="51_n3cjp"]
 [ext_resource type="PackedScene" uid="uid://drifjuk6x5s71" path="res://Assets/chimney_smoke.tscn" id="52_ddxol"]
+[ext_resource type="Script" uid="uid://bv3nqqg48snbx" path="res://Scripts/Chimney.cs" id="scr_chimney"]
 [ext_resource type="PackedScene" uid="uid://cul1rjqpggkti" path="res://Actors/PickableTrash1.tscn" id="53_o4ifd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2nkc"]
 size = Vector3(1.0795288, 49.67273, 145.71939)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_chimney"]
+size = Vector3(2.0, 2.0, 2.0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sgxsx"]
 size = Vector3(110.90048, 48.374283, 1)
@@ -946,7 +952,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0644989, 1.3661509, -0.7435
 shape = SubResource("BoxShape3D_a8832")
 
 [node name="Player" parent="." unique_id=561623431 instance=ExtResource("7_yj7ns")]
-transform = Transform3D(-0.24716814, 0, 0.9689726, 0, 1, 0, -0.9689726, 0, -0.24716814, 152.33197, 0.90641975, -30.878836)
+transform = Transform3D(0.9957247, 0, 0.09237059, 0.016947323, 0.98302513, -0.18268658, -0.09080261, 0.18347098, 0.9788224, 139.28703, 9.144277, 48.39283)
+
+[node name="UI" parent="." unique_id=600360855 instance=ExtResource("8_30fy8")]
 
 [node name="Bomen+Tak" type="Node3D" parent="." unique_id=1786673419]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.029779434, 0.16777039, -0.24996758)
@@ -1060,6 +1068,19 @@ mesh = SubResource("ArrayMesh_njql1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Auto/Autos/Object547/StaticBody3D" unique_id=1507583128]
 shape = SubResource("ConcavePolygonShape3D_4y5si")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Auto/Autos/Object547" unique_id=489405924]
+transform = Transform3D(-0.023743832, -0.009567655, -0.39918005, 0.034539394, 0.39833713, -0.011601906, 0.39779803, -0.03515728, -0.022818971, 1.8402596, 0.14589787, -0.4131856)
+light_energy = 8.0
+spot_angle = 10.07
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Auto/Autos/Object547" unique_id=1274717753]
+transform = Transform3D(-0.02374382, -0.009567642, -0.39918002, 0.09986983, 0.38703293, -0.015216904, 0.3866035, -0.10056837, -0.020585302, 1.8523598, 0.15572226, 0.4236527)
+light_energy = 8.0
+spot_angle = 10.07
+
+[node name="Node3D" parent="Auto/Autos/Object547" unique_id=432669837 instance=ExtResource("27_30fy8")]
+transform = Transform3D(0.4, 0, 0, 0, 0.39861986, 0.033199824, 0, -0.033199824, 0.39861986, 19.276638, 4.0189204, 19.501387)
 
 [node name="Karakters" type="Node3D" parent="." unique_id=333983363]
 transform = Transform3D(1.0879353, 0, -1.0326648, 0, 1.5, 0, 1.0326648, 0, 1.0879353, 92.93025, 0.51698864, 2.8818693)
@@ -2128,6 +2149,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.08792, 1.0274963, 32.3548
 
 [node name="ChimneySmoke" parent="." unique_id=669496827 instance=ExtResource("52_ddxol")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.4272, 8.953869, -28.896538)
+
+[node name="ChimneyArea" type="Area3D" parent="." unique_id=787968532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.4272, 8.953869, -28.896538)
+script = ExtResource("scr_chimney")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChimneyArea" unique_id=892348572]
+shape = SubResource("BoxShape3D_chimney")
 
 [node name="TestBox2" parent="." unique_id=676397308 instance=ExtResource("53_o4ifd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 135.8391, 0.8543037, -6.1241245)
