@@ -51,7 +51,7 @@
 [ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="49_scak0"]
 [ext_resource type="PackedScene" uid="uid://buq5okat4c4ng" path="res://Systems/checkpointDebug.tscn" id="50_hwnaa"]
 [ext_resource type="PackedScene" uid="uid://ci6482x7llk5u" path="res://Actors/Npc.tscn" id="51_atoes"]
-[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="52_52d31"]
+[ext_resource type="Script" path="res://Scripts/GameManagerLevel1.cs" id="52_52d31"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4y5si"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)

@@ -18,7 +18,7 @@ public partial class FinishZone : Area3D
         if (!body.IsInGroup("player"))
             return;
 
-        var gm = GetNodeOrNull<GameManager>(GameManagerPath);
+        var gm = GetNodeOrNull<GameManagerLevel1>(GameManagerPath);
 
         if (gm == null)
             return;

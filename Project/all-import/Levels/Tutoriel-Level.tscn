@@ -52,11 +52,10 @@
 [ext_resource type="PackedScene" uid="uid://cfclojjacuyr" path="res://Assets/nature_kit/Nature Kit/models/Flower_Bellflower_3.fbx" id="48_emas1"]
 [ext_resource type="PackedScene" uid="uid://bllgloqi0yjtx" path="res://Scene/Tutku/LevelUI.tscn" id="49_ljhiw"]
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="50_ft7st"]
-[ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="52_ggt8f"]
-[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="53_ajyva"]
-[ext_resource type="PackedScene" path="res://Scene/Tutku/Nest.tscn" id="56_7kdfv"]
+[ext_resource type="Script" uid="uid://dohwsgwld0eae" path="res://Scripts/GameManagerTutorial.cs" id="53_ajyva"]
+[ext_resource type="PackedScene" uid="uid://bkggnca2e44kp" path="res://Scene/Tutku/Nest.tscn" id="56_7kdfv"]
 [ext_resource type="PackedScene" uid="uid://drifjuk6x5s71" path="res://Assets/chimney_smoke.tscn" id="57_eynsq"]
-[ext_resource type="PackedScene" path="res://Systems/CarSpawner.tscn" id="58_8v3fi"]
+[ext_resource type="PackedScene" uid="uid://ci6bcl2cq50uv" path="res://Systems/CarSpawner.tscn" id="58_8v3fi"]
 [ext_resource type="PackedScene" uid="uid://cul1rjqpggkti" path="res://Actors/PickableTrash1.tscn" id="58_hb4br"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27ee"]
@@ -825,28 +824,117 @@ albedo_color = Color(0.08627451, 0.08627451, 0.08627451, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ndy0"]
 size = Vector3(107.52899, 1, 142.22852)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_eynsq"]
+size = Vector3(130.13379, 38.670837, 146.38586)
+
 [node name="Node3D2" type="Node3D" unique_id=1029517343]
 script = ExtResource("1_a27ee")
 
-[node name="UI" parent="." unique_id=600360855 instance=ExtResource("52_ggt8f")]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.0
-grow_vertical = 1
-size_flags_horizontal = 0
-size_flags_vertical = 0
+[node name="UI" type="Control" parent="." unique_id=600360855]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="FirstObjective" parent="UI" index="2" unique_id=1970394625]
-text = "-Go through first ring"
+[node name="HintLabel" type="Label" parent="UI" unique_id=591152745]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 52.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 18
+text = "Spam SPACE to fly up  |  Hold SPACE to glide  |  WASD steer  |  R = restart"
+horizontal_alignment = 1
 
-[node name="FirstObjectiveProgress" parent="UI/FirstObjective" index="0" unique_id=1003450945]
+[node name="StatusLabel" type="Label" parent="UI" unique_id=1050255643]
 visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.35
+anchor_right = 1.0
+anchor_bottom = 0.65
+theme_override_font_sizes/font_size = 80
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Stamina" parent="UI" index="6" unique_id=1872889853]
-offset_left = -1900.0
-offset_right = -1603.0
-offset_bottom = 69.0
+[node name="FirstObjective" type="Label" parent="UI" unique_id=1970394625]
+layout_mode = 0
+offset_left = 1350.0
+offset_top = 12.0
+offset_right = 1919.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 20
+text = "-Get to the other side of the street"
+
+[node name="FirstObjectiveProgress" type="ProgressBar" parent="UI/FirstObjective" unique_id=1003450945]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 363.0
+offset_top = -14.0
+offset_right = 513.0
+offset_bottom = 14.0
+grow_vertical = 2
+max_value = 3.0
+step = 1.0
+show_percentage = false
+
+[node name="SecondObjective" type="Label" parent="UI" unique_id=1935678516]
+visible = false
+layout_mode = 0
+offset_left = 1684.0
+offset_top = 46.0
+offset_right = 1918.0
+offset_bottom = 74.0
+theme_override_font_sizes/font_size = 20
+text = "-Go through second ring"
+
+[node name="MissionComplete" type="Label" parent="UI" unique_id=1200086644]
+visible = false
+layout_mode = 0
+offset_left = 750.0
+offset_top = 320.0
+offset_right = 1048.0
+offset_bottom = 362.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "MISSION COMPLETE!"
+
+[node name="GameOver" type="Label" parent="UI" unique_id=573526007]
+visible = false
+layout_mode = 0
+offset_left = 864.0
+offset_top = 365.0
+offset_right = 961.0
+offset_bottom = 388.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "GAME OVER!"
+
+[node name="Stamina" type="ProgressBar" parent="UI" unique_id=1872889853]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 20
+max_value = 1.0
+show_percentage = false
+
+[node name="StaminaText" type="Label" parent="UI/Stamina" unique_id=1384021287]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Stamina"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PauseMenu" type="CanvasLayer" parent="." unique_id=2058496818]
 process_mode = 3
@@ -1079,7 +1167,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0644989, 1.0291176, -0.7435
 shape = SubResource("BoxShape3D_a8832")
 
 [node name="Player" parent="." unique_id=561623431 instance=ExtResource("7_7kdfv")]
-transform = Transform3D(1, 0, 0, 0, 0.94579667, -0.32475942, 0, 0.32475942, 0.94579667, 142.75371, 6.9666233, 26.674679)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114.76472, 2.224375, 38.478558)
 
 [node name="Bomen+Tak" type="Node3D" parent="." unique_id=1786673419]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.029779434, 0.16777039, -0.24996758)
@@ -2275,19 +2363,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.93827, 6.304453, -14.1434
 [node name="CarSpawner" parent="." unique_id=1311183483 instance=ExtResource("58_8v3fi")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 157.54, 0, 7.039)
 
-[node name="EndPoint" parent="CarSpawner" index="1"]
+[node name="EndPoint" parent="CarSpawner" index="1" unique_id=1406702287]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8146973e-06, 0, -108.502655)
 
 [node name="CarSpawner2" parent="." unique_id=1429746377 instance=ExtResource("58_8v3fi")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 49.5374, 0, 20.574348)
 
-[node name="EndPoint" parent="CarSpawner2" index="1"]
+[node name="EndPoint" parent="CarSpawner2" index="1" unique_id=1406702287]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8146973e-06, 0, -108.502655)
+
+[node name="MissionArea" type="Area3D" parent="." unique_id=387724813]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 117.80324, 6.1213474, -2.396049)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MissionArea" unique_id=946475994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.140381, 13.647919, -74.23529)
+shape = SubResource("BoxShape3D_eynsq")
 
 [connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/Button" to="." method="OnResumeButtonPressed"]
 [connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/Button2" to="." method="OnBackToMenuButtonPressed"]
 [connection signal="body_entered" from="DamageArea" to="." method="OnDamageAreaBodyEntered"]
 
-[editable path="UI"]
 [editable path="CarSpawner"]
 [editable path="CarSpawner2"]
