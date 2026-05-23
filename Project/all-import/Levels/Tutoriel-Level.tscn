@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://r7a0r2kbkg2v"]
+[gd_scene format=4 uid="uid://r7p6lcu7sawm"]
 
 [ext_resource type="Texture2D" uid="uid://d4mdhghqhqq0v" path="res://Assets/Sky Backgrounds512x512/512x512/Puffy Sky/Puffy_Sky-Evening_03-512x512.png" id="1_3cjku"]
 [ext_resource type="Script" uid="uid://gj76mxkm74bf" path="res://Levels/LevelController.cs" id="1_a27ee"]
@@ -55,7 +55,7 @@
 [ext_resource type="Script" uid="uid://dohwsgwld0eae" path="res://Scripts/GameManagerTutorial.cs" id="53_ajyva"]
 [ext_resource type="PackedScene" uid="uid://bkggnca2e44kp" path="res://Scene/Tutku/Nest.tscn" id="56_7kdfv"]
 [ext_resource type="PackedScene" uid="uid://drifjuk6x5s71" path="res://Assets/chimney_smoke.tscn" id="57_eynsq"]
-[ext_resource type="PackedScene" uid="uid://ci6bcl2cq50uv" path="res://Systems/CarSpawner.tscn" id="58_8v3fi"]
+[ext_resource type="PackedScene" path="res://Systems/CarSpawner.tscn" id="58_8v3fi"]
 [ext_resource type="PackedScene" uid="uid://cul1rjqpggkti" path="res://Actors/PickableTrash1.tscn" id="58_hb4br"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27ee"]
