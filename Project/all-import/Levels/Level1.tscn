@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b7xalwn870emm" path="res://Assets/Farm/FarmTextures/textures/color_1024x1024.jpg" id="5_rvmgl"]
 [ext_resource type="Texture2D" uid="uid://doitqejkgx0cc" path="res://Assets/Farm/FarmTextures/textures/color_2048x2048.jpg" id="6_h552l"]
 [ext_resource type="PackedScene" uid="uid://05eeeuehno13" path="res://Actors/Player.tscn" id="7_yj7ns"]
+[ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="8_30fy8"]
 [ext_resource type="PackedScene" uid="uid://xl72fsutp2b" path="res://Assets/nature_kit/Nature Kit/models/Branch_1.fbx" id="8_ctqsp"]
 [ext_resource type="PackedScene" uid="uid://b0kob13yf6m3" path="res://Assets/nature_kit/Nature Kit/models/Tree_Oak_8.fbx" id="9_jh2du"]
 [ext_resource type="PackedScene" uid="uid://darmpkbu6030n" path="res://Assets/nature_kit/Nature Kit/models/Tree_Oak_6.fbx" id="10_y3ssy"]
@@ -947,6 +948,8 @@ shape = SubResource("BoxShape3D_a8832")
 
 [node name="Player" parent="." unique_id=561623431 instance=ExtResource("7_yj7ns")]
 transform = Transform3D(-0.24716814, 0, 0.9689726, 0, 1, 0, -0.9689726, 0, -0.24716814, 152.33197, 0.90641975, -30.878836)
+
+[node name="UI" parent="." unique_id=600360855 instance=ExtResource("8_30fy8")]
 
 [node name="Bomen+Tak" type="Node3D" parent="." unique_id=1786673419]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.029779434, 0.16777039, -0.24996758)
