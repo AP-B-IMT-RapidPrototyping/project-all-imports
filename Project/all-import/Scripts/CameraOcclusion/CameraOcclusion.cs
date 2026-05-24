@@ -127,15 +127,34 @@ public partial class CameraOcclusion : Camera3D
 
 	private void MarkOccluded(CollisionObject3D collider)
 	{
-		// Walk up to the closest sensible "model root" — the collider's parent
-		// usually holds both the StaticBody and the MeshInstance3Ds.
-		Node root = collider.GetParent() ?? collider;
-		CollectMeshes(root, collider);
+		// Find the smallest ancestor of the collider whose subtree contains a
+		// mesh without crossing into another collider's territory. Three common
+		// model layouts to handle:
+		//   1) Collider has mesh inside its own subtree.
+		//   2) Mesh is the collider's parent (e.g. Box2424/StaticBody3D).
+		//   3) Mesh is a sibling of the collider under a shared model root.
+		// We refuse to walk past a parent that has *other* collider siblings —
+		// that's the boundary between unrelated level objects (e.g. the bare
+		// StaticBody3D ground at the level root with houses next to it).
+		Node cur = collider;
+		while (cur != null)
+		{
+			int before = _seenCount;
+			CollectMeshes(cur, collider);
+			if (_seenCount > before) return;
+
+			Node parent = cur.GetParent();
+			if (parent == null) return;
+			if (HasOtherColliderSibling(parent, cur)) return;
+			cur = parent;
+		}
 	}
+
+	private int _seenCount;
 
 	private void CollectMeshes(Node node, CollisionObject3D owningCollider)
 	{
-		if (node is MeshInstance3D mesh && IsRenderedBy(mesh, owningCollider))
+		if (node is MeshInstance3D mesh)
 		{
 			if (!_entries.TryGetValue(mesh, out Entry e))
 			{
@@ -148,11 +167,15 @@ public partial class CameraOcclusion : Camera3D
 				mesh.MaterialOverride = e.Mat;
 				_entries[mesh] = e;
 			}
-			e.SeenThisFrame = true;
+			if (!e.SeenThisFrame)
+			{
+				e.SeenThisFrame = true;
+				_seenCount++;
+			}
 		}
 
-		// Recurse into Node3D children but stop at other CollisionObject3D
-		// boundaries so we don't bleed into adjacent unrelated objects.
+		// Recurse, but stop at any *other* CollisionObject3D — that's a foreign
+		// model and its meshes shouldn't ride along with ours.
 		foreach (Node child in node.GetChildren())
 		{
 			if (child is CollisionObject3D && child != owningCollider) continue;
@@ -160,21 +183,24 @@ public partial class CameraOcclusion : Camera3D
 		}
 	}
 
-	private static bool IsRenderedBy(MeshInstance3D mesh, CollisionObject3D collider)
+	// True iff `parent` has any direct child that is — or contains — a
+	// CollisionObject3D other than `self`. Used to detect when walking up
+	// would expose us to unrelated colliders' meshes.
+	private static bool HasOtherColliderSibling(Node parent, Node self)
 	{
-		// Heuristic: mesh and collider should share an ancestor within 3 hops.
-		// Cheap guard against unrelated meshes parented elsewhere in the tree.
-		Node a = mesh;
-		for (int i = 0; i < 4 && a != null; i++)
+		foreach (Node child in parent.GetChildren())
 		{
-			Node b = collider;
-			for (int j = 0; j < 4 && b != null; j++)
-			{
-				if (a == b) return true;
-				b = b.GetParent();
-			}
-			a = a.GetParent();
+			if (child == self) continue;
+			if (HasColliderInSubtree(child)) return true;
 		}
+		return false;
+	}
+
+	private static bool HasColliderInSubtree(Node node)
+	{
+		if (node is CollisionObject3D) return true;
+		foreach (Node child in node.GetChildren())
+			if (HasColliderInSubtree(child)) return true;
 		return false;
 	}
 }
