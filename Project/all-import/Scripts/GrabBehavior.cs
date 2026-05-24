@@ -113,6 +113,7 @@ public partial class GrabBehavior : Node
         // Gooi richting
         Vector3 throwDir = -player.Transform.Basis.Z * 3.0f;
         throwDir.Y = 2.0f; // Beetje omhoog gooien
+        throwDir += player.Velocity; // Inherit player velocity
 
         if (stealable != null)
         {

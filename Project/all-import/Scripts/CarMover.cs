@@ -74,6 +74,15 @@ public partial class CarMover : Area3D
                 gmTut.OnPlayerCaught();
                 return;
             }
+
+            // Fallback for Level1.tscn if it has no GameManager attached
+            var gameOverLabel = GetTree().Root.FindChild("GameOver", true, false) as Label;
+            var hintLabel = GetTree().Root.FindChild("HintLabel", true, false) as Label;
+            if (gameOverLabel != null) gameOverLabel.Visible = true;
+            if (hintLabel != null) hintLabel.Text = "Press R to try again";
+
+            var p = GetTree().GetFirstNodeInGroup("player") as CharacterBody3D;
+            if (p != null) p.SetPhysicsProcess(false);
         }
     }
 }
