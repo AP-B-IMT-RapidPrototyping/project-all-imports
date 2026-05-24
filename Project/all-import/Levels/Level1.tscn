@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://c1764t4o8tnq2" path="res://Assets/nature_kit/Nature Kit/models/Rock_8.fbx" id="24_52x18"]
 [ext_resource type="PackedScene" uid="uid://b2bsoi57i77yi" path="res://Assets/nature_kit/Nature Kit/models/Rock_7.fbx" id="25_qhbjp"]
 [ext_resource type="Texture2D" uid="uid://osd15ha0fu06" path="res://Assets/Auto textures/color_2048x2048.jpg" id="26_oyi3h"]
-[ext_resource type="PackedScene" path="res://Scene/Tutku/Nest.tscn" id="27_30fy8"]
+[ext_resource type="PackedScene" uid="uid://bkggnca2e44kp" path="res://Scene/Tutku/Nest.tscn" id="27_30fy8"]
 [ext_resource type="PackedScene" uid="uid://20jgoufny0xv" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter4.fbx" id="27_nyrxs"]
 [ext_resource type="PackedScene" uid="uid://co23ipcchnmcb" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter1.fbx" id="28_apodq"]
 [ext_resource type="PackedScene" uid="uid://e1gu0j1xmm6r" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter2.fbx" id="29_k8g5h"]
@@ -54,7 +54,9 @@
 [ext_resource type="PackedScene" uid="uid://drc3rd6dnayb3" path="res://Actors/Pickable.tscn" id="51_n3cjp"]
 [ext_resource type="PackedScene" uid="uid://drifjuk6x5s71" path="res://Assets/chimney_smoke.tscn" id="52_ddxol"]
 [ext_resource type="PackedScene" uid="uid://cul1rjqpggkti" path="res://Actors/PickableTrash1.tscn" id="53_o4ifd"]
+[ext_resource type="PackedScene" uid="uid://ci6bcl2cq50uv" path="res://Systems/CarSpawner.tscn" id="56_h552l"]
 [ext_resource type="Script" uid="uid://bv3nqqg48snbx" path="res://Scripts/Chimney.cs" id="scr_chimney"]
+[ext_resource type="Script" uid="uid://lc2w37u8pchj" path="res://Scripts/GameManagerLevel1.cs" id="scr_gmlvl1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2nkc"]
 size = Vector3(1.0795288, 49.67273, 145.71939)
@@ -989,7 +991,7 @@ offset_top = 12.0
 offset_right = 1919.0
 offset_bottom = 40.0
 theme_override_font_sizes/font_size = 20
-text = "-Go through first ring"
+text = "-Clog the chimney with stuff"
 
 [node name="FirstObjectiveProgress" type="ProgressBar" parent="UI/FirstObjective" unique_id=1003450945]
 layout_mode = 1
@@ -1004,16 +1006,6 @@ grow_vertical = 2
 max_value = 3.0
 step = 1.0
 show_percentage = false
-
-[node name="SecondObjective" type="Label" parent="UI" unique_id=1935678516]
-visible = false
-layout_mode = 0
-offset_left = 1684.0
-offset_top = 46.0
-offset_right = 1918.0
-offset_bottom = 74.0
-theme_override_font_sizes/font_size = 20
-text = "-Go through second ring"
 
 [node name="MissionComplete" type="Label" parent="UI" unique_id=1200086644]
 visible = false
@@ -1192,7 +1184,7 @@ transform = Transform3D(1.0879353, 0, -1.0326648, 0, 1.5, 0, 1.0326648, 0, 1.087
 transform = Transform3D(-1.4999758, 0, 0.00853467, 0, 1.500001, 0, -0.00853467, 0, -1.4999758, -5.427822, 0, 3.5488243)
 
 [node name="LowPolyCharacter1" parent="Karakters" unique_id=1814522939 instance=ExtResource("28_apodq")]
-transform = Transform3D(1.0879353, 0, 1.0326648, 0, 1.5, 0, -1.0326648, 0, 1.0879353, 6.4537964, 0.024558961, 9.723213)
+transform = Transform3D(1.0879354, 0, 1.0326649, 0, 1.5000002, 0, -1.0326649, 0, 1.0879354, 7.871025, 0.024558961, 8.377983)
 
 [node name="LowPolyCharacter5" parent="Karakters" unique_id=1507386434 instance=ExtResource("29_k8g5h")]
 transform = Transform3D(-0.93166584, 0, 0.36331633, 0, 1, 0, -0.36331633, 0, -0.93166584, -16.170094, 0.12788957, -1.1383553)
@@ -2280,3 +2272,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 135.3035, 2.5859053, -5.36672
 
 [node name="TestBox8" parent="." unique_id=1447032460 instance=ExtResource("53_o4ifd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 132.11815, 6.3904433, -15.531606)
+
+[node name="CarSpawner" parent="." unique_id=2012594579 instance=ExtResource("56_h552l")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 157.54, 0, 11.51745)
+
+[node name="EndPoint" parent="CarSpawner" index="1" unique_id=1406702287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8146973e-06, 0, -108.502655)
+
+[node name="CarSpawner2" parent="." unique_id=1764975474 instance=ExtResource("56_h552l")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 49.5374, 0, 25.0528)
+
+[node name="EndPoint" parent="CarSpawner2" index="1" unique_id=1406702287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8146973e-06, 0, -108.502655)
+
+[node name="GameManager" type="Node" parent="." unique_id=1443709706]
+script = ExtResource("scr_gmlvl1")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=729849922]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136.36214, 2.128515, -9.353493)
+pixel_size = 0.01
+billboard = 1
+text = "Press E to Pick & throw"
+
+[editable path="CarSpawner"]
+[editable path="CarSpawner2"]

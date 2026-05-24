@@ -33,19 +33,20 @@ public partial class GameManagerTutorial : Node
         _secondObjective = GetTree().Root.FindChild("SecondObjective", true, false) as Label;
         _missionComplete = GetTree().Root.FindChild("MissionComplete", true, false) as Label;
         _gameOverLabel = GetTree().Root.FindChild("GameOver", true, false) as Label;
-        
+
         _objectiveProgress = GetTree().Root.FindChild("FirstObjectiveProgress", true, false) as ProgressBar;
 
         _player = GetTree().GetFirstNodeInGroup("player") as Node3D;
-        
+
         Node missionAreaNode = GetTree().Root.FindChild("MissionArea", true, false);
-        if (missionAreaNode == null) 
+        if (missionAreaNode == null)
         {
             // fallback to finding the area named Area3D if MissionArea hasn't been explicitly named yet
             missionAreaNode = GetTree().Root.FindChild("Area3D", true, false);
         }
-        
-        if (missionAreaNode is Area3D area) {
+
+        if (missionAreaNode is Area3D area)
+        {
             _missionArea = area;
         }
 
@@ -72,7 +73,7 @@ public partial class GameManagerTutorial : Node
                 _missionArea.BodyEntered += OnMissionAreaEntered;
             }
         }
-        else 
+        else
         {
             GD.PrintErr("[GameManagerTutorial] Could not configure progress because MissionArea or Streetlight9 was null.");
         }
@@ -94,7 +95,7 @@ public partial class GameManagerTutorial : Node
         }
     }
 
-    private void CompleteMission()
+    private async void CompleteMission()
     {
         if (_gameOver) return;
         _gameOver = true;
@@ -103,7 +104,7 @@ public partial class GameManagerTutorial : Node
 
         if (_missionComplete != null)
             _missionComplete.Visible = true;
-            
+
         if (_firstObjective != null)
             _firstObjective.Visible = false;
 
@@ -111,6 +112,9 @@ public partial class GameManagerTutorial : Node
             _objectiveProgress.Value = 100;
 
         NeutraliseAllNpcs();
+
+        await ToSignal(GetTree().CreateTimer(2.0f), SceneTreeTimer.SignalName.Timeout);
+        GetTree().ChangeSceneToFile("res://Levels/Level1.tscn");
     }
 
     public override void _Process(double delta)
