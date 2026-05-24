@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://Scripts/CameraOcclusion/DitherFade.gdshader" id="1_dither"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dither")
+shader_parameter/albedo = Color(0.6, 0.6, 0.6, 1)
+shader_parameter/fade = 1.0

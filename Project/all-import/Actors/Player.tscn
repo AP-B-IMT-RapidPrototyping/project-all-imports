@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bqg1a6xhtdf8y" path="res://Scripts/PlayerMovement.cs" id="1_x82gw"]
 [ext_resource type="PackedScene" uid="uid://ik4g5glwa80i" path="res://Assets/parrot.tscn" id="3_1jtgk"]
 [ext_resource type="Script" uid="uid://cp57b0kqbmvin" path="res://Scripts/GrabBehavior.cs" id="4_x82gw"]
+[ext_resource type="Script" path="res://Scripts/CameraOcclusion/CameraOcclusion.cs" id="5_camocc"]
+[ext_resource type="Material" path="res://Scripts/CameraOcclusion/DitherFade.tres" id="6_dither"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_h1khe"]
 radius = 0.2
@@ -23,6 +25,9 @@ shape = SubResource("SphereShape3D_h1khe")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=721154783 groups=["player"]]
 transform = Transform3D(1, 0, 1.7682974e-07, 0, 1, 0, -1.7682974e-07, 0, 1, 0, 2.0085962, 5.8116674)
+script = ExtResource("5_camocc")
+PlayerPath = NodePath("../..")
+DitherTemplate = ExtResource("6_dither")
 
 [node name="VisualTilt" type="Node3D" parent="." unique_id=1903421857]
 
