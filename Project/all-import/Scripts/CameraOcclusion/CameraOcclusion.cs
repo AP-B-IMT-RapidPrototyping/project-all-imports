@@ -30,8 +30,8 @@ public partial class CameraOcclusion : Camera3D
 	private class Entry
 	{
 		public ShaderMaterial Mat;
+		public Material OriginalOverride;
 		public float Current = 1f;
-		public float Target = 1f;
 		public bool SeenThisFrame;
 	}
 
@@ -68,26 +68,31 @@ public partial class CameraOcclusion : Camera3D
 		FindBlockers();
 
 		float deltaF = (float)delta;
-		float blend = Mathf.Clamp(FadeSpeed * deltaF, 0f, 1f);
+		float step = FadeSpeed * deltaF;
 
 		var toRemove = new List<MeshInstance3D>();
 		foreach (var kv in _entries)
 		{
 			Entry e = kv.Value;
-			e.Target = e.SeenThisFrame ? OccludedFade : 1f;
-			e.Current = Mathf.Lerp(e.Current, e.Target, blend);
-			e.Mat.SetShaderParameter("fade", e.Current);
-
-			// Once fully restored and no longer occluding, drop the override
-			// so the original material renders normally again.
-			if (!e.SeenThisFrame && e.Current > 0.995f)
+			if (e.SeenThisFrame)
+			{
+				// Fade *out* smoothly toward OccludedFade while occluding.
+				e.Current = Mathf.MoveToward(e.Current, OccludedFade, step);
+				e.Mat.SetShaderParameter("fade", e.Current);
+			}
+			else
+			{
+				// No longer occluding — snap-restore. Fading back *in* would
+				// leave the mesh visibly stuck in flat-grey override territory
+				// (fade > ~0.94 means the dither matrix discards nothing).
 				toRemove.Add(kv.Key);
+			}
 		}
 
 		foreach (var mesh in toRemove)
 		{
-			if (IsInstanceValid(mesh))
-				mesh.MaterialOverride = null;
+			if (_entries.TryGetValue(mesh, out Entry e) && IsInstanceValid(mesh))
+				mesh.MaterialOverride = e.OriginalOverride;
 			_entries.Remove(mesh);
 		}
 	}
@@ -161,6 +166,7 @@ public partial class CameraOcclusion : Camera3D
 				e = new Entry
 				{
 					Mat = (ShaderMaterial)DitherTemplate.Duplicate(),
+					OriginalOverride = mesh.MaterialOverride,
 					Current = 1f,
 				};
 				e.Mat.SetShaderParameter("fade", 1f);
