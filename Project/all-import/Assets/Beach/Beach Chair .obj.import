@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://1r3jrv6sox0"
+path="res://.godot/imported/Beach Chair .obj-17684b7486b077d33fcd6f1cbc92a240.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Beach Chair .obj-17684b7486b077d33fcd6f1cbc92a240.mesh"]
+
+source_file="res://Assets/Beach/Beach Chair .obj"
+dest_files=["res://.godot/imported/Beach Chair .obj-17684b7486b077d33fcd6f1cbc92a240.mesh", "res://.godot/imported/Beach Chair .obj-17684b7486b077d33fcd6f1cbc92a240.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
