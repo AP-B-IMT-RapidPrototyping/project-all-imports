@@ -2,11 +2,10 @@ using Godot;
 
 /// <summary>
 /// Manages the obstacle-course mini-game:
-///   • Objectives via checkpoints (first pass → FirstObjective disappears,
-///     second pass → SecondObjective disappears)
-///   • Both objectives done → MissionComplete becomes visible, NPCs go Neutral
+///   • FinishZone calls AreObjectivesComplete() then OnPlayerWon()
+///   • OnPlayerWon() shows MissionComplete label
+///   • _Process watches for MissionComplete → freeze 2 seconds → Level-2
 ///   • NPC catch → Game Over
-///   • Finish → You Win
 ///   • R key restarts the scene
 /// </summary>
 public partial class GameManagerLevel1 : Node
@@ -19,10 +18,8 @@ public partial class GameManagerLevel1 : Node
     private Label _gameOverLabel;
 
     // ── Game state ────────────────────────────────────────────────
-    private bool _gameOver    = false;
-    private bool _gameStarted = false;
-    private bool _firstDone   = false;
-    private bool _secondDone  = false;
+    private bool _gameOver          = false;
+    private bool _transitionStarted = false;
 
     public override void _Ready()
     {
@@ -41,124 +38,48 @@ public partial class GameManagerLevel1 : Node
         GD.Print($"[GameManager] MissionComplete: {(_missionComplete != null ? "OK" : "NOT FOUND")}");
         GD.Print($"[GameManager] GameOver:        {(_gameOverLabel   != null ? "OK" : "NOT FOUND")}");
 
-        // Both objective labels start visible
-        if (_firstObjective  != null) _firstObjective.Visible  = true;
-        if (_secondObjective != null) _secondObjective.Visible = true;
-
         // These start hidden
         if (_missionComplete != null) _missionComplete.Visible = false;
         if (_gameOverLabel   != null) _gameOverLabel.Visible   = false;
 
         ConnectAllNpcs(GetParent() ?? this);
-        ConnectCheckpoints();
     }
 
-    // ── CHECKPOINT SYSTEM ─────────────────────────────────────────
-    private void ConnectCheckpoints()
+    public override void _Process(double delta)
     {
-        var checkpoints = GetTree().GetNodesInGroup("checkpoint");
-        GD.Print($"[GameManager] Found {checkpoints.Count} checkpoints");
-
-        foreach (Node node in checkpoints)
+        if (Input.IsActionJustPressed("ui_cancel"))
         {
-            Area3D area = null;
-
-            if (node is Area3D a)
-            {
-                area = a;
-            }
-            else
-            {
-                Node parent = node;
-                while (parent != null && parent is not Area3D)
-                    parent = parent.GetParent();
-
-                if (parent is Area3D foundArea)
-                    area = foundArea;
-            }
-
-            if (area != null)
-            {
-                if (!area.IsConnected(Area3D.SignalName.BodyEntered,
-                        Callable.From<Node3D>(OnCheckpointBodyEntered)))
-                {
-                    area.BodyEntered += OnCheckpointBodyEntered;
-                }
-
-                GD.Print($"[GameManager] Connected checkpoint '{area.Name}'");
-            }
-            else
-            {
-                GD.Print($"[GameManager] '{node.Name}' has no Area3D parent — skipped.");
-            }
+            Input.MouseMode = Input.MouseMode == Input.MouseModeEnum.Captured
+                ? Input.MouseModeEnum.Visible
+                : Input.MouseModeEnum.Captured;
         }
 
-        _gameStarted = true;
-    }
+        if (Input.IsKeyPressed(Key.R))
+            Restart();
 
-    private void OnCheckpointBodyEntered(Node3D body)
-    {
-        Node current = body;
-        while (current != null)
+        // Watch for MissionComplete becoming visible
+        if (!_gameOver && !_transitionStarted && _missionComplete != null && _missionComplete.Visible)
         {
-            if (current.IsInGroup("player"))
-            {
-                RegisterCheckpointHit();
-                return;
-            }
-            current = current.GetParent();
+            GD.Print("[GameManager] MissionComplete is visible — starting transition...");
+            StartTransition();
         }
     }
 
-    private void RegisterCheckpointHit()
+    private async void StartTransition()
     {
-        if (!_gameStarted) return;
+        _transitionStarted = true;
+        _gameOver          = true;
 
-        // Complete FirstObjective if not yet done
-        if (!_firstDone)
-        {
-            _firstDone = true;
-
-            if (_firstObjective != null)
-                _firstObjective.Visible = false;
-
-            GD.Print("[GameManager] FirstObjective completed.");
-            CheckMissionComplete();
-            return;
-        }
-
-        // Complete SecondObjective if first is done but second isn't
-        if (_firstDone && !_secondDone)
-        {
-            _secondDone = true;
-
-            if (_secondObjective != null)
-                _secondObjective.Visible = false;
-
-            GD.Print("[GameManager] SecondObjective completed.");
-            CheckMissionComplete();
-            return;
-        }
-    }
-
-    private void CheckMissionComplete()
-    {
-        if (!_firstDone || !_secondDone) return;
-
-        GD.Print("[GameManager] Both objectives complete — showing MissionComplete.");
-
-        if (_missionComplete != null)
-        {
-            _missionComplete.Visible = true;
-            GD.Print("[GameManager] MissionComplete is now visible.");
-        }
-        else
-        {
-            GD.PrintErr("[GameManager] MissionComplete label is NULL — check node name spelling in the scene tree!");
-        }
-
-        // Set all NPCs to Neutral so they stop chasing the player
         NeutraliseAllNpcs();
+
+        GD.Print("[GameManager] Freezing for 2 seconds...");
+        GetTree().Paused = true;
+
+        await ToSignal(GetTree().CreateTimer(2.0f, true, false, true), SceneTreeTimer.SignalName.Timeout);
+
+        GD.Print("[GameManager] Transitioning to Level-2...");
+        GetTree().Paused = false;
+        GetTree().ChangeSceneToFile("res://Levels/Level-2.tscn");
     }
 
     private void NeutraliseAllNpcs()
@@ -197,19 +118,6 @@ public partial class GameManagerLevel1 : Node
         }
     }
 
-    public override void _Process(double delta)
-    {
-        if (Input.IsActionJustPressed("ui_cancel"))
-        {
-            Input.MouseMode = Input.MouseMode == Input.MouseModeEnum.Captured
-                ? Input.MouseModeEnum.Visible
-                : Input.MouseModeEnum.Captured;
-        }
-
-        if (Input.IsKeyPressed(Key.R))
-            Restart();
-    }
-
     // ── GAME EVENTS ───────────────────────────────────────────────
     public void OnPlayerCaught()
     {
@@ -230,23 +138,24 @@ public partial class GameManagerLevel1 : Node
     public void OnPlayerWon()
     {
         if (_gameOver) return;
-        _gameOver = true;
 
-        if (_statusLabel != null)
-        {
-            _statusLabel.Text = "YOU WIN!";
-            _statusLabel.AddThemeColorOverride("font_color", new Color(1f, 0.85f, 0.1f));
-            _statusLabel.Visible = true;
-        }
+        GD.Print("[GameManager] Player reached the finish zone — showing MissionComplete.");
 
-        SetHint("Press R to play again");
-        GD.Print("[GameManager] Player won!");
+        // Showing MissionComplete triggers the _Process watcher to start the transition
+        if (_missionComplete != null)
+            _missionComplete.Visible = true;
+
+        if (_firstObjective  != null) _firstObjective.Visible  = false;
+        if (_secondObjective != null) _secondObjective.Visible = false;
     }
 
     // ── HELPERS ───────────────────────────────────────────────────
+
+    // Called by FinishZone to check if the player is allowed to finish
     public bool AreObjectivesComplete()
     {
-        return _firstDone && _secondDone;
+        // No checkpoint objectives in this level — finishing the zone is enough
+        return true;
     }
 
     private void SetHint(string text)
