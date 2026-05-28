@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bif1kfma3s1sc" path="res://Assets/MuseumAsset/low-poly-art (6) (1).png" id="15_hnslb"]
 [ext_resource type="Texture2D" uid="uid://48lleks7wc52" path="res://Assets/MuseumAsset/low-poly-art (1) (1).png" id="16_kaj6v"]
 [ext_resource type="Texture2D" uid="uid://dn0fd65tkw4ms" path="res://Assets/MuseumAsset/low-poly-art (4).png" id="17_6mwlh"]
-[ext_resource type="PackedScene" path="res://Assets/MuseumAsset/info_desk_small.tscn" id="18_0rqs3"]
+[ext_resource type="PackedScene" uid="uid://dabxqv3oeudh8" path="res://Assets/MuseumAsset/info_desk_small.tscn" id="18_0rqs3"]
 [ext_resource type="PackedScene" uid="uid://b5suu3ayvu78f" path="res://Scene/Tutku/sculpture.tscn" id="19_pcbbk"]
 [ext_resource type="Script" uid="uid://bu6jn62qsbbtg" path="res://Scene/Tutku/Guard.cs" id="20_4ilsm"]
 [ext_resource type="PackedScene" uid="uid://bih3ad7q42qhx" path="res://Assets/low_polysguard/scene.gltf" id="21_jwfsp"]
@@ -40,7 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://co23ipcchnmcb" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter1.fbx" id="38_bdkmu"]
 [ext_resource type="PackedScene" uid="uid://e1gu0j1xmm6r" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter2.fbx" id="39_2ga14"]
 [ext_resource type="Texture2D" uid="uid://ckm53f1hmots0" path="res://Assets/Farm/3D Farm Asset Pack_6.png" id="40_mwj8g"]
-[ext_resource type="PackedScene" path="res://Scene/Tutku/farmhouse_a_02_002.tscn" id="41_mglhr"]
+[ext_resource type="PackedScene" uid="uid://duhqnr72sgpo4" path="res://Scene/Tutku/farmhouse_a_02_002.tscn" id="41_mglhr"]
 [ext_resource type="Texture2D" uid="uid://bfxjgcugbgdf" path="res://Assets/Fence-Textures/PostDiffuseTexture.png" id="42_nlctb"]
 [ext_resource type="PackedScene" uid="uid://cblgy5n0h51jm" path="res://Scene/Tutku/Moder.tscn" id="43_nxhpx"]
 [ext_resource type="PackedScene" uid="uid://bcui78i73mhpo" path="res://Scene/Tutku/Fence0.2.tscn" id="44_ewwoc"]
@@ -92,6 +92,8 @@
 [ext_resource type="PackedScene" uid="uid://624lymdnbyii" path="res://Assets/nature_kit/Boom-2.scn" id="90_qdkju"]
 [ext_resource type="PackedScene" uid="uid://b7ollao204rim" path="res://Assets/nature_kit/Boom-3.scn" id="91_br24e"]
 [ext_resource type="PackedScene" uid="uid://dd3phq0xue0rp" path="res://Scene/Tutku/BeacheLevel2.tscn" id="92_kh5gq"]
+[ext_resource type="PackedScene" uid="uid://cvjtb20kxitc" path="res://Actors/PickableCastleSmall.tscn" id="93_yoq88"]
+[ext_resource type="PackedScene" uid="uid://bjpkylonr2s50" path="res://Actors/PickableCastleBig.tscn" id="94_j5psh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27ee"]
 bg_color = Color(0.047058824, 0.27058825, 0.44705883, 0.7254902)
@@ -2444,6 +2446,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_s0gpe")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jnmlx"]
+size = Vector3(79.27493, 5.934082, 67.3728)
 
 [node name="Node3D" type="Node3D" unique_id=652468711]
 
@@ -6092,6 +6097,19 @@ NavAgent = NodePath("NavigationAgent3D")
 [node name="AnimationPlayer" parent="Node3D/Beach" parent_id_path=PackedInt32Array(1171376729, 1768786933) index="1" unique_id=710570818]
 autoplay = &"CharacterArmature|Walk"
 
+[node name="SandCastle" parent="Node3D" index="27" unique_id=1369009195]
+visible = false
+
+[node name="SandCastle167" parent="Node3D" index="86" unique_id=2114493727]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 37.779415, 0.69560933, -10.458275)
+visible = false
+
+[node name="TestBox1" parent="Node3D" unique_id=242843138 instance=ExtResource("93_yoq88")]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 36.22692, -0.010202885, -12.690178)
+
+[node name="TestBox2" parent="Node3D" unique_id=1311554732 instance=ExtResource("94_j5psh")]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 37.841965, -0.004926145, -10.682434)
+
 [node name="MeshInstance3D18" type="MeshInstance3D" parent="." unique_id=866818115]
 transform = Transform3D(-1.0063887e-06, 0, 4.227777, 0, 0.29999998, 0, -23.023493, 0, -1.8480199e-07, 14.117706, 0.54890865, -87.67211)
 material_override = SubResource("StandardMaterial3D_m2frx")
@@ -6139,6 +6157,13 @@ shape = SubResource("ConcavePolygonShape3D_gxdkp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D20/StaticBody3D2" unique_id=1951331681]
 shape = SubResource("ConcavePolygonShape3D_iq3yb")
+
+[node name="WaterArea" type="Area3D" parent="." unique_id=13306173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.859055, 1.1613913, -139.0714)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WaterArea" unique_id=481558121]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.58043, -2.9381876, 7.5599365)
+shape = SubResource("BoxShape3D_jnmlx")
 
 [connection signal="pressed" from="Node3D2/PauseMenu/Panel/VBoxContainer/Button" to="Node3D2" method="OnResumeButtonPressed"]
 [connection signal="pressed" from="Node3D2/PauseMenu/Panel/VBoxContainer/Button2" to="Node3D2" method="OnBackToMenuButtonPressed"]
