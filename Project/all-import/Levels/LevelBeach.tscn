@@ -61,7 +61,7 @@
 [ext_resource type="PackedScene" uid="uid://cfclojjacuyr" path="res://Assets/nature_kit/Nature Kit/models/Flower_Bellflower_3.fbx" id="59_3rma5"]
 [ext_resource type="PackedScene" uid="uid://bllgloqi0yjtx" path="res://Scene/Tutku/LevelUI.tscn" id="60_lsxws"]
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="61_tk8ic"]
-[ext_resource type="Script" uid="uid://lc2w37u8pchj" path="res://Scripts/GameManagerLevel1.cs" id="63_ggxbq"]
+[ext_resource type="Script" uid="uid://b3xqkbeach1mg" path="res://Scripts/GameManagerBeach.cs" id="63_ggxbq"]
 [ext_resource type="ArrayMesh" uid="uid://d12mhctr81hf3" path="res://Assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/obj/box_A.obj" id="64_8rppr"]
 [ext_resource type="ArrayMesh" uid="uid://bjwwwqeka3wv0" path="res://Assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/obj/box_B.obj" id="65_3ttbd"]
 [ext_resource type="PackedScene" uid="uid://drifjuk6x5s71" path="res://Assets/chimney_smoke.tscn" id="66_in3yw"]
@@ -93,6 +93,7 @@
 [ext_resource type="PackedScene" uid="uid://dd3phq0xue0rp" path="res://Scene/Tutku/BeacheLevel2.tscn" id="92_kh5gq"]
 [ext_resource type="PackedScene" uid="uid://cvjtb20kxitc" path="res://Actors/PickableCastleSmall.tscn" id="93_yoq88"]
 [ext_resource type="PackedScene" uid="uid://bjpkylonr2s50" path="res://Actors/PickableCastleBig.tscn" id="94_j5psh"]
+[ext_resource type="Script" uid="uid://c7nwaterbeach2m" path="res://Scripts/WaterArea.cs" id="95_water"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27ee"]
 bg_color = Color(0.047058824, 0.27058825, 0.44705883, 0.7254902)
@@ -6144,6 +6145,7 @@ shape = SubResource("ConcavePolygonShape3D_iq3yb")
 
 [node name="WaterArea" type="Area3D" parent="." unique_id=13306173]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.859055, 1.1613913, -139.0714)
+script = ExtResource("95_water")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WaterArea" unique_id=481558121]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.58043, -2.9381876, 7.5599365)

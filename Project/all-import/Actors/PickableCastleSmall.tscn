@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cvjtb20kxitc"]
 
-[ext_resource type="Script" uid="uid://cc884d7kefqhf" path="res://Scripts/StealableObject.cs" id="1_egfir"]
+[ext_resource type="Script" uid="uid://d4ksandcastle9p" path="res://Scripts/SandCastle.cs" id="1_egfir"]
 [ext_resource type="ArrayMesh" uid="uid://vaa2sl03v82v" path="res://Assets/Beach/sandCastle.obj" id="2_egfir"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egfir"]
