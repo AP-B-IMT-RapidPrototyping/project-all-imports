@@ -2456,18 +2456,6 @@ size = Vector3(79.27493, 5.934082, 67.3728)
 script = ExtResource("1_jnmlx")
 
 [node name="UI" parent="Node3D2" unique_id=600360855 instance=ExtResource("2_yoq88")]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.0
-grow_vertical = 1
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="Stamina" parent="Node3D2/UI" index="6" unique_id=1872889853]
-offset_left = -1900.0
-offset_right = -1603.0
-offset_bottom = 69.0
 
 [node name="PauseMenu" type="CanvasLayer" parent="Node3D2" unique_id=2058496818]
 process_mode = 3
