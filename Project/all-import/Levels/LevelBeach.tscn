@@ -61,7 +61,6 @@
 [ext_resource type="PackedScene" uid="uid://cfclojjacuyr" path="res://Assets/nature_kit/Nature Kit/models/Flower_Bellflower_3.fbx" id="59_3rma5"]
 [ext_resource type="PackedScene" uid="uid://bllgloqi0yjtx" path="res://Scene/Tutku/LevelUI.tscn" id="60_lsxws"]
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="61_tk8ic"]
-[ext_resource type="PackedScene" uid="uid://drc3rd6dnayb3" path="res://Actors/Pickable.tscn" id="62_t4xwt"]
 [ext_resource type="Script" uid="uid://lc2w37u8pchj" path="res://Scripts/GameManagerLevel1.cs" id="63_ggxbq"]
 [ext_resource type="ArrayMesh" uid="uid://d12mhctr81hf3" path="res://Assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/obj/box_A.obj" id="64_8rppr"]
 [ext_resource type="ArrayMesh" uid="uid://bjwwwqeka3wv0" path="res://Assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/obj/box_B.obj" id="65_3ttbd"]
@@ -4876,10 +4875,7 @@ shape = SubResource("BoxShape3D_2ndy0")
 [node name="Node3D" parent="Node3D2" unique_id=1982591309 instance=ExtResource("61_tk8ic")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 109.19563, 0.5278648, 11.080109)
 
-[node name="TestBox1" parent="Node3D2" unique_id=898709373 instance=ExtResource("62_t4xwt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.08792, 1.0274963, 20.389595)
-
-[node name="GameManagerTestlvl" type="Node" parent="Node3D2" unique_id=1630170303]
+[node name="GameManagerBeach" type="Node" parent="Node3D2" unique_id=1630170303]
 script = ExtResource("63_ggxbq")
 
 [node name="Platform4" type="MeshInstance3D" parent="Node3D2" unique_id=1160470495]
