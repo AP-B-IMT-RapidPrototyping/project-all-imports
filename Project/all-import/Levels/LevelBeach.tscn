@@ -93,7 +93,7 @@
 [ext_resource type="PackedScene" uid="uid://dd3phq0xue0rp" path="res://Scene/Tutku/BeacheLevel2.tscn" id="92_kh5gq"]
 [ext_resource type="PackedScene" uid="uid://cvjtb20kxitc" path="res://Actors/PickableCastleSmall.tscn" id="93_yoq88"]
 [ext_resource type="PackedScene" uid="uid://bjpkylonr2s50" path="res://Actors/PickableCastleBig.tscn" id="94_j5psh"]
-[ext_resource type="Script" uid="uid://c7nwaterbeach2m" path="res://Scripts/WaterArea.cs" id="95_water"]
+[ext_resource type="Script" uid="uid://52diwnxkrnxe" path="res://Scripts/WaterArea.cs" id="95_water"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27ee"]
 bg_color = Color(0.047058824, 0.27058825, 0.44705883, 0.7254902)
