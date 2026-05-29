@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bif1kfma3s1sc" path="res://Assets/MuseumAsset/low-poly-art (6) (1).png" id="15_hnslb"]
 [ext_resource type="Texture2D" uid="uid://48lleks7wc52" path="res://Assets/MuseumAsset/low-poly-art (1) (1).png" id="16_kaj6v"]
 [ext_resource type="Texture2D" uid="uid://dn0fd65tkw4ms" path="res://Assets/MuseumAsset/low-poly-art (4).png" id="17_6mwlh"]
-[ext_resource type="PackedScene" path="res://Assets/MuseumAsset/info_desk_small.tscn" id="18_0rqs3"]
+[ext_resource type="PackedScene" uid="uid://dabxqv3oeudh8" path="res://Assets/MuseumAsset/info_desk_small.tscn" id="18_0rqs3"]
 [ext_resource type="PackedScene" uid="uid://b5suu3ayvu78f" path="res://Scene/Tutku/sculpture.tscn" id="19_pcbbk"]
 [ext_resource type="Script" uid="uid://bu6jn62qsbbtg" path="res://Scene/Tutku/Guard.cs" id="20_4ilsm"]
 [ext_resource type="PackedScene" uid="uid://bih3ad7q42qhx" path="res://Assets/low_polysguard/scene.gltf" id="21_jwfsp"]
@@ -40,7 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://co23ipcchnmcb" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter1.fbx" id="38_bdkmu"]
 [ext_resource type="PackedScene" uid="uid://e1gu0j1xmm6r" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter2.fbx" id="39_2ga14"]
 [ext_resource type="Texture2D" uid="uid://ckm53f1hmots0" path="res://Assets/Farm/3D Farm Asset Pack_6.png" id="40_mwj8g"]
-[ext_resource type="PackedScene" path="res://Scene/Tutku/farmhouse_a_02_002.tscn" id="41_mglhr"]
+[ext_resource type="PackedScene" uid="uid://duhqnr72sgpo4" path="res://Scene/Tutku/farmhouse_a_02_002.tscn" id="41_mglhr"]
 [ext_resource type="Texture2D" uid="uid://bfxjgcugbgdf" path="res://Assets/Fence-Textures/PostDiffuseTexture.png" id="42_nlctb"]
 [ext_resource type="PackedScene" uid="uid://cblgy5n0h51jm" path="res://Scene/Tutku/Moder.tscn" id="43_nxhpx"]
 [ext_resource type="PackedScene" uid="uid://bcui78i73mhpo" path="res://Scene/Tutku/Fence0.2.tscn" id="44_ewwoc"]
@@ -2444,6 +2444,8 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_s0gpe")
+
+[sub_resource type="Curve3D" id="Curve3D_jnmlx"]
 
 [node name="Node3D" type="Node3D" unique_id=652468711]
 
@@ -6139,6 +6141,11 @@ shape = SubResource("ConcavePolygonShape3D_gxdkp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D20/StaticBody3D2" unique_id=1951331681]
 shape = SubResource("ConcavePolygonShape3D_iq3yb")
+
+[node name="NPCPath" type="Path3D" parent="." unique_id=1517357937]
+curve = SubResource("Curve3D_jnmlx")
+
+[node name="PathFollow" type="PathFollow3D" parent="NPCPath" unique_id=435691948]
 
 [connection signal="pressed" from="Node3D2/PauseMenu/Panel/VBoxContainer/Button" to="Node3D2" method="OnResumeButtonPressed"]
 [connection signal="pressed" from="Node3D2/PauseMenu/Panel/VBoxContainer/Button2" to="Node3D2" method="OnBackToMenuButtonPressed"]
