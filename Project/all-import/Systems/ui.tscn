@@ -63,6 +63,16 @@ offset_bottom = 74.0
 theme_override_font_sizes/font_size = 20
 text = "-Go through second ring"
 
+[node name="SecondObjectiveProgress" type="ProgressBar" parent="SecondObjective" unique_id=1003450946]
+visible = false
+layout_mode = 0
+offset_left = -216.0
+offset_top = 30.0
+offset_right = -66.0
+offset_bottom = 58.0
+step = 1.0
+show_percentage = false
+
 [node name="MissionComplete" type="Label" parent="." unique_id=1200086644]
 visible = false
 layout_mode = 0

@@ -61,8 +61,7 @@
 [ext_resource type="PackedScene" uid="uid://cfclojjacuyr" path="res://Assets/nature_kit/Nature Kit/models/Flower_Bellflower_3.fbx" id="59_3rma5"]
 [ext_resource type="PackedScene" uid="uid://bllgloqi0yjtx" path="res://Scene/Tutku/LevelUI.tscn" id="60_lsxws"]
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="61_tk8ic"]
-[ext_resource type="PackedScene" uid="uid://drc3rd6dnayb3" path="res://Actors/Pickable.tscn" id="62_t4xwt"]
-[ext_resource type="Script" uid="uid://lc2w37u8pchj" path="res://Scripts/GameManagerLevel1.cs" id="63_ggxbq"]
+[ext_resource type="Script" uid="uid://b3xqkbeach1mg" path="res://Scripts/GameManagerBeach.cs" id="63_ggxbq"]
 [ext_resource type="ArrayMesh" uid="uid://d12mhctr81hf3" path="res://Assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/obj/box_A.obj" id="64_8rppr"]
 [ext_resource type="ArrayMesh" uid="uid://bjwwwqeka3wv0" path="res://Assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/obj/box_B.obj" id="65_3ttbd"]
 [ext_resource type="PackedScene" uid="uid://drifjuk6x5s71" path="res://Assets/chimney_smoke.tscn" id="66_in3yw"]
@@ -92,6 +91,9 @@
 [ext_resource type="PackedScene" uid="uid://624lymdnbyii" path="res://Assets/nature_kit/Boom-2.scn" id="90_qdkju"]
 [ext_resource type="PackedScene" uid="uid://b7ollao204rim" path="res://Assets/nature_kit/Boom-3.scn" id="91_br24e"]
 [ext_resource type="PackedScene" uid="uid://dd3phq0xue0rp" path="res://Scene/Tutku/BeacheLevel2.tscn" id="92_kh5gq"]
+[ext_resource type="PackedScene" uid="uid://cvjtb20kxitc" path="res://Actors/PickableCastleSmall.tscn" id="93_yoq88"]
+[ext_resource type="PackedScene" uid="uid://bjpkylonr2s50" path="res://Actors/PickableCastleBig.tscn" id="94_j5psh"]
+[ext_resource type="Script" uid="uid://52diwnxkrnxe" path="res://Scripts/WaterArea.cs" id="95_water"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27ee"]
 bg_color = Color(0.047058824, 0.27058825, 0.44705883, 0.7254902)
@@ -2445,7 +2447,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_s0gpe")
 
+<<<<<<< HEAD
 [sub_resource type="Curve3D" id="Curve3D_jnmlx"]
+=======
+[sub_resource type="BoxShape3D" id="BoxShape3D_jnmlx"]
+size = Vector3(79.27493, 5.934082, 67.3728)
+>>>>>>> a0b4e32a27ea5b3f46cbec871535e18a9389ff94
 
 [node name="Node3D" type="Node3D" unique_id=652468711]
 
@@ -2453,18 +2460,6 @@ shadow_mesh = SubResource("ArrayMesh_s0gpe")
 script = ExtResource("1_jnmlx")
 
 [node name="UI" parent="Node3D2" unique_id=600360855 instance=ExtResource("2_yoq88")]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.0
-grow_vertical = 1
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="Stamina" parent="Node3D2/UI" index="6" unique_id=1872889853]
-offset_left = -1900.0
-offset_right = -1603.0
-offset_bottom = 69.0
 
 [node name="PauseMenu" type="CanvasLayer" parent="Node3D2" unique_id=2058496818]
 process_mode = 3
@@ -4885,10 +4880,7 @@ shape = SubResource("BoxShape3D_2ndy0")
 [node name="Node3D" parent="Node3D2" unique_id=1982591309 instance=ExtResource("61_tk8ic")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 109.19563, 0.5278648, 11.080109)
 
-[node name="TestBox1" parent="Node3D2" unique_id=898709373 instance=ExtResource("62_t4xwt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.08792, 1.0274963, 20.389595)
-
-[node name="GameManagerTestlvl" type="Node" parent="Node3D2" unique_id=1630170303]
+[node name="GameManagerBeach" type="Node" parent="Node3D2" unique_id=1630170303]
 script = ExtResource("63_ggxbq")
 
 [node name="Platform4" type="MeshInstance3D" parent="Node3D2" unique_id=1160470495]
@@ -6094,6 +6086,19 @@ NavAgent = NodePath("NavigationAgent3D")
 [node name="AnimationPlayer" parent="Node3D/Beach" parent_id_path=PackedInt32Array(1171376729, 1768786933) index="1" unique_id=710570818]
 autoplay = &"CharacterArmature|Walk"
 
+[node name="SandCastle" parent="Node3D" index="27" unique_id=1369009195]
+visible = false
+
+[node name="SandCastle167" parent="Node3D" index="86" unique_id=2114493727]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 37.779415, 0.69560933, -10.458275)
+visible = false
+
+[node name="TestBox1" parent="Node3D" unique_id=242843138 instance=ExtResource("93_yoq88")]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 36.22692, -0.010202885, -12.690178)
+
+[node name="TestBox2" parent="Node3D" unique_id=1311554732 instance=ExtResource("94_j5psh")]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 37.841965, -0.004926145, -10.682434)
+
 [node name="MeshInstance3D18" type="MeshInstance3D" parent="." unique_id=866818115]
 transform = Transform3D(-1.0063887e-06, 0, 4.227777, 0, 0.29999998, 0, -23.023493, 0, -1.8480199e-07, 14.117706, 0.54890865, -87.67211)
 material_override = SubResource("StandardMaterial3D_m2frx")
@@ -6142,10 +6147,20 @@ shape = SubResource("ConcavePolygonShape3D_gxdkp")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D20/StaticBody3D2" unique_id=1951331681]
 shape = SubResource("ConcavePolygonShape3D_iq3yb")
 
+<<<<<<< HEAD
 [node name="NPCPath" type="Path3D" parent="." unique_id=1517357937]
 curve = SubResource("Curve3D_jnmlx")
 
 [node name="PathFollow" type="PathFollow3D" parent="NPCPath" unique_id=435691948]
+=======
+[node name="WaterArea" type="Area3D" parent="." unique_id=13306173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.859055, 1.1613913, -139.0714)
+script = ExtResource("95_water")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WaterArea" unique_id=481558121]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.58043, -2.9381876, 7.5599365)
+shape = SubResource("BoxShape3D_jnmlx")
+>>>>>>> a0b4e32a27ea5b3f46cbec871535e18a9389ff94
 
 [connection signal="pressed" from="Node3D2/PauseMenu/Panel/VBoxContainer/Button" to="Node3D2" method="OnResumeButtonPressed"]
 [connection signal="pressed" from="Node3D2/PauseMenu/Panel/VBoxContainer/Button2" to="Node3D2" method="OnBackToMenuButtonPressed"]

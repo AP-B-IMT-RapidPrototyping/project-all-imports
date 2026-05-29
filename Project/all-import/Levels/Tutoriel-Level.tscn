@@ -938,9 +938,6 @@ vertical_alignment = 1
 
 [node name="PauseMenu" type="CanvasLayer" parent="." unique_id=2058496818]
 process_mode = 3
-visible = false
-scale = Vector2(2, 2)
-transform = Transform2D(2, 0, 0, 2, 0, 0)
 
 [node name="Panel" type="Panel" parent="PauseMenu" unique_id=1435044443]
 layout_direction = 1

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bjpkylonr2s50"]
+
+[ext_resource type="Script" uid="uid://d4ksandcastle9p" path="res://Scripts/SandCastle.cs" id="1_roe1r"]
+[ext_resource type="ArrayMesh" uid="uid://b8qp4osx8i13w" path="res://Assets/Beach/SandCastle_167.obj" id="2_roe1r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ngt6k"]
+cull_mode = 2
+albedo_color = Color(0.49019608, 0.3764706, 0.19607843, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rs0cj"]
+points = PackedVector3Array(-48.518715, 5.5353317, -101.72433, 113.58106, 5.5353317, -12.413425, 20.932215, 164.32146, -19.045937, -61.739693, 5.5353317, 76.9182, 30.86835, -1.0900497, -124.87593, 70.55168, -1.0900497, 66.96944, -88.22245, -1.0900497, -45.472343, 4.405995, 170.92969, -25.636993, 90.40355, 5.5353317, -81.84752, -81.61196, 5.5353317, 57.06212, 27.542704, 5.5353317, 80.23445, 4.405995, 5.5353317, -131.50844, -94.85334, 5.5353317, -15.750407, 37.478836, -4.385582, 50.45034, -45.21347, 75.01606, -58.71664, 4.405995, 170.92969, -19.045937, 20.932215, 164.32146, -25.636993, 77.16217, 28.689857, 40.50157, 113.58106, 5.5353317, -28.932522, -59.48818, 1.5813012, 73.67075, 30.86835, 5.5353317, -124.87593, 109.56942, 2.1573105, -28.805666, 110.25542, 5.5353317, 4.126396, 70.55168, 5.5353317, 66.96944, -48.518715, -1.0900497, -101.72433, -18.751116, 5.5353317, -121.5804, -91.527695, 5.5353317, -38.86056, 100.33968, 5.5353317, -65.32842, -61.739693, 5.5353317, -88.48003, -8.835384, 5.5353317, 80.23445, -38.60298, 75.01606, -65.32842, 14.301325, 5.5353317, -131.50844)
+
+[node name="TestBox1" type="RigidBody3D" unique_id=898709373 groups=["Pickable"]]
+script = ExtResource("1_roe1r")
+ItemName = "Test Doos"
+
+[node name="SandCastle167" type="MeshInstance3D" parent="." unique_id=1929461899]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ngt6k")
+mesh = ExtResource("2_roe1r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1824943660]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_rs0cj")

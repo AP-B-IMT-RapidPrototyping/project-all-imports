@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://n24knk2bo0qf"]
+[gd_scene format=4 uid="uid://unu28jxaho1w"]
 
 [ext_resource type="Texture2D" uid="uid://bvrj5giljcjmh" path="res://Assets/MuseumAsset/ColorPaletteMuseum.png" id="1_lwf8e"]
 [ext_resource type="PackedScene" uid="uid://bih3ad7q42qhx" path="res://Assets/low_polysguard/scene.gltf" id="2_6nmmc"]

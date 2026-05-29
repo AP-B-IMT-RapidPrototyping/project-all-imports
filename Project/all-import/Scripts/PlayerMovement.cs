@@ -53,12 +53,10 @@ public partial class PlayerMovement : CharacterBody3D
 		_cameraYawDeg = Mathf.RadToDeg(Rotation.Y);
 		_visualTilt = GetNodeOrNull<Node3D>("VisualTilt");
 
-		// ── NEW ─────────────────────────────────────────────────────────────────
-		// UI lives on the scene root, not under this node, so we climb up to it.
-		_staminaBar = GetTree().CurrentScene.GetNodeOrNull<ProgressBar>("UI/Stamina");
+		// UI may live anywhere in the tree depending on the level — search recursively.
+		_staminaBar = GetTree().Root.FindChild("Stamina", true, false) as ProgressBar;
 		if (_staminaBar == null)
-			GD.PushWarning("PlayerMovement: UI/Stamina bar not found!");
-		// ────────────────────────────────────────────────────────────────────────
+			GD.PushWarning("PlayerMovement: Stamina bar not found!");
 	}
 
 	public override void _Input(InputEvent @event)
