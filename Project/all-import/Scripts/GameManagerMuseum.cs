@@ -106,13 +106,16 @@ public partial class GameManagerMuseum : Node
         }
 
         // ── Objective 2: steal the diamond and leave ─────────────────
+        // Same approach as GameManagerTutorial: progress fills as the diamond
+        // gets closer to the MissionCompletePoint, based on the total distance
+        // from the pedestal to that point.
         if (_diamond != null && _missionPoint != null && _pedestalToPointDist > 0)
         {
             float diamondDist = _diamond.GlobalPosition.DistanceTo(_missionPoint.GlobalPosition);
 
-            if (_secondProgress != null && diamondDist > 0.0001f)
+            if (_secondProgress != null)
             {
-                float progress = 100f * (_pedestalToPointDist / diamondDist);
+                float progress = 100f * (1f - (diamondDist / _pedestalToPointDist));
                 _secondProgress.Value = Mathf.Clamp(progress, 0, 100);
             }
 
