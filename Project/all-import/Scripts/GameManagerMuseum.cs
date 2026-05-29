@@ -1,12 +1,13 @@
 using Godot;
 
 /// <summary>
-/// Manages the museum heist level:
-///   • Objective 1: break the glass cover on the diamond pedestal using
-///     weighty objects (BreakableGlas frees the Cover's children when hit).
-///   • Objective 2: steal the diamond and carry it to the MissionCompletePoint.
-///       progress = dist(DiamondPedestal, MissionCompletePoint)
-///                / dist(Diamond,         MissionCompletePoint)
+/// Manages the museum heist level. The UI labels and progress-bar placement are
+/// authored in the scene — this manager ONLY updates the two bars' values and
+/// never touches the labels or the bars' layout:
+///   • "Steal the diamond" objective  → FirstObjectiveProgress  (distance bar):
+///     fills as the diamond gets closer to the MissionCompletePoint.
+///   • "Break the glass" objective     → SecondObjectiveProgress (glass bar):
+///     fills once the glass cover is broken.
 ///   • Level is cleared when the diamond is within 2 m of the MissionCompletePoint.
 ///   • On success the level transitions to the main menu (like Level1/Tutorial).
 ///   • NPC catch → Game Over. R key restarts the scene.
@@ -14,12 +15,10 @@ using Godot;
 public partial class GameManagerMuseum : Node
 {
     private Label _hintLabel;
-    private Label _firstObjective;
-    private Label _secondObjective;
     private Label _missionComplete;
     private Label _gameOverLabel;
-    private ProgressBar _firstProgress;
-    private ProgressBar _secondProgress;
+    private ProgressBar _distanceProgress; // FirstObjectiveProgress  → steal the diamond
+    private ProgressBar _glassProgress;    // SecondObjectiveProgress → break the glass
 
     private Node3D _diamond;
     private Node3D _pedestal;
@@ -36,13 +35,11 @@ public partial class GameManagerMuseum : Node
 
     public override void _Ready()
     {
-        _hintLabel       = GetTree().Root.FindChild("HintLabel",              true, false) as Label;
-        _firstObjective  = GetTree().Root.FindChild("FirstObjective",         true, false) as Label;
-        _secondObjective = GetTree().Root.FindChild("SecondObjective",        true, false) as Label;
-        _missionComplete = GetTree().Root.FindChild("MissionComplete",        true, false) as Label;
-        _gameOverLabel   = GetTree().Root.FindChild("GameOver",               true, false) as Label;
-        _firstProgress   = GetTree().Root.FindChild("FirstObjectiveProgress", true, false) as ProgressBar;
-        _secondProgress  = GetTree().Root.FindChild("SecondObjectiveProgress",true, false) as ProgressBar;
+        _hintLabel        = GetTree().Root.FindChild("HintLabel",              true, false) as Label;
+        _missionComplete  = GetTree().Root.FindChild("MissionComplete",        true, false) as Label;
+        _gameOverLabel    = GetTree().Root.FindChild("GameOver",               true, false) as Label;
+        _distanceProgress = GetTree().Root.FindChild("FirstObjectiveProgress", true, false) as ProgressBar;
+        _glassProgress    = GetTree().Root.FindChild("SecondObjectiveProgress",true, false) as ProgressBar;
 
         _diamond      = GetTree().Root.FindChild("Diamond",              true, false) as Node3D;
         _pedestal     = GetTree().Root.FindChild("DiamondPedestal",      true, false) as Node3D;
@@ -52,35 +49,10 @@ public partial class GameManagerMuseum : Node
         if (_missionComplete != null) _missionComplete.Visible = false;
         if (_gameOverLabel   != null) _gameOverLabel.Visible   = false;
 
-        if (_firstObjective != null)
-        {
-            _firstObjective.Text    = "-Break the cover using weighty stuff";
-            _firstObjective.Visible = true;
-        }
-        if (_secondObjective != null)
-        {
-            _secondObjective.Text    = "-Steal the diamond and leave";
-            _secondObjective.Visible = true;
-        }
-
-        SetupProgress(_firstProgress);
-        SetupProgress(_secondProgress);
-
         if (_pedestal != null && _missionPoint != null)
             _pedestalToPointDist = _pedestal.GlobalPosition.DistanceTo(_missionPoint.GlobalPosition);
 
         ConnectAllNpcs(GetParent() ?? this);
-    }
-
-    private void SetupProgress(ProgressBar bar)
-    {
-        if (bar == null) return;
-        bar.MinValue       = 0;
-        bar.MaxValue       = 100;
-        bar.Step           = 1;
-        bar.ShowPercentage = false;
-        bar.Value          = 0;
-        bar.Visible        = true;
     }
 
     public override void _Process(double delta)
@@ -97,26 +69,27 @@ public partial class GameManagerMuseum : Node
 
         if (_missionDone || _gameOver) return;
 
-        // ── Objective 1: break the glass cover ───────────────────────
+        // ── Break the glass cover (SecondObjectiveProgress) ──────────
         if (!_coverBroken && IsCoverBroken())
         {
             _coverBroken = true;
-            if (_firstProgress != null) _firstProgress.Value = 100;
+            if (_glassProgress != null) _glassProgress.Value = _glassProgress.MaxValue;
             GD.Print("[GameManagerMuseum] Glass cover broken!");
         }
 
-        // ── Objective 2: steal the diamond and leave ─────────────────
+        // ── Steal the diamond and leave (FirstObjectiveProgress) ─────
         // Same approach as GameManagerTutorial: progress fills as the diamond
         // gets closer to the MissionCompletePoint, based on the total distance
-        // from the pedestal to that point.
+        // from the pedestal to that point. Scaled to the bar's own MaxValue so
+        // the bar configured in the scene is left untouched.
         if (_diamond != null && _missionPoint != null && _pedestalToPointDist > 0)
         {
             float diamondDist = _diamond.GlobalPosition.DistanceTo(_missionPoint.GlobalPosition);
 
-            if (_secondProgress != null)
+            if (_distanceProgress != null)
             {
-                float progress = 100f * (1f - (diamondDist / _pedestalToPointDist));
-                _secondProgress.Value = Mathf.Clamp(progress, 0, 100);
+                float fraction = Mathf.Clamp(1f - (diamondDist / _pedestalToPointDist), 0f, 1f);
+                _distanceProgress.Value = fraction * _distanceProgress.MaxValue;
             }
 
             if (_coverBroken && diamondDist < ClearDistance)
@@ -139,11 +112,9 @@ public partial class GameManagerMuseum : Node
 
         GD.Print("[GameManagerMuseum] Diamond delivered — mission complete!");
 
-        if (_missionComplete != null) _missionComplete.Visible = true;
-        if (_firstObjective  != null) _firstObjective.Visible  = false;
-        if (_secondObjective != null) _secondObjective.Visible = false;
-        if (_firstProgress   != null) _firstProgress.Value     = 100;
-        if (_secondProgress  != null) _secondProgress.Value    = 100;
+        if (_missionComplete  != null) _missionComplete.Visible = true;
+        if (_distanceProgress != null) _distanceProgress.Value  = _distanceProgress.MaxValue;
+        if (_glassProgress    != null) _glassProgress.Value     = _glassProgress.MaxValue;
 
         NeutraliseAllNpcs();
 
