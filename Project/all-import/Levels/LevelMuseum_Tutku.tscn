@@ -10,13 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://05eeeuehno13" path="res://Actors/Player.tscn" id="4_wn6vh"]
 [ext_resource type="Texture2D" uid="uid://dn0fd65tkw4ms" path="res://Assets/MuseumAsset/low-poly-art (4).png" id="5_31ks6"]
 [ext_resource type="PackedScene" uid="uid://dabxqv3oeudh8" path="res://Assets/MuseumAsset/info_desk_small.tscn" id="6_31ks6"]
-[ext_resource type="PackedScene" path="res://Scene/Tutku/sculpture.tscn" id="6_qqqc6"]
+[ext_resource type="PackedScene" uid="uid://b5suu3ayvu78f" path="res://Scene/Tutku/sculpture.tscn" id="6_qqqc6"]
 [ext_resource type="Texture2D" uid="uid://djs4f4ybfoqsg" path="res://Assets/MuseumAsset/low-poly-art (5) (1).png" id="8_tnhdc"]
 [ext_resource type="Texture2D" uid="uid://c8efaqh42iq6q" path="res://Assets/MuseumAsset/Schermafbeelding 2026-05-15 194830.png" id="11_spu0k"]
 [ext_resource type="PackedScene" uid="uid://focxv566exlb" path="res://Scene/Tutku/Draaideur.tscn" id="13_tnhdc"]
-[ext_resource type="PackedScene" path="res://Scene/Tutku/barrier.tscn" id="14_22s7w"]
+[ext_resource type="PackedScene" uid="uid://bglkx6pxwgjdc" path="res://Scene/Tutku/barrier.tscn" id="14_22s7w"]
 [ext_resource type="Texture2D" uid="uid://cchn5t2gwtqqs" path="res://Assets/MuseumAsset/low-poly-art (14) (1).png" id="14_f87pe"]
-[ext_resource type="PackedScene" path="res://Scene/Tutku/Ring.tscn" id="16_spu0k"]
+[ext_resource type="PackedScene" uid="uid://bee7iwggcl16x" path="res://Scene/Tutku/Ring.tscn" id="16_spu0k"]
 [ext_resource type="PackedScene" uid="uid://rmja3wfua83v" path="res://Scene/Tutku/Raam.tscn" id="17_v5mab"]
 [ext_resource type="PackedScene" uid="uid://clvcac6xebrn" path="res://Actors/diamond_pedestal.tscn" id="19_khcvy"]
 [ext_resource type="PackedScene" uid="uid://bv28wrr5lhaht" path="res://Actors/PickableDiamond.tscn" id="20_r4ln3"]
@@ -1334,6 +1334,7 @@ data = PackedVector3Array(1, 4, -0.79999995, 1, 0, -0.79999995, -1, 0, -0.799999
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_re556"]
 vertex_color_use_as_albedo = true
+albedo_color = Color(0.47058824, 0.4627451, 0.44705883, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_mhdt2"]
 lightmap_size_hint = Vector2i(14, 21)
@@ -2092,6 +2093,7 @@ shape = SubResource("ConcavePolygonShape3D_aclf1")
 
 [node name="Sculpture" parent="." unique_id=708157842 instance=ExtResource("6_qqqc6")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -23.119581, 5.9604645e-08, 39.204224)
+visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Sculpture" unique_id=619080168]
 
@@ -2915,6 +2917,7 @@ shape = SubResource("ConcavePolygonShape3D_o5cyw")
 
 [node name="Sculpture1" type="MeshInstance3D" parent="." unique_id=1305222621]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 49.424625, 5.9604645e-08, 42.950993)
+visible = false
 mesh = SubResource("ArrayMesh_qj8q6")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Sculpture1" unique_id=958152615]
@@ -3018,3 +3021,27 @@ transform = Transform3D(3.075, 0, 0, 0, 3.075, 0, 0, 0, 3.075, 65.87298, 7.63164
 
 [node name="TestBox2" parent="." unique_id=546177575 instance=ExtResource("21_mk156")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.434298, 12.322443, -6.018552)
+
+[node name="Pedestal4" type="MeshInstance3D" parent="." unique_id=1720020324]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -24.363035, 5.9604645e-08, -17.625797)
+mesh = SubResource("ArrayMesh_4vbgj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Pedestal4" unique_id=2028640614]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pedestal4/StaticBody3D" unique_id=1838444351]
+shape = SubResource("ConcavePolygonShape3D_0mqny")
+
+[node name="TestBox3" parent="." unique_id=364568336 instance=ExtResource("21_mk156")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.371277, 3.7952347, -17.659464)
+
+[node name="Pedestal5" type="MeshInstance3D" parent="." unique_id=68944295]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -24.363035, 5.9604645e-08, 39.587727)
+mesh = SubResource("ArrayMesh_4vbgj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Pedestal5" unique_id=484581549]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pedestal5/StaticBody3D" unique_id=451751567]
+shape = SubResource("ConcavePolygonShape3D_0mqny")
+
+[node name="TestBox4" parent="." unique_id=459223939 instance=ExtResource("21_mk156")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.371277, 3.7952347, 39.54776)

@@ -19,4 +19,4 @@ mesh = SubResource("BoxMesh_khgdm")
 shape = SubResource("BoxShape3D_h2622")
 
 [node name="BreakerBall" parent="." unique_id=1961282330 instance=ExtResource("2_i0doq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06608081, -0.3415606, -0.16350272)
+transform = Transform3D(3.235, 0, 0, 0, 3.235, 0, 0, 0, 3.235, 0, -2.1030574, 0)
