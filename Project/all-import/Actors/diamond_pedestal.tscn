@@ -55,6 +55,9 @@ albedo_color = Color(0.5921569, 0.5019608, 0.5019608, 0.3529412)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a8cly"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_lkapc"]
+size = Vector3(0.398098, 0.42099, 0.41783142)
+
 [node name="DiamondPedestal" type="MeshInstance3D" unique_id=751273832]
 transform = Transform3D(8.89, 0, 0, 0, 8.89, 0, 0, 0, 8.89, 0, 0, 0)
 mesh = SubResource("ArrayMesh_4vbgj")
@@ -65,6 +68,7 @@ mesh = SubResource("ArrayMesh_4vbgj")
 shape = SubResource("ConcavePolygonShape3D_elkau")
 
 [node name="Cover" type="Node3D" parent="." unique_id=996955909]
+script = ExtResource("2_lkapc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cover" unique_id=1015566681]
 transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.050000004, 0, 0.8681114, 0.15420297)
@@ -106,14 +110,18 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lkapc")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cover/MeshInstance3D4/StaticBody3D" unique_id=1613963743]
 shape = SubResource("ConvexPolygonShape3D_a8cly")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Cover" unique_id=635216518]
-transform = Transform3D(0.34000003, 0, 0, 0, -1.48618735e-08, 0.050000012, 0, -0.34000003, -2.1855704e-09, 0, 1.0140519, 0.0011207015)
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Cover" unique_id=2116913113]
+transform = Transform3D(1.7366277e-15, 0.34, -2.1855697e-09, 1.48618735e-08, -1.4861874e-08, -0.050000012, -0.34000003, 0, -2.1855704e-09, 0.0004684563, 1.0092921, 0.0024793593)
 mesh = SubResource("BoxMesh_8bnm2")
 surface_material_override/0 = SubResource("StandardMaterial3D_lkapc")
 
-[node name="Area3D" type="Area3D" parent="Cover/MeshInstance3D5" unique_id=514288264]
-script = ExtResource("2_lkapc")
+[node name="StaticBody3D" type="StaticBody3D" parent="Cover/MeshInstance3D5" unique_id=456592037]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cover/MeshInstance3D5/Area3D" unique_id=999201189]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -2.842171e-14, 1, 0, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cover/MeshInstance3D5/StaticBody3D" unique_id=411542858]
 shape = SubResource("ConvexPolygonShape3D_a8cly")
+
+[node name="sensor" type="Area3D" parent="Cover" unique_id=1003908709]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cover/sensor" unique_id=2107647029]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011255273, 0.8804429, 0.0078964215)
+shape = SubResource("BoxShape3D_lkapc")

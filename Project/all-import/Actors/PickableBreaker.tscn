@@ -5,7 +5,8 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_khgdm"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_h2622"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_i0doq"]
+radius = 0.5908009
 
 [node name="TestBox1" type="RigidBody3D" unique_id=898709373 groups=["Pickable"]]
 script = ExtResource("1_m4v15")
@@ -16,7 +17,7 @@ visible = false
 mesh = SubResource("BoxMesh_khgdm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=81406997]
-shape = SubResource("BoxShape3D_h2622")
+shape = SubResource("SphereShape3D_i0doq")
 
 [node name="BreakerBall" parent="." unique_id=1961282330 instance=ExtResource("2_i0doq")]
 transform = Transform3D(3.235, 0, 0, 0, 3.235, 0, 0, 0, 3.235, 0, -2.1030574, 0)

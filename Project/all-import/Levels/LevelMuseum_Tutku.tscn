@@ -3045,3 +3045,6 @@ shape = SubResource("ConcavePolygonShape3D_0mqny")
 
 [node name="TestBox4" parent="." unique_id=459223939 instance=ExtResource("21_mk156")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.371277, 3.7952347, 39.54776)
+
+[node name="TestBox5" parent="." unique_id=174030196 instance=ExtResource("21_mk156")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.39877, 3.7952347, 39.54776)

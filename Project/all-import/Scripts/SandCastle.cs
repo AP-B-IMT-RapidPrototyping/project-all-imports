@@ -7,7 +7,7 @@ using Godot;
 /// </summary>
 public partial class SandCastle : StealableObject
 {
-    [Export] public float MinImpactSpeed = 10.0f;
+    [Export] public float MinImpactSpeed = 7.0f;
 
     private bool _destroyed = false;
 
