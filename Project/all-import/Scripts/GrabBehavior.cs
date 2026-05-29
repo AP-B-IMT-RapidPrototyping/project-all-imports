@@ -57,7 +57,24 @@ public partial class GrabBehavior : Node
     {
         if (objectsInRange.Count == 0) return;
 
-        RigidBody3D target = objectsInRange[0];
+        // Pick the first in-range object that has a clear line of sight.
+        // If an obstacle (wall, glass cover, ...) is between the player and the
+        // object, it can't be picked up.
+        RigidBody3D target = null;
+        foreach (RigidBody3D candidate in objectsInRange)
+        {
+            if (IsInstanceValid(candidate) && HasLineOfSight(candidate))
+            {
+                target = candidate;
+                break;
+            }
+        }
+
+        if (target == null)
+        {
+            GD.Print("Geen grijpbaar object met vrij zicht (obstakel in de weg).");
+            return;
+        }
 
         if (IsInstanceValid(target))
         {
@@ -129,6 +146,33 @@ public partial class GrabBehavior : Node
 
         GD.Print($"Losgelaten: {heldObject.Name}");
         heldObject = null;
+    }
+
+    // Casts a ray from the player to the target. If it hits anything before
+    // reaching the target, there's an obstacle in the way and the object
+    // shouldn't be grabbable.
+    private bool HasLineOfSight(RigidBody3D target)
+    {
+        if (player == null) return true;
+
+        var spaceState = player.GetWorld3D().DirectSpaceState;
+
+        var query = PhysicsRayQueryParameters3D.Create(
+            player.GlobalPosition,
+            target.GlobalPosition);
+
+        query.CollideWithAreas = false;
+        query.CollideWithBodies = true;
+        query.Exclude = new Godot.Collections.Array<Rid>
+        {
+            player.GetRid(),
+            target.GetRid()
+        };
+
+        var result = spaceState.IntersectRay(query);
+
+        // Empty result → nothing between player and target → clear sight.
+        return result.Count == 0;
     }
 
     private void OnGrabAreaBodyEntered(Node3D body)

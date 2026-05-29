@@ -81,7 +81,7 @@ public partial class GameManagerBeach : Node
             CompleteMission();
     }
 
-    private void CompleteMission()
+    private async void CompleteMission()
     {
         _missionDone = true;
 
@@ -92,6 +92,9 @@ public partial class GameManagerBeach : Node
         NeutraliseAllNpcs();
 
         GD.Print("[GameManagerBeach] Mission complete — both castles destroyed.");
+
+        await ToSignal(GetTree().CreateTimer(2.0f), SceneTreeTimer.SignalName.Timeout);
+        GetTree().ChangeSceneToFile("res://Levels/LevelMuseum_Tutku.tscn");
     }
 
     public void OnPlayerDrowned()

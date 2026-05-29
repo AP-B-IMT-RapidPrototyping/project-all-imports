@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bv28wrr5lhaht" path="res://Actors/PickableDiamond.tscn" id="20_r4ln3"]
 [ext_resource type="PackedScene" uid="uid://cs3wdof4yb714" path="res://Actors/PickableBreaker.tscn" id="21_mk156"]
 [ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="22_lo3ul"]
+[ext_resource type="Script" uid="uid://bgmmuseumtutku01" path="res://Scripts/GameManagerMuseum.cs" id="23_gmmus"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lgmqw"]
 panorama = ExtResource("1_who0t")
@@ -3061,5 +3062,8 @@ visible = false
 mesh = SubResource("SphereMesh_mk156")
 
 [node name="UI" parent="." unique_id=600360855 instance=ExtResource("22_lo3ul")]
+
+[node name="GameManager" type="Node" parent="." unique_id=1443709707]
+script = ExtResource("23_gmmus")
 
 [editable path="UI"]
