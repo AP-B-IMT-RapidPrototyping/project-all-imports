@@ -21,8 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://clvcac6xebrn" path="res://Actors/diamond_pedestal.tscn" id="19_khcvy"]
 [ext_resource type="PackedScene" uid="uid://bv28wrr5lhaht" path="res://Actors/PickableDiamond.tscn" id="20_r4ln3"]
 [ext_resource type="PackedScene" uid="uid://cs3wdof4yb714" path="res://Actors/PickableBreaker.tscn" id="21_mk156"]
-[ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="22_lo3ul"]
-[ext_resource type="Script" uid="uid://bgmmuseumtutku01" path="res://Scripts/GameManagerMuseum.cs" id="23_gmmus"]
+[ext_resource type="Script" uid="uid://db08m7kuwg31i" path="res://Scripts/GameManagerMuseum.cs" id="23_gmmus"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lgmqw"]
 panorama = ExtResource("1_who0t")
@@ -3061,9 +3060,119 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.73368, 10.479749, 29.5793
 visible = false
 mesh = SubResource("SphereMesh_mk156")
 
-[node name="UI" parent="." unique_id=600360855 instance=ExtResource("22_lo3ul")]
+[node name="UI" type="Control" parent="." unique_id=600360855]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HintLabel" type="Label" parent="UI" unique_id=591152745]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 52.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 18
+text = "Spam SPACE to fly up  |  Hold SPACE to glide  |  WASD steer  |  R = restart"
+horizontal_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="UI" unique_id=1050255643]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.35
+anchor_right = 1.0
+anchor_bottom = 0.65
+theme_override_font_sizes/font_size = 80
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FirstObjective" type="Label" parent="UI" unique_id=1970394625]
+layout_mode = 0
+offset_left = 1439.0
+offset_top = 47.0
+offset_right = 2008.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 20
+text = "-Steal the diamond and flee"
+
+[node name="FirstObjectiveProgress" type="ProgressBar" parent="UI/FirstObjective" unique_id=1003450945]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 290.0
+offset_top = -10.0
+offset_right = 440.0
+offset_bottom = 18.0
+grow_vertical = 2
+max_value = 3.0
+step = 1.0
+show_percentage = false
+
+[node name="SecondObjective" type="Label" parent="UI" unique_id=1935678516]
+layout_mode = 0
+offset_left = 1385.0
+offset_top = 12.0
+offset_right = 1619.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 20
+text = "-Break the glass with weighty stuff"
+
+[node name="SecondObjectiveProgress" type="ProgressBar" parent="UI/SecondObjective" unique_id=1003450946]
+layout_mode = 0
+offset_left = 346.0
+offset_top = 2.0
+offset_right = 496.0
+offset_bottom = 30.0
+step = 1.0
+show_percentage = false
+
+[node name="MissionComplete" type="Label" parent="UI" unique_id=1200086644]
+visible = false
+layout_mode = 0
+offset_left = 750.0
+offset_top = 320.0
+offset_right = 1048.0
+offset_bottom = 362.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "MISSION COMPLETE!"
+
+[node name="GameOver" type="Label" parent="UI" unique_id=573526007]
+visible = false
+layout_mode = 0
+offset_left = 864.0
+offset_top = 365.0
+offset_right = 961.0
+offset_bottom = 388.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "GAME OVER!"
+
+[node name="Stamina" type="ProgressBar" parent="UI" unique_id=1872889853]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 20
+max_value = 1.0
+show_percentage = false
+
+[node name="StaminaText" type="Label" parent="UI/Stamina" unique_id=1384021287]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Stamina"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GameManager" type="Node" parent="." unique_id=1443709707]
 script = ExtResource("23_gmmus")
-
-[editable path="UI"]
