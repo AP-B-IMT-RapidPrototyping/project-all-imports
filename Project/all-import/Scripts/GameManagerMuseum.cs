@@ -49,6 +49,10 @@ public partial class GameManagerMuseum : Node
         if (_missionComplete != null) _missionComplete.Visible = false;
         if (_gameOverLabel   != null) _gameOverLabel.Visible   = false;
 
+        // Drive both bars on a 0–100 scale (positions/visibility stay as authored).
+        if (_distanceProgress != null) { _distanceProgress.MinValue = 0; _distanceProgress.MaxValue = 100; }
+        if (_glassProgress    != null) { _glassProgress.MinValue    = 0; _glassProgress.MaxValue    = 100; }
+
         if (_pedestal != null && _missionPoint != null)
             _pedestalToPointDist = _pedestal.GlobalPosition.DistanceTo(_missionPoint.GlobalPosition);
 
@@ -73,23 +77,22 @@ public partial class GameManagerMuseum : Node
         if (!_coverBroken && IsCoverBroken())
         {
             _coverBroken = true;
-            if (_glassProgress != null) _glassProgress.Value = _glassProgress.MaxValue;
+            if (_glassProgress != null) _glassProgress.Value = 100;
             GD.Print("[GameManagerMuseum] Glass cover broken!");
         }
 
         // ── Steal the diamond and leave (FirstObjectiveProgress) ─────
         // Same approach as GameManagerTutorial: progress fills as the diamond
         // gets closer to the MissionCompletePoint, based on the total distance
-        // from the pedestal to that point. Scaled to the bar's own MaxValue so
-        // the bar configured in the scene is left untouched.
+        // from the pedestal to that point.
         if (_diamond != null && _missionPoint != null && _pedestalToPointDist > 0)
         {
             float diamondDist = _diamond.GlobalPosition.DistanceTo(_missionPoint.GlobalPosition);
 
             if (_distanceProgress != null)
             {
-                float fraction = Mathf.Clamp(1f - (diamondDist / _pedestalToPointDist), 0f, 1f);
-                _distanceProgress.Value = fraction * _distanceProgress.MaxValue;
+                float progress = 100f * (1f - (diamondDist / _pedestalToPointDist));
+                _distanceProgress.Value = Mathf.Clamp(progress, 0, 100);
             }
 
             if (_coverBroken && diamondDist < ClearDistance)
@@ -113,8 +116,8 @@ public partial class GameManagerMuseum : Node
         GD.Print("[GameManagerMuseum] Diamond delivered — mission complete!");
 
         if (_missionComplete  != null) _missionComplete.Visible = true;
-        if (_distanceProgress != null) _distanceProgress.Value  = _distanceProgress.MaxValue;
-        if (_glassProgress    != null) _glassProgress.Value     = _glassProgress.MaxValue;
+        if (_distanceProgress != null) _distanceProgress.Value  = 100;
+        if (_glassProgress    != null) _glassProgress.Value     = 100;
 
         NeutraliseAllNpcs();
 
