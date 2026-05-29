@@ -1834,7 +1834,7 @@ mesh = SubResource("BoxMesh_lwf8e")
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D" unique_id=1664370525]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D" unique_id=1708097482]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, -1.1955714, 0)
+transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 0.99999976, 0, 0.26132518, 0)
 shape = SubResource("ConcavePolygonShape3D_wn6vh")
 
 [node name="InfoDeskBig" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=1604288646]
