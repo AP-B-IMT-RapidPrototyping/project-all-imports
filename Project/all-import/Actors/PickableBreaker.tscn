@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cs3wdof4yb714"]
+
+[ext_resource type="Script" uid="uid://cc884d7kefqhf" path="res://Scripts/StealableObject.cs" id="1_m4v15"]
+[ext_resource type="PackedScene" uid="uid://jd6xdip3myp2" path="res://Actors/buga_sphere.glb" id="2_i0doq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_khgdm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2622"]
+
+[node name="TestBox1" type="RigidBody3D" unique_id=898709373 groups=["Pickable"]]
+script = ExtResource("1_m4v15")
+ItemName = "Test Doos"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1380923689]
+visible = false
+mesh = SubResource("BoxMesh_khgdm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=81406997]
+shape = SubResource("BoxShape3D_h2622")
+
+[node name="BreakerBall" parent="." unique_id=1961282330 instance=ExtResource("2_i0doq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06608081, -0.3415606, -0.16350272)

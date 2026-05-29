@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://clvcac6xebrn"]
 
 [ext_resource type="Texture2D" uid="uid://bvrj5giljcjmh" path="res://Assets/MuseumAsset/ColorPaletteMuseum.png" id="1_8bnm2"]
+[ext_resource type="Script" uid="uid://bvqk6ofk81fn3" path="res://Actors/BreakableGlas.cs" id="2_lkapc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb4p8"]
 resource_name = "Material"
@@ -110,7 +111,9 @@ transform = Transform3D(0.34000003, 0, 0, 0, -1.48618735e-08, 0.050000012, 0, -0
 mesh = SubResource("BoxMesh_8bnm2")
 surface_material_override/0 = SubResource("StandardMaterial3D_lkapc")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cover/MeshInstance3D5" unique_id=140204017]
+[node name="Area3D" type="Area3D" parent="Cover/MeshInstance3D5" unique_id=514288264]
+script = ExtResource("2_lkapc")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cover/MeshInstance3D5/StaticBody3D" unique_id=999201189]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cover/MeshInstance3D5/Area3D" unique_id=999201189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -2.842171e-14, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_a8cly")
