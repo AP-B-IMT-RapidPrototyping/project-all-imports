@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cjioo1o8estrv"]
+
+[ext_resource type="Script" uid="uid://cc884d7kefqhf" path="res://Scripts/StealableObject.cs" id="1_j6r7g"]
+[ext_resource type="PackedScene" uid="uid://64usy7n607ve" path="res://Actors/beach_ball.glb" id="2_paiid"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2622"]
+
+[node name="TestBox1" type="RigidBody3D" unique_id=898709373 groups=["Pickable"]]
+script = ExtResource("1_j6r7g")
+ItemName = "Test Doos"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=81406997]
+shape = SubResource("BoxShape3D_h2622")
+
+[node name="Beachball" parent="." unique_id=1894280482 instance=ExtResource("2_paiid")]
