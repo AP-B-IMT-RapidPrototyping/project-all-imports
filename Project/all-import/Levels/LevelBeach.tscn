@@ -2447,12 +2447,8 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_s0gpe")
 
-<<<<<<< HEAD
-[sub_resource type="Curve3D" id="Curve3D_jnmlx"]
-=======
 [sub_resource type="BoxShape3D" id="BoxShape3D_jnmlx"]
 size = Vector3(79.27493, 5.934082, 67.3728)
->>>>>>> a0b4e32a27ea5b3f46cbec871535e18a9389ff94
 
 [node name="Node3D" type="Node3D" unique_id=652468711]
 
