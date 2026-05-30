@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://doauo4706uti0"]
 
-[ext_resource type="Script" uid="uid://gj76mxkm74bf" path="res://Levels/LevelController.cs" id="1_svj80"]
+[ext_resource type="PackedScene" uid="uid://bpd57tlrjr0s2" path="res://Levels/pause_menu.tscn" id="1_d2gkt"]
 [ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="2_d2gkt"]
 [ext_resource type="Texture2D" uid="uid://d4mdhghqhqq0v" path="res://Assets/Sky Backgrounds512x512/512x512/Puffy Sky/Puffy_Sky-Evening_03-512x512.png" id="3_h0sd5"]
 [ext_resource type="PackedScene" uid="uid://dteuwtgupxd84" path="res://Scene/Tutku/Farm.tscn" id="4_4j4mb"]
@@ -93,45 +93,6 @@
 [ext_resource type="PackedScene" uid="uid://bee7iwggcl16x" path="res://Scene/Tutku/Ring.tscn" id="91_vdhkr"]
 [ext_resource type="PackedScene" uid="uid://rmja3wfua83v" path="res://Scene/Tutku/Raam.tscn" id="92_hhkwo"]
 [ext_resource type="Texture2D" uid="uid://c2hdf2xnqop4h" path="res://Assets/Auto textures/color_128x128.jpg" id="93_0q0a3"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27ee"]
-bg_color = Color(0.047058824, 0.27058825, 0.44705883, 0.7254902)
-border_color = Color(1, 1, 1, 1)
-border_blend = true
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wib2v"]
-bg_color = Color(0.03137255, 0.22745098, 0.3764706, 0.6666667)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.39215687, 0.6862745, 0.95686275, 1)
-border_blend = true
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-expand_margin_top = 2.0
-expand_margin_bottom = 2.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggt8f"]
-bg_color = Color(0.03137255, 0.22745098, 0.3764706, 0.6666667)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.39215687, 0.6862745, 0.95686275, 1)
-border_blend = true
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-expand_margin_top = 2.0
-expand_margin_bottom = 2.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2nkc"]
 size = Vector3(1.0795288, 49.67273, 241.96649)
@@ -2455,7 +2416,6 @@ shadow_mesh = SubResource("ArrayMesh_s0gpe")
 [node name="Node3D" type="Node3D" unique_id=652468711]
 
 [node name="Node3D2" type="Node3D" parent="." unique_id=1029517343]
-script = ExtResource("1_svj80")
 
 [node name="UI" parent="Node3D2" unique_id=600360855 instance=ExtResource("2_d2gkt")]
 anchors_preset = 5
@@ -2470,58 +2430,6 @@ size_flags_vertical = 0
 offset_left = -1900.0
 offset_right = -1603.0
 offset_bottom = 69.0
-
-[node name="PauseMenu" type="CanvasLayer" parent="Node3D2" unique_id=2058496818]
-process_mode = 3
-visible = false
-scale = Vector2(2, 2)
-transform = Transform2D(2, 0, 0, 2, 0, 0)
-
-[node name="Panel" type="Panel" parent="Node3D2/PauseMenu" unique_id=1435044443]
-layout_direction = 1
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Node3D2/PauseMenu/Panel" unique_id=2130627043]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 750.0
-offset_top = 465.0
-offset_right = 1100.0
-offset_bottom = 715.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(-100, 100)
-theme_override_constants/separation = 25
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="Node3D2/PauseMenu/Panel/VBoxContainer" unique_id=805005806]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxFlat_a27ee")
-text = "GEPAUZEERD"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="Node3D2/PauseMenu/Panel/VBoxContainer" unique_id=1911839096]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_wib2v")
-text = "DOORGAAN"
-
-[node name="Button2" type="Button" parent="Node3D2/PauseMenu/Panel/VBoxContainer" unique_id=502616160]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_ggt8f")
-text = "TERUG NAAR MENU"
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D2" unique_id=1788064489]
 
@@ -6087,8 +5995,8 @@ mesh = SubResource("ArrayMesh_fc6et")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 157.29198, 23.192156, -44.29351)
 shape = SubResource("BoxShape3D_b2nkc")
 
-[connection signal="pressed" from="Node3D2/PauseMenu/Panel/VBoxContainer/Button" to="Node3D2" method="OnResumeButtonPressed"]
-[connection signal="pressed" from="Node3D2/PauseMenu/Panel/VBoxContainer/Button2" to="Node3D2" method="OnBackToMenuButtonPressed"]
+[node name="PauseMenu" parent="." unique_id=1274316590 instance=ExtResource("1_d2gkt")]
+
 [connection signal="body_entered" from="Node3D2/DamageArea" to="Node3D2" method="OnDamageAreaBodyEntered"]
 
 [editable path="Node3D2/UI"]

@@ -51,10 +51,11 @@
 [ext_resource type="PackedScene" uid="uid://cfclojjacuyr" path="res://Assets/nature_kit/Nature Kit/models/Flower_Bellflower_3.fbx" id="48_ql07f"]
 [ext_resource type="PackedScene" uid="uid://bllgloqi0yjtx" path="res://Scene/Tutku/LevelUI.tscn" id="49_ufjfp"]
 [ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="50_p22d7"]
-[ext_resource type="PackedScene" path="res://Actors/Pickable.tscn" id="51_n3cjp"]
+[ext_resource type="PackedScene" uid="uid://drc3rd6dnayb3" path="res://Actors/Pickable.tscn" id="51_n3cjp"]
 [ext_resource type="PackedScene" uid="uid://drifjuk6x5s71" path="res://Assets/chimney_smoke.tscn" id="52_ddxol"]
 [ext_resource type="PackedScene" uid="uid://cul1rjqpggkti" path="res://Actors/PickableTrash1.tscn" id="53_o4ifd"]
-[ext_resource type="PackedScene" uid="uid://ci6bcl2cq50uv" path="res://Systems/CarSpawner.tscn" id="56_h552l"]
+[ext_resource type="PackedScene" path="res://Systems/CarSpawner.tscn" id="56_h552l"]
+[ext_resource type="PackedScene" uid="uid://bpd57tlrjr0s2" path="res://Levels/pause_menu.tscn" id="58_ctqsp"]
 [ext_resource type="Script" uid="uid://bv3nqqg48snbx" path="res://Scripts/Chimney.cs" id="scr_chimney"]
 [ext_resource type="Script" uid="uid://lc2w37u8pchj" path="res://Scripts/GameManagerLevel1.cs" id="scr_gmlvl1"]
 
@@ -2293,6 +2294,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136.36214, 2.128515, -9.35349
 pixel_size = 0.01
 billboard = 1
 text = "Press E to Pick & throw"
+
+[node name="PauseMenu" parent="." unique_id=1274316590 instance=ExtResource("58_ctqsp")]
+visible = false
 
 [editable path="CarSpawner"]
 [editable path="CarSpawner2"]

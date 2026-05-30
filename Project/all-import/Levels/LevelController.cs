@@ -1,15 +1,20 @@
 using Godot;
 
-public partial class LevelController : Node3D
+public partial class LevelController : CanvasLayer
 {
     private CanvasLayer _pauseMenu;
     private bool _isPaused = false;
 
-public override void _Ready()
-{
-    _pauseMenu = GetNode<CanvasLayer>("PauseMenu"); // ← exact zelfde naam als node!
-    _pauseMenu.Visible = false;
-}
+// public override void _Ready()
+// {
+//     _pauseMenu = GetNode<CanvasLayer>("PauseMenu"); // ← exact zelfde naam als node!
+//     _pauseMenu.Visible = false;
+// }
+    public override void _Ready()
+    {
+        _pauseMenu = GetTree().Root.FindChild("PauseMenu", true, false) as CanvasLayer;
+        _pauseMenu.Visible = false;
+    }
 
     public override void _UnhandledInput(InputEvent @event)
     {

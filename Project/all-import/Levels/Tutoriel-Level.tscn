@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://r7p6lcu7sawm"]
 
 [ext_resource type="Texture2D" uid="uid://d4mdhghqhqq0v" path="res://Assets/Sky Backgrounds512x512/512x512/Puffy Sky/Puffy_Sky-Evening_03-512x512.png" id="1_3cjku"]
-[ext_resource type="Script" uid="uid://gj76mxkm74bf" path="res://Levels/LevelController.cs" id="1_a27ee"]
 [ext_resource type="PackedScene" uid="uid://dteuwtgupxd84" path="res://Scene/Tutku/Farm.tscn" id="2_a27ee"]
 [ext_resource type="PackedScene" uid="uid://2hdcx3o5h1e3" path="res://Scene/Tutku/Kip.tscn" id="3_wib2v"]
 [ext_resource type="PackedScene" uid="uid://dkoyhln7r5for" path="res://Scene/Tutku/house_028-coll.tscn" id="4_ggt8f"]
@@ -55,47 +54,9 @@
 [ext_resource type="Script" uid="uid://dohwsgwld0eae" path="res://Scripts/GameManagerTutorial.cs" id="53_ajyva"]
 [ext_resource type="PackedScene" uid="uid://bkggnca2e44kp" path="res://Scene/Tutku/Nest.tscn" id="56_7kdfv"]
 [ext_resource type="PackedScene" uid="uid://drifjuk6x5s71" path="res://Assets/chimney_smoke.tscn" id="57_eynsq"]
+[ext_resource type="PackedScene" uid="uid://bpd57tlrjr0s2" path="res://Levels/pause_menu.tscn" id="57_hb4br"]
 [ext_resource type="PackedScene" path="res://Systems/CarSpawner.tscn" id="58_8v3fi"]
 [ext_resource type="PackedScene" uid="uid://cul1rjqpggkti" path="res://Actors/PickableTrash1.tscn" id="58_hb4br"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27ee"]
-bg_color = Color(0.047058824, 0.27058825, 0.44705883, 0.7254902)
-border_color = Color(1, 1, 1, 1)
-border_blend = true
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wib2v"]
-bg_color = Color(0.03137255, 0.22745098, 0.3764706, 0.6666667)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.39215687, 0.6862745, 0.95686275, 1)
-border_blend = true
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-expand_margin_top = 2.0
-expand_margin_bottom = 2.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggt8f"]
-bg_color = Color(0.03137255, 0.22745098, 0.3764706, 0.6666667)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.39215687, 0.6862745, 0.95686275, 1)
-border_blend = true
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-expand_margin_top = 2.0
-expand_margin_bottom = 2.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2nkc"]
 size = Vector3(1.0795288, 49.67273, 241.96649)
@@ -828,7 +789,6 @@ size = Vector3(107.52899, 1, 142.22852)
 size = Vector3(130.13379, 38.670837, 146.38586)
 
 [node name="Node3D2" type="Node3D" unique_id=1029517343]
-script = ExtResource("1_a27ee")
 
 [node name="UI" type="Control" parent="." unique_id=600360855]
 layout_mode = 3
@@ -935,55 +895,6 @@ theme_override_font_sizes/font_size = 20
 text = "Stamina"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=2058496818]
-process_mode = 3
-
-[node name="Panel" type="Panel" parent="PauseMenu" unique_id=1435044443]
-layout_direction = 1
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Panel" unique_id=2130627043]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 750.0
-offset_top = 465.0
-offset_right = 1100.0
-offset_bottom = 715.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(-100, 100)
-theme_override_constants/separation = 25
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="PauseMenu/Panel/VBoxContainer" unique_id=805005806]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxFlat_a27ee")
-text = "GEPAUZEERD"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="PauseMenu/Panel/VBoxContainer" unique_id=1911839096]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_wib2v")
-text = "DOORGAAN"
-
-[node name="Button2" type="Button" parent="PauseMenu/Panel/VBoxContainer" unique_id=502616160]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_ggt8f")
-text = "TERUG NAAR MENU"
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1788064489]
 
@@ -2376,8 +2287,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 117.80324, 6.1213474, -2.3960
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.140381, 13.647919, -74.23529)
 shape = SubResource("BoxShape3D_eynsq")
 
-[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/Button" to="." method="OnResumeButtonPressed"]
-[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/Button2" to="." method="OnBackToMenuButtonPressed"]
+[node name="PauseMenu" parent="." unique_id=1274316590 instance=ExtResource("57_hb4br")]
+visible = false
+
 [connection signal="body_entered" from="DamageArea" to="." method="OnDamageAreaBodyEntered"]
 
 [editable path="CarSpawner"]

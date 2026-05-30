@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://48lleks7wc52" path="res://Assets/MuseumAsset/low-poly-art (1) (1).png" id="4_qqqc6"]
 [ext_resource type="PackedScene" uid="uid://05eeeuehno13" path="res://Actors/Player.tscn" id="4_wn6vh"]
 [ext_resource type="Texture2D" uid="uid://dn0fd65tkw4ms" path="res://Assets/MuseumAsset/low-poly-art (4).png" id="5_31ks6"]
-[ext_resource type="PackedScene" uid="uid://dabxqv3oeudh8" path="res://Assets/MuseumAsset/info_desk_small.tscn" id="6_31ks6"]
+[ext_resource type="PackedScene" path="res://Assets/MuseumAsset/info_desk_small.tscn" id="6_31ks6"]
 [ext_resource type="PackedScene" uid="uid://b5suu3ayvu78f" path="res://Scene/Tutku/sculpture.tscn" id="6_qqqc6"]
 [ext_resource type="Texture2D" uid="uid://djs4f4ybfoqsg" path="res://Assets/MuseumAsset/low-poly-art (5) (1).png" id="8_tnhdc"]
 [ext_resource type="Texture2D" uid="uid://c8efaqh42iq6q" path="res://Assets/MuseumAsset/Schermafbeelding 2026-05-15 194830.png" id="11_spu0k"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bv28wrr5lhaht" path="res://Actors/PickableDiamond.tscn" id="20_r4ln3"]
 [ext_resource type="PackedScene" uid="uid://cs3wdof4yb714" path="res://Actors/PickableBreaker.tscn" id="21_mk156"]
 [ext_resource type="Script" uid="uid://db08m7kuwg31i" path="res://Scripts/GameManagerMuseum.cs" id="23_gmmus"]
+[ext_resource type="PackedScene" uid="uid://bpd57tlrjr0s2" path="res://Levels/pause_menu.tscn" id="23_lklj8"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lgmqw"]
 panorama = ExtResource("1_who0t")
@@ -3176,3 +3177,6 @@ vertical_alignment = 1
 
 [node name="GameManager" type="Node" parent="." unique_id=1443709707]
 script = ExtResource("23_gmmus")
+
+[node name="PauseMenu" parent="." unique_id=1274316590 instance=ExtResource("23_lklj8")]
+visible = false

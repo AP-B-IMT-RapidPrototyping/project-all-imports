@@ -1,9 +1,10 @@
-[gd_scene format=4 uid="uid://unu28jxaho1w"]
+[gd_scene format=4 uid="uid://n24knk2bo0qf"]
 
 [ext_resource type="Texture2D" uid="uid://bvrj5giljcjmh" path="res://Assets/MuseumAsset/ColorPaletteMuseum.png" id="1_lwf8e"]
 [ext_resource type="PackedScene" uid="uid://bih3ad7q42qhx" path="res://Assets/low_polysguard/scene.gltf" id="2_6nmmc"]
 [ext_resource type="Script" uid="uid://bu6jn62qsbbtg" path="res://Scene/Tutku/Guard.cs" id="2_smj3k"]
 [ext_resource type="PackedScene" uid="uid://05eeeuehno13" path="res://Actors/Player.tscn" id="4_wn6vh"]
+[ext_resource type="PackedScene" uid="uid://bpd57tlrjr0s2" path="res://Levels/pause_menu.tscn" id="5_uavcn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_smj3k"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -1999,3 +2000,5 @@ mesh = SubResource("ArrayMesh_wn6vh")
 [node name="ExhibitPanel5" type="MeshInstance3D" parent="." unique_id=2046153188]
 transform = Transform3D(2.041779, 0, 2.1979852, 0, 3, 0, -2.1979852, 0, 2.041779, 42.34143, 0, -6.3453045)
 mesh = SubResource("ArrayMesh_4i1qx")
+
+[node name="PauseMenu" parent="." unique_id=1274316590 instance=ExtResource("5_uavcn")]
