@@ -6143,12 +6143,6 @@ shape = SubResource("ConcavePolygonShape3D_gxdkp")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D20/StaticBody3D2" unique_id=1951331681]
 shape = SubResource("ConcavePolygonShape3D_iq3yb")
 
-<<<<<<< HEAD
-[node name="NPCPath" type="Path3D" parent="." unique_id=1517357937]
-curve = SubResource("Curve3D_jnmlx")
-
-[node name="PathFollow" type="PathFollow3D" parent="NPCPath" unique_id=435691948]
-=======
 [node name="WaterArea" type="Area3D" parent="." unique_id=13306173]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.859055, 1.1613913, -139.0714)
 script = ExtResource("95_water")
@@ -6156,7 +6150,6 @@ script = ExtResource("95_water")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WaterArea" unique_id=481558121]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.58043, -2.9381876, 7.5599365)
 shape = SubResource("BoxShape3D_jnmlx")
->>>>>>> a0b4e32a27ea5b3f46cbec871535e18a9389ff94
 
 [connection signal="pressed" from="Node3D2/PauseMenu/Panel/VBoxContainer/Button" to="Node3D2" method="OnResumeButtonPressed"]
 [connection signal="pressed" from="Node3D2/PauseMenu/Panel/VBoxContainer/Button2" to="Node3D2" method="OnBackToMenuButtonPressed"]
