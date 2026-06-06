@@ -32,6 +32,10 @@ public partial class PlayerMovement : CharacterBody3D
 	[Export] public float StaminaRegenRate = 0.4f;
 	[Export] public float GlideStaminaRegenRate = 0.1f;
 
+	// audio
+	[Export] private AudioStreamPlayer _Flysound;
+	[Export] private AudioStreamPlayer _Glidesound;
+
 	private float _cameraYawDeg;
 	private float _cameraPitchDeg;
 	private float _jumpCooldownTimer;
@@ -40,9 +44,9 @@ public partial class PlayerMovement : CharacterBody3D
 	private Camera3D _camera;
 	private Node3D _visualTilt;
 
-	// ── NEW ──────────────────────────────────────────────
 	private ProgressBar _staminaBar;
-	// ─────────────────────────────────────────────────────
+
+	private bool _wasGliding;
 
 	public override void _Ready()
 	{
@@ -53,7 +57,6 @@ public partial class PlayerMovement : CharacterBody3D
 		_cameraYawDeg = Mathf.RadToDeg(Rotation.Y);
 		_visualTilt = GetNodeOrNull<Node3D>("VisualTilt");
 
-		// UI may live anywhere in the tree depending on the level — search recursively.
 		_staminaBar = GetTree().Root.FindChild("Stamina", true, false) as ProgressBar;
 		if (_staminaBar == null)
 			GD.PushWarning("PlayerMovement: Stamina bar not found!");
@@ -81,7 +84,30 @@ public partial class PlayerMovement : CharacterBody3D
 		bool jumpPressed = Input.IsActionJustPressed("jump");
 		bool gliding = jumpHeld && !onFloor;
 
-		// ── Gravity ──────────────────────────────────────────────────────────────
+		// ── Audio ─────────────────────────────────────────────────────────────────
+		if (jumpPressed && _jumpCooldownTimer <= 0f)
+		{
+			 GD.Print("Playing Flysound, stream is: " + _Flysound?.Stream);
+			_Flysound?.Play();
+		}
+
+		if (!jumpHeld)
+		{
+			_Flysound?.Stop();
+		}
+
+		if (gliding && !_wasGliding)
+		{
+			_Glidesound?.Play();
+		}
+		else if (!gliding && _wasGliding)
+		{
+			_Glidesound?.Stop();
+		}
+		_wasGliding = gliding;
+		// ─────────────────────────────────────────────────────────────────────────
+
+		// ── Gravity ───────────────────────────────────────────────────────────────
 		if (!onFloor)
 		{
 			float gravityMul = gliding ? GlideGravityMultiplier : 1f;
@@ -92,7 +118,7 @@ public partial class PlayerMovement : CharacterBody3D
 			velocity.Y = 0f;
 		}
 
-		// ── Jump / flap ──────────────────────────────────────────────────────────
+		// ── Jump / flap ───────────────────────────────────────────────────────────
 		if (jumpPressed && _jumpCooldownTimer <= 0f)
 		{
 			bool canJump = onFloor || Stamina >= 0f;
@@ -101,14 +127,13 @@ public partial class PlayerMovement : CharacterBody3D
 				velocity.Y += onFloor ? JumpVelocity : AirJumpVelocity;
 				_jumpCooldownTimer = JumpCooldown;
 				if (!onFloor)
-					Stamina -= JumpStaminaCost;   // cost only in the air
+					Stamina -= JumpStaminaCost;
 			}
 		}
 
-		// ── Stamina regen & glide movement ───────────────────────────────────────
+		// ── Stamina regen & glide movement ────────────────────────────────────────
 		if (gliding)
 		{
-			// Airborne + holding jump → slow regen
 			Stamina += GlideStaminaRegenRate * deltaF;
 
 			if (velocity.Y < -GlideFallSpeed)
@@ -119,19 +144,14 @@ public partial class PlayerMovement : CharacterBody3D
 		}
 		else
 		{
-			// On the floor OR airborne without holding jump → full regen
 			Stamina += StaminaRegenRate * deltaF;
 			velocity = ProcessGroundedHorizontal(velocity, deltaF, onFloor);
 		}
 
-		// Stamina = Mathf.Clamp(Stamina, 0f, 1f);
 		Stamina = Mathf.Min(Stamina, 1f);
 
-
-		// ── NEW: update HUD label ─────────────────────────────────────────────────
 		if (_staminaBar != null)
 			_staminaBar.Value = Stamina;
-		// ─────────────────────────────────────────────────────────────────────────
 
 		Velocity = velocity;
 		MoveAndSlide();

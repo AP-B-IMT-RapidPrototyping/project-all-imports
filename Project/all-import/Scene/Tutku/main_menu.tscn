@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bmxyi3is6f8v0"]
 
-[ext_resource type="Script" path="res://Scene/Tutku/MainMenuController.cs" id="1_6hapo"]
+[ext_resource type="Script" uid="uid://dw1hcqihe0n74" path="res://Scene/Tutku/MainMenuController.cs" id="1_6hapo"]
 [ext_resource type="PackedScene" uid="uid://bpdtwpwf1bpvl" path="res://Scene/Tutku/TestScene.tscn" id="2_6hapo"]
+[ext_resource type="AudioStream" uid="uid://cjq1t3ld364ju" path="res://Scene/Elisha/Audio/billy_ziogas-shortcuts-master-track-240881.ogg" id="3_w02qk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hapo"]
 bg_color = Color(0.105882354, 0.43529412, 0.69411767, 0.5882353)
@@ -200,6 +201,10 @@ process_mode = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1741523884]
 libraries/ = SubResource("AnimationLibrary_7jhb2")
 speed_scale = 0.6
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=431987229]
+stream = ExtResource("3_w02qk")
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="." method="OnStartButtonPressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="." method="OnOptionsButtonPressed"]
