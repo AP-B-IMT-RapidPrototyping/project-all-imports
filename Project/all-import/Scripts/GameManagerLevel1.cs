@@ -77,9 +77,9 @@ public partial class GameManagerLevel1 : Node
 
         await ToSignal(GetTree().CreateTimer(2.0f, true, false, true), SceneTreeTimer.SignalName.Timeout);
 
-        GD.Print("[GameManager] Transitioning to Level-2...");
+        GD.Print("[GameManager] Transitioning to LevelBeach...");
         GetTree().Paused = false;
-        GetTree().ChangeSceneToFile("res://Levels/Level-2.tscn");
+        GetTree().ChangeSceneToFile("res://Levels/LevelBeach.tscn");
     }
 
     private void NeutraliseAllNpcs()
