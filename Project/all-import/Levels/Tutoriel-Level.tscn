@@ -54,9 +54,11 @@
 [ext_resource type="Script" uid="uid://dohwsgwld0eae" path="res://Scripts/GameManagerTutorial.cs" id="53_ajyva"]
 [ext_resource type="PackedScene" uid="uid://bkggnca2e44kp" path="res://Scene/Tutku/Nest.tscn" id="56_7kdfv"]
 [ext_resource type="PackedScene" uid="uid://drifjuk6x5s71" path="res://Assets/chimney_smoke.tscn" id="57_eynsq"]
-[ext_resource type="PackedScene" uid="uid://bpd57tlrjr0s2" path="res://Levels/pause_menu.tscn" id="57_hb4br"]
-[ext_resource type="PackedScene" path="res://Systems/CarSpawner.tscn" id="58_8v3fi"]
+[ext_resource type="PackedScene" path="res://Levels/pause_menu.tscn" id="57_hb4br"]
+[ext_resource type="PackedScene" uid="uid://ci6bcl2cq50uv" path="res://Systems/CarSpawner.tscn" id="58_8v3fi"]
+[ext_resource type="AudioStream" uid="uid://c4p32bja8bk36" path="res://Scene/Elisha/Audio/billy_ziogas-shortcuts-master-track-240881.ogg" id="58_a6hry"]
 [ext_resource type="PackedScene" uid="uid://cul1rjqpggkti" path="res://Actors/PickableTrash1.tscn" id="58_hb4br"]
+[ext_resource type="AudioStream" uid="uid://dkfoi43us20dc" path="res://Scene/Elisha/Audio/dragon-studio-busy-street-ambience-447501.wav" id="59_8v3fi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2nkc"]
 size = Vector3(1.0795288, 49.67273, 241.96649)
@@ -1240,6 +1242,10 @@ mesh = SubResource("BoxMesh_53gp6")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform3/StaticBody3D" unique_id=772438824]
 shape = SubResource("BoxShape3D_4y5si")
 
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Platform3" unique_id=1541306200]
+transform = Transform3D(0.04260542, 0, 0, 0, 0.15363182, 0, 0, 0, 0.02047246, 0.394486, 0.40412498, -1.0269316)
+mesh = SubResource("BoxMesh_85s8y")
+
 [node name="Strepen" type="Node3D" parent="." unique_id=718436092]
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="Strepen" unique_id=492739389]
@@ -1277,10 +1283,6 @@ mesh = SubResource("BoxMesh_85s8y")
 
 [node name="MeshInstance3D19" type="MeshInstance3D" parent="Strepen" unique_id=1947913495]
 transform = Transform3D(4.5783577, 0, 0, 0, 0.15363182, 0, 0, 0, 1, 146.27107, 0.49437118, 2.5202932)
-mesh = SubResource("BoxMesh_85s8y")
-
-[node name="MeshInstance3D20" type="MeshInstance3D" parent="Strepen" unique_id=1541306200]
-transform = Transform3D(4.5783577, 0, 0, 0, 0.15363182, 0, 0, 0, 1, 146.27107, 0.49437118, 4.657678)
 mesh = SubResource("BoxMesh_85s8y")
 
 [node name="MeshInstance3D21" type="MeshInstance3D" parent="Strepen" unique_id=1103999344]
@@ -2289,6 +2291,14 @@ shape = SubResource("BoxShape3D_eynsq")
 
 [node name="PauseMenu" parent="." unique_id=1274316590 instance=ExtResource("57_hb4br")]
 visible = false
+
+[node name="Cars" type="AudioStreamPlayer3D" parent="." unique_id=985382073]
+stream = ExtResource("59_8v3fi")
+autoplay = true
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1668865862]
+stream = ExtResource("58_a6hry")
+autoplay = true
 
 [connection signal="body_entered" from="DamageArea" to="." method="OnDamageAreaBodyEntered"]
 
