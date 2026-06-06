@@ -64,6 +64,11 @@ public partial class NpcBeach : CharacterBody3D
     rot.X = 0;
     rot.Z = 0;
     GlobalRotation = rot;
+
+        if (GlobalPosition.DistanceTo(Player.GlobalPosition) < 2.0f)
+    {
+        CatchPlayer();
+    }
 }
 
     private void WalkPath()
@@ -102,6 +107,16 @@ public partial class NpcBeach : CharacterBody3D
         ExclamationMark.Modulate = new Color(1, 1, 1, 1);
         await ToSignal(GetTree().CreateTimer(3.0f), "timeout");
         ExclamationMark.Modulate = new Color(1, 1, 1, 0);
+    }
+    private void CatchPlayer()
+    {
+        var gmLevel1 = GetTree().Root.FindChild("GameManager", true, false) as GameManagerLevel1;
+        if (gmLevel1 == null)
+            gmLevel1 = GetTree().Root.FindChild("GameManagerTestlvl", true, false) as GameManagerLevel1;
+        if (gmLevel1 != null) { gmLevel1.OnPlayerCaught(); return; }
+
+        var gmTut = GetTree().Root.FindChild("GameManagerTestlvl", true, false) as GameManagerTutorial;
+        if (gmTut != null) { gmTut.OnPlayerCaught(); return; }
     }
 }
 
