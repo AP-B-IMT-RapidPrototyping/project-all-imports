@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cu2ct4t0ahs55"]
+
+[ext_resource type="Script" uid="uid://cc884d7kefqhf" path="res://Scripts/StealableObject.cs" id="1_f8qga"]
+[ext_resource type="PackedScene" uid="uid://dqi6sner1r5w1" path="res://Assets/Garbarge assets/RottenApple.fbx" id="2_d1o4v"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f8qga"]
+radius = 0.18066406
+height = 0.4678192
+
+[node name="RigidBody3D" type="RigidBody3D" unique_id=711282634 groups=["Pickable"]]
+script = ExtResource("1_f8qga")
+
+[node name="RottenApple" parent="." unique_id=709811813 instance=ExtResource("2_d1o4v")]
+transform = Transform3D(4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, 0.018115282, 0, -0.0011175871)
+
+[node name="Label" type="Label3D" parent="RottenApple" unique_id=437002838]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.11119963, 0)
+visible = false
+billboard = 1
+text = " [ E ]
+trash"
+outline_size = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2121139465]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.032549366, 0.18480682, 0)
+shape = SubResource("CapsuleShape3D_f8qga")

@@ -28,7 +28,6 @@
 [ext_resource type="Texture2D" uid="uid://osd15ha0fu06" path="res://Assets/Auto textures/color_2048x2048.jpg" id="26_35yi7"]
 [ext_resource type="Script" uid="uid://bwgr5sjijqv4p" path="res://Levels/Auto.cs" id="27_0wvun"]
 [ext_resource type="PackedScene" uid="uid://20jgoufny0xv" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter4.fbx" id="28_aasuh"]
-[ext_resource type="PackedScene" uid="uid://co23ipcchnmcb" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter1.fbx" id="29_8aj6o"]
 [ext_resource type="PackedScene" uid="uid://e1gu0j1xmm6r" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter2.fbx" id="30_yg8dk"]
 [ext_resource type="Texture2D" uid="uid://ckm53f1hmots0" path="res://Assets/Farm/3D Farm Asset Pack_6.png" id="31_sl5er"]
 [ext_resource type="PackedScene" path="res://Scene/Tutku/farmhouse_a_02_002.tscn" id="32_op8q6"]
@@ -51,7 +50,6 @@
 [ext_resource type="ArrayMesh" uid="uid://2tnohlkuqfy1" path="res://Assets/nature_kit/Nature Kit/models/Flower_Daisy_1.obj" id="49_3j80x"]
 [ext_resource type="PackedScene" uid="uid://cfclojjacuyr" path="res://Assets/nature_kit/Nature Kit/models/Flower_Bellflower_3.fbx" id="50_8h00c"]
 [ext_resource type="PackedScene" uid="uid://bllgloqi0yjtx" path="res://Scene/Tutku/LevelUI.tscn" id="51_86cww"]
-[ext_resource type="PackedScene" uid="uid://p3wvqyg1g56r" path="res://Actors/NPC-An.tscn" id="52_kbwob"]
 [ext_resource type="PackedScene" uid="uid://drc3rd6dnayb3" path="res://Actors/Pickable.tscn" id="53_ir76k"]
 [ext_resource type="Script" uid="uid://lc2w37u8pchj" path="res://Scripts/GameManagerLevel1.cs" id="54_8risp"]
 [ext_resource type="ArrayMesh" uid="uid://d12mhctr81hf3" path="res://Assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/obj/box_A.obj" id="55_6sgsb"]
@@ -93,6 +91,11 @@
 [ext_resource type="PackedScene" uid="uid://bee7iwggcl16x" path="res://Scene/Tutku/Ring.tscn" id="91_vdhkr"]
 [ext_resource type="PackedScene" uid="uid://rmja3wfua83v" path="res://Scene/Tutku/Raam.tscn" id="92_hhkwo"]
 [ext_resource type="Texture2D" uid="uid://c2hdf2xnqop4h" path="res://Assets/Auto textures/color_128x128.jpg" id="93_0q0a3"]
+[ext_resource type="PackedScene" uid="uid://cu2ct4t0ahs55" path="res://Actors/RottenApple.tscn" id="94_h0sd5"]
+[ext_resource type="PackedScene" uid="uid://cul1rjqpggkti" path="res://Actors/PickableTrash1.tscn" id="95_4j4mb"]
+[ext_resource type="PackedScene" uid="uid://cm53fqhjb5g1c" path="res://Assets/Garbarge assets/BolsaN2.fbx" id="96_4j4mb"]
+[ext_resource type="PackedScene" uid="uid://bt2hdogpfoewg" path="res://Assets/Garbarge assets/BolsaNa.fbx" id="97_6nha4"]
+[ext_resource type="PackedScene" uid="uid://b4lbtrl65j0ol" path="res://Assets/Garbarge assets/BolsaN1.fbx" id="98_tpsjg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2nkc"]
 size = Vector3(1.0795288, 49.67273, 241.96649)
@@ -513,6 +516,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_cxo3i")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tpsjg"]
+size = Vector3(146.43378, 17.090576, 74.42311)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_orjak"]
 _surfaces = [{
@@ -2626,9 +2632,6 @@ transform = Transform3D(1.0879353, 0, -1.0326648, 0, 1.5, 0, 1.0326648, 0, 1.087
 [node name="LowPolyCharacter4" parent="Node3D2/Karakters" unique_id=242623743 instance=ExtResource("28_aasuh")]
 transform = Transform3D(-1.4999758, 0, 0.00853467, 0, 1.5000014, 0, -0.00853467, 0, -1.4999758, -5.2267303, 0, 3.7606773)
 
-[node name="LowPolyCharacter1" parent="Node3D2/Karakters" unique_id=1814522939 instance=ExtResource("29_8aj6o")]
-transform = Transform3D(1.0879353, 0, 1.0326648, 0, 1.5, 0, -1.0326648, 0, 1.0879353, 6.4537964, 0.024558961, 9.723213)
-
 [node name="LowPolyCharacter5" parent="Node3D2/Karakters" unique_id=1507386434 instance=ExtResource("30_yg8dk")]
 transform = Transform3D(-0.93166584, 0, 0.36331633, 0, 1.0000002, 0, -0.36331633, 0, -0.93166584, -15.969002, 0.12788957, -0.9265022)
 
@@ -3361,7 +3364,7 @@ mesh = ExtResource("41_2t1x4")
 shape = SubResource("ConcavePolygonShape3D_m8wx7")
 
 [node name="Dumpster" type="MeshInstance3D" parent="Node3D2/Straat" unique_id=1300705239]
-transform = Transform3D(4.322, 0, 0, 0, 6, 0, 0, 0, 3.384, 135.17004, 0.7286868, -4.9441905)
+transform = Transform3D(4.322, 0, 0, 0, 6, 0, 0, 0, 3.384, 135.17004, 0.6951891, -4.9441905)
 mesh = ExtResource("42_vkjee")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/Straat/Dumpster" unique_id=1133665439]
@@ -3646,9 +3649,6 @@ visible = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/Area3D" unique_id=434799071]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103.755005, 0.15753365, 20.232273)
 shape = SubResource("BoxShape3D_2ndy0")
-
-[node name="Node3D" parent="Node3D2" unique_id=1982591309 instance=ExtResource("52_kbwob")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 109.19563, 0.5278648, 11.080109)
 
 [node name="TestBox1" parent="Node3D2" unique_id=898709373 instance=ExtResource("53_ir76k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.08792, 1.0274963, 20.389595)
@@ -4799,6 +4799,25 @@ transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, 72
 mesh = SubResource("ArrayMesh_mhdt2")
 
 [node name="Node3D" type="Node3D" parent="Node3D4" unique_id=1302470974]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Node3D4/Node3D" unique_id=707258395]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D4/Node3D/RigidBody3D" unique_id=1060373726]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.569946, 8.045288, 8.991867)
+shape = SubResource("BoxShape3D_tpsjg")
+
+[node name="Label3D" type="Label3D" parent="Node3D4/Node3D/RigidBody3D/CollisionShape3D" unique_id=1222682945]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 73.54689, -10.429836, -0.8377609)
+text = "🔒CLOSED🔒"
+outline_size = 5
+
+[node name="Label3D2" type="Label3D" parent="Node3D4/Node3D/RigidBody3D/CollisionShape3D" unique_id=171056100]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 7.525528, -10.429836, 38.12097)
+text = "🔒CLOSED🔒"
+
+[node name="Label3D3" type="Label3D" parent="Node3D4/Node3D/RigidBody3D/CollisionShape3D" unique_id=438791621]
+transform = Transform3D(-5, 0, -7.54979e-07, 0, 5, 0, 7.54979e-07, 0, -5, 18.451126, -10.429836, -38.387444)
+text = "🔒CLOSED🔒"
 
 [node name="WallBigCorner3" type="MeshInstance3D" parent="Node3D4/Node3D" unique_id=693813471]
 transform = Transform3D(-5.826728e-08, 0, -1.333, 0, 4, 0, 1.333, 0, -5.826728e-08, 23.078457, 0, -21.573606)
@@ -5957,7 +5976,7 @@ material_override = SubResource("StandardMaterial3D_8ciom")
 mesh = SubResource("BoxMesh_h3x5k")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="Node3D4" unique_id=1974576020]
-transform = Transform3D(0.21976975, 0, 1.3992715e-14, 0, 5.134189, 0, -7.80779e-16, 0, 3.938599, 107.87248, 10.615018, -23.26286)
+transform = Transform3D(0.21976975, 0, 1.4210855e-14, 0, 5.134189, 0, -8.881784e-16, 0, 3.938599, 107.87248, 10.615018, -23.262861)
 material_override = SubResource("StandardMaterial3D_8ciom")
 mesh = SubResource("BoxMesh_h3x5k")
 
@@ -5996,6 +6015,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 157.29198, 23.192156, -44.293
 shape = SubResource("BoxShape3D_b2nkc")
 
 [node name="PauseMenu" parent="." unique_id=1274316590 instance=ExtResource("1_d2gkt")]
+
+[node name="RigidBody3D" parent="." unique_id=711282634 instance=ExtResource("94_h0sd5")]
+transform = Transform3D(0.922652, -0.25465232, 0.289595, -0.24990292, 0.17711267, 0.95193475, -0.29370338, -0.95067525, 0.09977502, 136.04564, 2.3791258, -4.7470155)
+
+[node name="TestBox1" parent="." unique_id=2058998005 instance=ExtResource("95_4j4mb")]
+transform = Transform3D(0.8405477, 0, -0.54173756, 0, 1, 0, 0.54173756, 0, 0.8405477, 133.90147, 0.66166985, -4.352851)
+
+[node name="BolsaN2" parent="." unique_id=1797229200 instance=ExtResource("96_4j4mb")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 135.74585, 0.60407424, -4.2383056)
+
+[node name="BolsaNa" parent="." unique_id=946969195 instance=ExtResource("97_6nha4")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 136.98613, 0.6599871, -4.293694)
+
+[node name="BolsaN1" parent="." unique_id=1892420718 instance=ExtResource("98_tpsjg")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 135.75679, 0.7043098, -4.734826)
 
 [connection signal="body_entered" from="Node3D2/DamageArea" to="Node3D2" method="OnDamageAreaBodyEntered"]
 
