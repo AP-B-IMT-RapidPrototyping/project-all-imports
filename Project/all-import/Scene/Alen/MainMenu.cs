@@ -16,8 +16,6 @@ public partial class MainMenu : Control
 		startButton.Pressed += OnStartPressed;
 		settingsButton.Pressed += OnSettingsPressed;
 		quitButton.Pressed += OnQuitPressed;
-		
-		 GD.Print("This node is in scene: " + GetTree().Root.Name);
 
 		
 		Input.MouseMode = Input.MouseModeEnum.Visible;

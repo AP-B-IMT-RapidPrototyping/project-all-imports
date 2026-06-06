@@ -2,7 +2,6 @@
 
 [ext_resource type="Theme" uid="uid://b0hyu6o25kx86" path="res://Scene/Alen/new_theme.tres" id="1_ofwuk"]
 [ext_resource type="Script" uid="uid://b36nt5n4pmqq7" path="res://Scene/Alen/MainMenu.cs" id="2_1qhyg"]
-[ext_resource type="AudioStream" uid="uid://qx0hd01t61bk" path="res://Scene/Elisha/Audio/billy_ziogas-shortcuts-master-track-240881.ogg" id="3_1qhyg"]
 
 [node name="MainMenu" type="Node3D" unique_id=1884375488]
 
@@ -84,8 +83,3 @@ offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 70
 text = "VOGEL SPEL"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=363200704]
-stream = ExtResource("3_1qhyg")
-volume_db = 10.0
-autoplay = true
