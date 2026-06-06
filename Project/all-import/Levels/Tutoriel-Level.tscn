@@ -54,9 +54,11 @@
 [ext_resource type="Script" uid="uid://dohwsgwld0eae" path="res://Scripts/GameManagerTutorial.cs" id="53_ajyva"]
 [ext_resource type="PackedScene" uid="uid://bkggnca2e44kp" path="res://Scene/Tutku/Nest.tscn" id="56_7kdfv"]
 [ext_resource type="PackedScene" uid="uid://drifjuk6x5s71" path="res://Assets/chimney_smoke.tscn" id="57_eynsq"]
-[ext_resource type="PackedScene" uid="uid://bpd57tlrjr0s2" path="res://Levels/pause_menu.tscn" id="57_hb4br"]
-[ext_resource type="PackedScene" path="res://Systems/CarSpawner.tscn" id="58_8v3fi"]
+[ext_resource type="PackedScene" path="res://Levels/pause_menu.tscn" id="57_hb4br"]
+[ext_resource type="PackedScene" uid="uid://ci6bcl2cq50uv" path="res://Systems/CarSpawner.tscn" id="58_8v3fi"]
+[ext_resource type="AudioStream" uid="uid://qx0hd01t61bk" path="res://Scene/Elisha/Audio/billy_ziogas-shortcuts-master-track-240881.ogg" id="58_a6hry"]
 [ext_resource type="PackedScene" uid="uid://cul1rjqpggkti" path="res://Actors/PickableTrash1.tscn" id="58_hb4br"]
+[ext_resource type="AudioStream" uid="uid://bvmo6f1jv0y4l" path="res://Scene/Elisha/Audio/dragon-studio-busy-street-ambience-447501.wav" id="59_8v3fi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2nkc"]
 size = Vector3(1.0795288, 49.67273, 241.96649)
@@ -2289,6 +2291,15 @@ shape = SubResource("BoxShape3D_eynsq")
 
 [node name="PauseMenu" parent="." unique_id=1274316590 instance=ExtResource("57_hb4br")]
 visible = false
+
+[node name="music" type="AudioStreamPlayer" parent="." unique_id=52597379]
+stream = ExtResource("58_a6hry")
+volume_db = 1.0
+autoplay = true
+
+[node name="Car sounds" type="AudioStreamPlayer3D" parent="." unique_id=1382332907]
+stream = ExtResource("59_8v3fi")
+autoplay = true
 
 [connection signal="body_entered" from="DamageArea" to="." method="OnDamageAreaBodyEntered"]
 
