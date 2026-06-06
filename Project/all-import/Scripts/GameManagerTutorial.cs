@@ -33,7 +33,7 @@ public partial class GameManagerTutorial : Node
         _secondObjective = GetTree().Root.FindChild("SecondObjective", true, false) as Label;
         _missionComplete = GetTree().Root.FindChild("MissionComplete", true, false) as Label;
         _gameOverLabel = GetTree().Root.FindChild("GameOver", true, false) as Label;
-
+        GD.Print("This node is in scene: " + GetTree().Root.Name);
         _objectiveProgress = GetTree().Root.FindChild("FirstObjectiveProgress", true, false) as ProgressBar;
 
         _player = GetTree().GetFirstNodeInGroup("player") as Node3D;
