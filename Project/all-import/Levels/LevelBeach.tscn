@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://d3y1efmqo633q"]
 
-[ext_resource type="PackedScene" uid="uid://bpd57tlrjr0s2" path="res://Levels/pause_menu.tscn" id="2_j5psh"]
+[ext_resource type="PackedScene" path="res://Levels/pause_menu.tscn" id="2_j5psh"]
 [ext_resource type="PackedScene" uid="uid://cuatisnqbnx4u" path="res://Systems/ui.tscn" id="2_yoq88"]
 [ext_resource type="Texture2D" uid="uid://d4mdhghqhqq0v" path="res://Assets/Sky Backgrounds512x512/512x512/Puffy Sky/Puffy_Sky-Evening_03-512x512.png" id="3_j5psh"]
 [ext_resource type="PackedScene" uid="uid://dteuwtgupxd84" path="res://Scene/Tutku/Farm.tscn" id="4_avwwd"]
@@ -17,16 +17,16 @@
 [ext_resource type="Texture2D" uid="uid://bif1kfma3s1sc" path="res://Assets/MuseumAsset/low-poly-art (6) (1).png" id="15_hnslb"]
 [ext_resource type="Texture2D" uid="uid://48lleks7wc52" path="res://Assets/MuseumAsset/low-poly-art (1) (1).png" id="16_kaj6v"]
 [ext_resource type="Texture2D" uid="uid://dn0fd65tkw4ms" path="res://Assets/MuseumAsset/low-poly-art (4).png" id="17_6mwlh"]
-[ext_resource type="PackedScene" path="res://Assets/MuseumAsset/info_desk_small.tscn" id="18_0rqs3"]
-[ext_resource type="PackedScene" uid="uid://b5suu3ayvu78f" path="res://Scene/Tutku/sculpture.tscn" id="19_pcbbk"]
+[ext_resource type="PackedScene" uid="uid://dabxqv3oeudh8" path="res://Assets/MuseumAsset/info_desk_small.tscn" id="18_0rqs3"]
+[ext_resource type="PackedScene" path="res://Scene/Tutku/sculpture.tscn" id="19_pcbbk"]
 [ext_resource type="Script" uid="uid://bu6jn62qsbbtg" path="res://Scene/Tutku/Guard.cs" id="20_4ilsm"]
 [ext_resource type="PackedScene" uid="uid://bih3ad7q42qhx" path="res://Assets/low_polysguard/scene.gltf" id="21_jwfsp"]
 [ext_resource type="Texture2D" uid="uid://djs4f4ybfoqsg" path="res://Assets/MuseumAsset/low-poly-art (5) (1).png" id="22_ej8na"]
 [ext_resource type="Texture2D" uid="uid://c8efaqh42iq6q" path="res://Assets/MuseumAsset/Schermafbeelding 2026-05-15 194830.png" id="23_m123x"]
 [ext_resource type="PackedScene" uid="uid://focxv566exlb" path="res://Scene/Tutku/Draaideur.tscn" id="24_dmkq8"]
 [ext_resource type="Texture2D" uid="uid://cchn5t2gwtqqs" path="res://Assets/MuseumAsset/low-poly-art (14) (1).png" id="25_0vk3n"]
-[ext_resource type="PackedScene" uid="uid://bglkx6pxwgjdc" path="res://Scene/Tutku/barrier.tscn" id="26_cfnob"]
-[ext_resource type="PackedScene" uid="uid://bee7iwggcl16x" path="res://Scene/Tutku/Ring.tscn" id="27_uetey"]
+[ext_resource type="PackedScene" path="res://Scene/Tutku/barrier.tscn" id="26_cfnob"]
+[ext_resource type="PackedScene" path="res://Scene/Tutku/Ring.tscn" id="27_uetey"]
 [ext_resource type="PackedScene" uid="uid://rmja3wfua83v" path="res://Scene/Tutku/Raam.tscn" id="28_6d4wx"]
 [ext_resource type="PackedScene" uid="uid://btgfd1y6q5n1k" path="res://Assets/nature_kit/Nature Kit/models/Rock_1.fbx" id="29_06wh8"]
 [ext_resource type="ArrayMesh" uid="uid://cgwtef72fe4fs" path="res://Assets/nature_kit/Nature Kit/models/Rock_3.obj" id="30_nmqdi"]
@@ -40,7 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://co23ipcchnmcb" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter1.fbx" id="38_bdkmu"]
 [ext_resource type="PackedScene" uid="uid://e1gu0j1xmm6r" path="res://Assets/LowPolyCharacterPack/LowPolyCharacter2.fbx" id="39_2ga14"]
 [ext_resource type="Texture2D" uid="uid://ckm53f1hmots0" path="res://Assets/Farm/3D Farm Asset Pack_6.png" id="40_mwj8g"]
-[ext_resource type="PackedScene" path="res://Scene/Tutku/farmhouse_a_02_002.tscn" id="41_mglhr"]
+[ext_resource type="PackedScene" uid="uid://duhqnr72sgpo4" path="res://Scene/Tutku/farmhouse_a_02_002.tscn" id="41_mglhr"]
 [ext_resource type="Texture2D" uid="uid://bfxjgcugbgdf" path="res://Assets/Fence-Textures/PostDiffuseTexture.png" id="42_nlctb"]
 [ext_resource type="PackedScene" uid="uid://cblgy5n0h51jm" path="res://Scene/Tutku/Moder.tscn" id="43_nxhpx"]
 [ext_resource type="PackedScene" uid="uid://bcui78i73mhpo" path="res://Scene/Tutku/Fence0.2.tscn" id="44_ewwoc"]
@@ -91,9 +91,11 @@
 [ext_resource type="PackedScene" uid="uid://624lymdnbyii" path="res://Assets/nature_kit/Boom-2.scn" id="90_qdkju"]
 [ext_resource type="PackedScene" uid="uid://b7ollao204rim" path="res://Assets/nature_kit/Boom-3.scn" id="91_br24e"]
 [ext_resource type="PackedScene" uid="uid://dd3phq0xue0rp" path="res://Scene/Tutku/BeacheLevel2.tscn" id="92_kh5gq"]
-[ext_resource type="PackedScene" uid="uid://cvjtb20kxitc" path="res://Actors/PickableCastleSmall.tscn" id="93_yoq88"]
-[ext_resource type="PackedScene" uid="uid://bjpkylonr2s50" path="res://Actors/PickableCastleBig.tscn" id="94_j5psh"]
+[ext_resource type="PackedScene" path="res://Actors/PickableCastleSmall.tscn" id="93_yoq88"]
+[ext_resource type="PackedScene" path="res://Actors/PickableCastleBig.tscn" id="94_j5psh"]
+[ext_resource type="AudioStream" uid="uid://cn8e1yxgjgkwg" path="res://Scene/Elisha/Audio/stereogenicstudio-beach-02-404144.wav" id="95_g3ynw"]
 [ext_resource type="Script" uid="uid://52diwnxkrnxe" path="res://Scripts/WaterArea.cs" id="95_water"]
+[ext_resource type="AudioStream" uid="uid://c4p32bja8bk36" path="res://Scene/Elisha/Audio/billy_ziogas-shortcuts-master-track-240881.ogg" id="96_av6ls"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2nkc"]
 size = Vector3(1.0795288, 49.67273, 241.96649)
@@ -6061,6 +6063,14 @@ script = ExtResource("95_water")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WaterArea" unique_id=481558121]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.58043, -2.9381876, 7.5599365)
 shape = SubResource("BoxShape3D_jnmlx")
+
+[node name="BeachSound" type="AudioStreamPlayer" parent="." unique_id=918511980]
+stream = ExtResource("95_g3ynw")
+autoplay = true
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=983188048]
+stream = ExtResource("96_av6ls")
+autoplay = true
 
 [connection signal="body_entered" from="Node3D2/DamageArea" to="Node3D2" method="OnDamageAreaBodyEntered"]
 

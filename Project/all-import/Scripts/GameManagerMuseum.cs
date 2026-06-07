@@ -33,6 +33,8 @@ public partial class GameManagerMuseum : Node
 
     private const float ClearDistance = 2.0f;
 
+    [Export] private AudioStreamPlayer _glassSound; 
+
     public override void _Ready()
     {
         _hintLabel        = GetTree().Root.FindChild("HintLabel",              true, false) as Label;
@@ -76,7 +78,9 @@ public partial class GameManagerMuseum : Node
         // ── Break the glass cover (SecondObjectiveProgress) ──────────
         if (!_coverBroken && IsCoverBroken())
         {
+           
             _coverBroken = true;
+             _glassSound.Play();
             if (_glassProgress != null) _glassProgress.Value = 100;
             GD.Print("[GameManagerMuseum] Glass cover broken!");
         }
