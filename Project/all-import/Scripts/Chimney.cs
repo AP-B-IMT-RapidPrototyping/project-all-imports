@@ -1,7 +1,9 @@
 using Godot;
 
+
 public partial class Chimney : Area3D
 {
+	[Export] private AudioStreamPlayer _thrashDesposeSound;
 	private int _deletedItems = 0;
 	private int _targetItems = 3;
 
@@ -16,6 +18,7 @@ public partial class Chimney : Area3D
 		// Check if the body is in the "Pickable" group
 		if (body.IsInGroup("Pickable"))
 		{
+			_thrashDesposeSound.Play();
 			// Remove the object from the scene tree
 			body.QueueFree();
 			_deletedItems++;

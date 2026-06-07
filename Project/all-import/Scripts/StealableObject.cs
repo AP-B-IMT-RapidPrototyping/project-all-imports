@@ -7,17 +7,15 @@ public partial class StealableObject : RigidBody3D
 	[Export] public int Value = 10;
 	[Export] public bool IsImportant = false;
 
+	[Export] private AudioStreamPlayer _pickupSound; // leave empty on objects that don't need it
+
 	public bool IsBeingHeld { get; private set; } = false;
 
 	public override void _Ready()
 	{
-
 		CanSleep = false;
-
-
 		AddToGroup("Pickable");
 	}
-
 
 	public void PickUp()
 	{
@@ -25,8 +23,9 @@ public partial class StealableObject : RigidBody3D
 		Freeze = true;
 		CollisionLayer = 0;
 		CollisionMask = 0;
-	}
 
+		_pickupSound?.Play();
+	}
 
 	public void LetGo(Vector3 throwDirection)
 	{
